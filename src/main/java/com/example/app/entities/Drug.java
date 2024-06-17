@@ -6,7 +6,7 @@ public class Drug {
     private String description;
     private int quantity;
     private double price;
-    private int supplierId;
+    private String supplierId;
 
     // Constructors
     public Drug() {
@@ -18,7 +18,7 @@ public class Drug {
     }
 
 
-    public Drug(String id, String name, String description, int quantity, double price, int supplierId) {
+    public Drug(String id, String name, String description, int quantity, double price, String supplierId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -26,7 +26,6 @@ public class Drug {
         this.price = price;
         this.supplierId = supplierId;
     }
-
 
     // Getters and setters...
     public String getId() {
@@ -69,11 +68,11 @@ public class Drug {
         this.price = price;
     }
 
-    public int getSupplierId() {
+    public String getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
+    public void setSupplierId(String supplierId) {
         this.supplierId = supplierId;
     }
 

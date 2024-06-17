@@ -43,11 +43,11 @@ public class LoginScreen extends Application {
         loginButton.setOnAction(e -> {
             String userID = userIDInput.getText();
             String password = passwordInput.getText();
-            UserController userController = new UserController();
-            User user = userController.authenticate(userID, password);
+            User user = UserController.login(userID, password); // User login functionality
+            assert user != null;
             System.out.println(user.toString());
             if (user != null && "pharmacist".equals(user.getRole())) {
-            //    new MainDashboard().start(new Stage());
+                new MainDashboard().start(new Stage());
                 messageLabel.setText("Authenticated");
                 primaryStage.close();
             } else {

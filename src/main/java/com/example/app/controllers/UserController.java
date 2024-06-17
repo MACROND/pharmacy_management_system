@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserController {
-    public User authenticate(String user_id, String password) {
+    public static User login(String user_id, String password) {
         try (Connection conn = DatabaseUtil.getConnection()) {
             String sql = "SELECT * FROM users WHERE user_id = ? AND password = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
