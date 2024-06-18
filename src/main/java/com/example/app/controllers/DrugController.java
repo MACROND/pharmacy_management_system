@@ -8,8 +8,10 @@ import java.util.List;
 
 public class DrugController {
 
+    private static final List<Drug> drugList = new ArrayList<>();
+
     public void addDrug(Drug drug) {
-        String query = "INSERT INTO drugs (id, name, description, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO drugs (drug_id, name, description, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -26,7 +28,7 @@ public class DrugController {
     }
 
     public List<Drug> getAllDrugs() {
-        List<Drug> drugs = new ArrayList<>();
+
         String query = "SELECT * FROM drugs";
 
         try (Connection conn = DatabaseUtil.getConnection();
@@ -41,11 +43,11 @@ public class DrugController {
                         rs.getDouble("price"),
                         rs.getString("supplier_id")
                 );
-                drugs.add(drug);
+                drugList.add(drug);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return drugs;
+        return drugList;
     }
 }

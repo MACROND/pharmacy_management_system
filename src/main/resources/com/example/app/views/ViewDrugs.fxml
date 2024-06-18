@@ -3,10 +3,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.app.screens.fxmlControllers.AddDrugController" spacing="10" alignment="CENTER" padding="10">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.app.screens.fxmlControllers.ViewDrugsController" spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
     <TableView fx:id="drugsTable">
         <columns>
+            <TableColumn fx:id="drugIdColumn" text="ID" />
             <TableColumn fx:id="nameColumn" text="Name" />
             <TableColumn fx:id="descriptionColumn" text="Description" />
             <TableColumn fx:id="quantityColumn" text="Quantity" />

@@ -16,4 +16,5 @@ module com.example.app {
     exports com.example.app;
     exports com.example.app.entities;
     opens com.example.app.entities to javafx.fxml;
+    opens com.example.app.screens.fxmlControllers to javafx.fxml;
 }

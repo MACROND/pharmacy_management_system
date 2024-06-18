@@ -3,9 +3,28 @@ package com.example.app.screens.fxmlControllers;
 import com.example.app.entities.Drug;
 import com.example.app.controllers.DrugController;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+
 public class AddDrugController {
+    @FXML
+    public TableColumn dugIdColumn;
+    @FXML
+    public TableView drugsTable;
+    @FXML
+    public TableColumn nameColumn;
+    @FXML
+    public TableColumn descriptionColumn;
+    @FXML
+    public TableColumn quantityColumn;
+    @FXML
+    public TableColumn priceColumn;
+    @FXML
+    public TableColumn supplierIdColumn;
+
+
     @FXML
     private TextField idField;
     @FXML
@@ -34,6 +53,7 @@ public class AddDrugController {
         drugController.addDrug(drug);
 
         // Clear the fields after adding
+        idField.clear();
         nameField.clear();
         descriptionField.clear();
         quantityField.clear();
