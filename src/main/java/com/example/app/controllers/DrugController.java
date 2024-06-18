@@ -11,16 +11,16 @@ public class DrugController {
     private static final List<Drug> drugList = new ArrayList<>();
 
     public void addDrug(Drug drug) {
-        String query = "INSERT INTO drugs (drug_id, name, description, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO drugs (drug_id, name, description, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, drug.getId());
-            stmt.setString(1, drug.getName());
-            stmt.setString(2, drug.getDescription());
-            stmt.setInt(3, drug.getQuantity());
-            stmt.setDouble(4, drug.getPrice());
-            stmt.setString(5, drug.getSupplierId());
+            stmt.setString(2, drug.getName());
+            stmt.setString(3, drug.getDescription());
+            stmt.setInt(4, drug.getQuantity());
+            stmt.setDouble(5, drug.getPrice());
+            stmt.setString(6, drug.getSupplierId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

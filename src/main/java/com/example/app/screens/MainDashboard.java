@@ -11,8 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class MainDashboard extends Application {
     private BorderPane layout;
     private VBox navButtonsBox;
@@ -34,12 +32,12 @@ public class MainDashboard extends Application {
         manageSalesButton.setOnAction(e -> showNavButtons("sales"));
 
         Button managePurchasesButton = new Button("Purchases");
-        manageSalesButton.setOnAction(e -> showNavButtons("purchases"));
+        managePurchasesButton.setOnAction(e -> showNavButtons("purchases"));
 
-        Button manageSuppliiersButton = new Button("Suppliers");
-        manageSalesButton.setOnAction(e -> showNavButtons("supplier"));
+        Button manageSuppliersButton = new Button("Suppliers");
+        manageSuppliersButton.setOnAction(e -> showNavButtons("suppliers"));
 
-        navButtonsBox.getChildren().addAll(manageDrugsButton, manageSalesButton);
+        navButtonsBox.getChildren().addAll(manageDrugsButton, manageSalesButton, managePurchasesButton, manageSuppliersButton);
         layout.setLeft(navButtonsBox);
 
         // Right pane layout
@@ -64,8 +62,6 @@ public class MainDashboard extends Application {
         }
     }
 
-
-
     private void showNavButtons(String section) {
         HBox navButtons = new HBox(10);
         navButtons.setPadding(new Insets(10));
@@ -78,11 +74,18 @@ public class MainDashboard extends Application {
             viewDrugsButton.setOnAction(e -> loadContent("/com/example/app/views/ViewDrugs.fxml"));
 
             navButtons.getChildren().addAll(addDrugButton, viewDrugsButton);
-        }
-        else if (section.equals("sales")) {
+        } else if (section.equals("sales")) {
             // Add sales related buttons here
-            return ;
+        } else if (section.equals("purchases")) {
+            // Add purchases related buttons here
+        } else if (section.equals("suppliers")) {
+            Button addSupplierButton = new Button("Add Supplier");
+            addSupplierButton.setOnAction(e -> loadContent("/com/example/app/views/AddSupplier.fxml"));
 
+            Button viewSuppliersButton = new Button("View Suppliers");
+            viewSuppliersButton.setOnAction(e -> loadContent("/com/example/app/views/ViewSuppliers.fxml"));
+
+            navButtons.getChildren().addAll(addSupplierButton, viewSuppliersButton);
         }
 
         rightPane.setTop(navButtons);
