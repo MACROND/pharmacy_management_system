@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class LoginScreen extends Application {
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Pharmacrond-Login");
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
