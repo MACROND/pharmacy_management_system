@@ -2,8 +2,11 @@ package com.example.app.entities;
 
 import java.time.LocalDateTime;
 
+import static java.lang.Integer.parseInt;
+
+
 public class Purchase {
-    private String id;
+    private int id;
     private String drugId;
     private String customerId;
     private LocalDateTime date;
@@ -13,11 +16,11 @@ public class Purchase {
     // Constructors
     public Purchase() {}
 
-    public Purchase(String id) {
+    public Purchase(int id) {
         this.id = id;
     }
 
-    public Purchase(String id, String drugId, String customerId, LocalDateTime date, int quantity, double totalPrice) {
+    public Purchase(int id, String drugId, String customerId, LocalDateTime date, int quantity, double totalPrice) {
         this.id = id;
         this.drugId = drugId;
         this.customerId = customerId;
@@ -28,13 +31,11 @@ public class Purchase {
 
 
     // Getters, and setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
     public String getDrugId() {
         return drugId;
