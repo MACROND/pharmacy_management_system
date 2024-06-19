@@ -10,7 +10,8 @@ USE pharmacy;
 -- Create the users table
 CREATE TABLE users (
     user_id VARCHAR(255) PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
+    firstName VARCHAR(225),
+    lastName VARCHAR(225),
     password VARCHAR(255) NOT NULL,
     role VARCHAR(20) NOT NULL
 );

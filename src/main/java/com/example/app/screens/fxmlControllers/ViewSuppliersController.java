@@ -1,5 +1,6 @@
 package com.example.app.screens.fxmlControllers;
 
+import com.example.app.controllers.PurchaseController;
 import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Supplier;
 import javafx.collections.FXCollections;
@@ -30,8 +31,8 @@ public class ViewSuppliersController {
     private void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        contactColumn.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactColumn.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
         supplierTable.getItems().clear();
         supplierTable.setItems(suppliersList); // Set up the table for viewing the fetchedSuppliers

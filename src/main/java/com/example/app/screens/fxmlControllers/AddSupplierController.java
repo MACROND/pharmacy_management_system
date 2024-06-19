@@ -1,5 +1,6 @@
 package com.example.app.screens.fxmlControllers;
 
+import com.example.app.controllers.PurchaseController;
 import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Supplier;
 import javafx.fxml.FXML;

@@ -1,5 +1,6 @@
 package com.example.app.entities;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import static java.lang.Integer.parseInt;
@@ -53,8 +54,8 @@ public class Purchase {
         this.customerId = customerId;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public Date getDate() {
+        return Da;
     }
 
     public void setDate(LocalDateTime date) {

@@ -39,7 +39,7 @@ public class MainDashboard extends Application {
         // Sales menu
         Menu salesMenu = new Menu("Sales");
         MenuItem addSalesItem = new MenuItem("Add Sales");
-        addSalesItem.setOnAction(e -> loadContent("/com/example/app/views/AddSales.fxml"));
+        addSalesItem.setOnAction(e -> loadContent("/com/example/app/views/AddSale.fxml"));
         MenuItem viewSalesItem = new MenuItem("View Sales");
         viewSalesItem.setOnAction(e -> loadContent("/com/example/app/views/ViewSales.fxml"));
         salesMenu.getItems().addAll(addSalesItem, viewSalesItem);
@@ -47,7 +47,7 @@ public class MainDashboard extends Application {
         // Purchases menu
         Menu purchasesMenu = new Menu("Purchases");
         MenuItem addPurchasesItem = new MenuItem("Add Purchases");
-        addPurchasesItem.setOnAction(e -> loadContent("/com/example/app/views/AddPurchases.fxml"));
+        addPurchasesItem.setOnAction(e -> loadContent("/com/example/app/views/AddPurchase.fxml"));
         MenuItem viewPurchasesItem = new MenuItem("View Purchases");
         viewPurchasesItem.setOnAction(e -> loadContent("/com/example/app/views/ViewPurchases.fxml"));
         purchasesMenu.getItems().addAll(addPurchasesItem, viewPurchasesItem);
