@@ -6,25 +6,31 @@ import java.time.LocalDateTime;
 import static java.lang.Integer.parseInt;
 
 
-public class Purchase {
+public class Sale {
     private int id;
     private String drugId;
-    private String customerId;
+    private String customerName;
     private LocalDateTime date;
     private int quantity;
     private double totalPrice;
 
     // Constructors
-    public Purchase() {}
-
-    public Purchase(int id) {
+    public Sale(int id) {
         this.id = id;
     }
 
-    public Purchase(int id, String drugId, String customerId, LocalDateTime date, int quantity, double totalPrice) {
+    public Sale(int id, String drugId, String customerName, LocalDateTime date, int quantity, double totalPrice) {
         this.id = id;
         this.drugId = drugId;
-        this.customerId = customerId;
+        this.customerName = customerName;
+        this.date = date;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+
+    public Sale(String drugId, String customerId, LocalDateTime localDateTime, int quantity, double totalPrice) {
+        this.drugId = drugId;
+        this.customerName = customerName;
         this.date = date;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
@@ -47,15 +53,15 @@ public class Purchase {
     }
 
     public String getCustomerId() {
-        return customerId;
+        return customerName;
     }
 
     public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+        this.customerName = customerId;
     }
 
-    public Date getDate() {
-        return Da;
+    public LocalDateTime getDate() {
+        return LocalDateTime.now();
     }
 
     public void setDate(LocalDateTime date) {
@@ -82,10 +88,10 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return "Purchase{" +
+        return "Sale{" +
                 "id=" + id +
                 ", drugId=" + drugId +
-                ", customerId=" + customerId +
+                ", customerId=" + customerName +
                 ", date=" + date +
                 ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +

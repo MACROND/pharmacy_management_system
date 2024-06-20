@@ -1,58 +1,57 @@
 package com.example.app.controllers;
 
-import com.example.app.entities.Purchase;
+import com.example.app.entities.Sale;
 import com.example.app.utils.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchaseController {
+public class SaleController {
 
-    private static final List<Purchase> purchaseList = new ArrayList<>();
+    private static final List<Sale> saleList = new ArrayList<>();
 
-    public void addPurchase(Purchase purchase) {
-        String query = "INSERT INTO purchases (purchase_id, drug_id, customer_id, quantity, total_price) VALUES (?, ?, ?, ?, ?)";
+    public void addSale(Sale sale) {
+        String query = "INSERT INTO sales (drug_id, customer_id, quantity, total_price) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, purchase.getId());
-            stmt.setString(2, purchase.getDrugId());
-            stmt.setString(3, purchase.getCustomerId());
-            stmt.setInt(4, purchase.getQuantity());
-            stmt.setDouble(5, purchase.getTotalPrice());
+            stmt.setString(1, sale.getDrugId());
+            stmt.setString(2, sale.getCustomerId());
+            stmt.setInt(3, sale.getQuantity());
+            stmt.setDouble(4, sale.getTotalPrice());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static List<Purchase> getAllPurchases() {
-        String query = "SELECT * FROM purchases";
+    public static List<Sale> getAllSales() {
+        String query = "SELECT * FROM sales";
 
         try (Connection conn = DatabaseUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                Purchase purchase = new Purchase(
-                        rs.getInt("purchase_id"),
+                Sale purchase = new Sale(
+                        rs.getInt("sale_id"),
                         rs.getString("drug_id"),
                         rs.getString("customer_id"),
-                        rs.getDate("date").toLocalDate().atStartOfDay(), // Convert java.sql.Date to LocalDate
+                        rs.getDate("date").toLocalDate().atStartOfDay(),
                         rs.getInt("quantity"),
                         rs.getDouble("total_price")
                 );
-                purchaseList.add(purchase);
+                saleList.add(purchase);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return purchaseList;
+        return saleList;
     }
 
-    public Purchase getPurchaseById(String purchaseId) {
-        String query = "SELECT * FROM purchases WHERE purchase_id = ?";
+    public Sale getSaleById(String purchaseId) {
+        String query = "SELECT * FROM sales WHERE sale_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -60,8 +59,8 @@ public class PurchaseController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Purchase(
-                        rs.getInt("purchase_id"),
+                return new Sale(
+                        rs.getInt("sale_id"),
                         rs.getString("drug_id"),
                         rs.getString("customer_id"),
                         rs.getDate("date").toLocalDate().atStartOfDay(),
@@ -69,7 +68,6 @@ public class PurchaseController {
                         rs.getDouble("total_price")
                 );
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

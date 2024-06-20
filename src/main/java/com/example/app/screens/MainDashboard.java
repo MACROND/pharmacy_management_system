@@ -11,8 +11,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class MainDashboard extends Application {
     private BorderPane layout;
     private BorderPane bottomPane;
@@ -44,14 +42,6 @@ public class MainDashboard extends Application {
         viewSalesItem.setOnAction(e -> loadContent("/com/example/app/views/ViewSales.fxml"));
         salesMenu.getItems().addAll(addSalesItem, viewSalesItem);
 
-        // Purchases menu
-        Menu purchasesMenu = new Menu("Purchases");
-        MenuItem addPurchasesItem = new MenuItem("Add Purchases");
-        addPurchasesItem.setOnAction(e -> loadContent("/com/example/app/views/AddPurchase.fxml"));
-        MenuItem viewPurchasesItem = new MenuItem("View Purchases");
-        viewPurchasesItem.setOnAction(e -> loadContent("/com/example/app/views/ViewPurchases.fxml"));
-        purchasesMenu.getItems().addAll(addPurchasesItem, viewPurchasesItem);
-
         // Suppliers menu
         Menu suppliersMenu = new Menu("Suppliers");
         MenuItem addSuppliersItem = new MenuItem("Add Suppliers");
@@ -61,7 +51,7 @@ public class MainDashboard extends Application {
         suppliersMenu.getItems().addAll(addSuppliersItem, viewSuppliersItem);
 
         // Add menus to the MenuBar
-        menuBar.getMenus().addAll(drugsMenu, salesMenu, purchasesMenu, suppliersMenu);
+        menuBar.getMenus().addAll(drugsMenu, salesMenu, suppliersMenu);
 
         // Set the MenuBar at the top of the layout
         layout.setTop(menuBar);
