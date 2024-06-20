@@ -11,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
-public class ViewDrugsController {
+public class ViewSalesController {
 
     @FXML
     private TableView<Drug> drugsTable;
@@ -39,6 +39,7 @@ public class ViewDrugsController {
 
     @FXML
     private void initialize() {
+        drugsTable.getItems().clear();
         // Set up the columns with their corresponding data properties
         drugIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -53,10 +54,7 @@ public class ViewDrugsController {
 
     @FXML
     public void showAllDrugs() {
-        boolean empty = drugsTable.getItems().isEmpty();
-        if (!empty){
-            drugsTable.getItems().clear();
-        }
+        drugsTable.getItems().clear();
         List<Drug> fetchedDrugs = DrugController.getAllDrugs();
         drugsTable.getItems().addAll(fetchedDrugs);
     }

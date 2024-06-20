@@ -10,7 +10,8 @@ USE pharmacy;
 -- Create the users table
 CREATE TABLE users (
     user_id VARCHAR(255) PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
+    firstName VARCHAR(225),
+    lastName VARCHAR(225),
     password VARCHAR(255) NOT NULL,
     role VARCHAR(20) NOT NULL
 );
@@ -34,30 +35,16 @@ CREATE TABLE drugs (
     FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
 );
 
--- Create the customers table
-CREATE TABLE customers (
-    customer_id VARCHAR(255) PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    contact VARCHAR(50)
-);
-
 -- Create the sales table
 CREATE TABLE sales (
-    sale_id VARCHAR(255) PRIMARY KEY,
+    sale_id INT PRIMARY KEY AUTO_INCREMENT,
     drug_id VARCHAR(255),
-    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    quantity INT NOT NULL,
-    FOREIGN KEY (drug_id) REFERENCES drugs(drug_id)
-);
-
--- Create the purchases table
-CREATE TABLE purchases (
-    purchase_id VARCHAR(255) PRIMARY KEY,
-    drug_id VARCHAR(255),
-    customer_id VARCHAR(255),
+    customer_name VARCHAR(255),
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     quantity INT NOT NULL,
     total_price DOUBLE NOT NULL,
-    FOREIGN KEY (drug_id) REFERENCES drugs(drug_id),
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    FOREIGN KEY (drug_id)
+        REFERENCES drugs (drug_id)
 );
+
+alter table sales auto_increment=00001;

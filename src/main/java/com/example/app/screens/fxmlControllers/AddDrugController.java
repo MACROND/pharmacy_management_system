@@ -60,4 +60,13 @@ public class AddDrugController {
         priceField.clear();
         supplierIdField.clear();
     }
+
+    private void handleDeleteDrug(){
+        String id = idField.getText();
+
+        drugController.deleteDrug(id);
+
+        // Clear the fields after adding
+        idField.clear();
+    }
 }

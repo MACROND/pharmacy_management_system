@@ -30,8 +30,8 @@ public class ViewSuppliersController {
     private void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        contactColumn.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactColumn.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
         supplierTable.getItems().clear();
         supplierTable.setItems(suppliersList); // Set up the table for viewing the fetchedSuppliers

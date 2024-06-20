@@ -1,8 +1,7 @@
-package com.example.app.utils.helpers;
+package com.example.app.utils.algorithms;
 
 import com.example.app.entities.Drug;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
