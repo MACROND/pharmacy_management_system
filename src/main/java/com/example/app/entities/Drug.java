@@ -9,7 +9,8 @@ public class Drug {
     private String supplierId;
 
     // Constructors
-    public Drug() {
+    public Drug(String id) {
+        this.id = id;
     }
 
     public Drug(String id, String name) {

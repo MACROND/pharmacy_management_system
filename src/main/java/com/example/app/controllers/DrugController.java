@@ -75,4 +75,19 @@ public class DrugController {
         }
         return null;
     }
+
+    public void deleteDrug(String id){
+        String query = "DELETE * FROM drugs WHERE drug_id = ? OR name = ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, id);
+                ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                stmt.executeQuery();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

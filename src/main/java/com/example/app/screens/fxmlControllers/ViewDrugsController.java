@@ -39,7 +39,6 @@ public class ViewDrugsController {
 
     @FXML
     private void initialize() {
-        drugsTable.getItems().clear();
         // Set up the columns with their corresponding data properties
         drugIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -54,7 +53,10 @@ public class ViewDrugsController {
 
     @FXML
     public void showAllDrugs() {
-        drugsTable.getItems().clear();
+        boolean empty = drugsTable.getItems().isEmpty();
+        if (!empty){
+            drugsTable.getItems().clear();
+        }
         List<Drug> fetchedDrugs = DrugController.getAllDrugs();
         drugsTable.getItems().addAll(fetchedDrugs);
     }
