@@ -1,5 +1,10 @@
 package com.example.app.entities;
 
+/**
+ * The `Drug` class represents a drug entity with properties such as id, name,
+ * description, quantity,
+ * price, and supplierId, along with constructors and getter/setter methods.
+ */
 public class Drug {
     private String id;
     private String name;
@@ -14,10 +19,9 @@ public class Drug {
     }
 
     public Drug(String id, String name) {
-        this.id = id ;
+        this.id = id;
         this.name = name;
     }
-
 
     public Drug(String id, String name, String description, int quantity, double price, String supplierId) {
         this.id = id;
@@ -28,7 +32,7 @@ public class Drug {
         this.supplierId = supplierId;
     }
 
-    // Getters and setters...
+    // Getters and setters
     public String getId() {
         return id;
     }

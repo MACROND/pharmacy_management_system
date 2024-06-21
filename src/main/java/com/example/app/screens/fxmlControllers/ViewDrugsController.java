@@ -35,7 +35,7 @@ public class ViewDrugsController {
     private TableColumn<Drug, String> supplierIdColumn;
 
     // Initialize method to set up the TableView
-    private final ObservableList<Drug> drugList = FXCollections.observableArrayList();
+    private ObservableList<Drug> drugList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -48,15 +48,16 @@ public class ViewDrugsController {
         supplierIdColumn.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
 
         drugsTable.setItems(drugList); // Set up the table for viewing the fetchedDrugs
-        showAllDrugs();
+        drugsTable.getItems().clear(); // Clear already loaded drug item from the table
+
+        boolean empty = drugsTable.getItems().isEmpty();
+        if (empty) {
+            showAllDrugs();
+        }
     }
 
     @FXML
     public void showAllDrugs() {
-        boolean empty = drugsTable.getItems().isEmpty();
-        if (!empty){
-            drugsTable.getItems().clear();
-        }
         List<Drug> fetchedDrugs = DrugController.getAllDrugs();
         drugsTable.getItems().addAll(fetchedDrugs);
     }

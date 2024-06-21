@@ -48,14 +48,18 @@ public class SearchSuppliersController {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         supplierIdColumn.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
 
+        drugsTable.getItems().clear();
         drugsTable.setItems(drugList); // Set up the table for viewing the fetchedDrugs
+        drugsTable.getItems().clear();
+
         showAllDrugs();
     }
 
     @FXML
     public void showAllDrugs() {
-        drugsTable.getItems().clear();
         List<Drug> fetchedDrugs = DrugController.getAllDrugs();
+        drugsTable.getItems().clear();
         drugsTable.getItems().addAll(fetchedDrugs);
+        drugsTable.getItems().clear();
     }
 }

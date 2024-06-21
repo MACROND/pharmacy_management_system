@@ -1,3 +1,8 @@
+/**
+ * The User class represents a user entity with properties such as id, first name, last name, password,
+ * and role.
+ */
+
 package com.example.app.entities;
 
 public class User {
