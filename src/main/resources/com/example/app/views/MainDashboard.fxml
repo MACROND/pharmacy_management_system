@@ -5,48 +5,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane cache="true" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane cache="true" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.MainDashboardController">
     <!-- Top MenuBar -->
     <top>
         <MenuBar>
             <!-- Drugs Menu -->
             <Menu text="Drugs">
-                <MenuItem text="Add Drug" />
-                <MenuItem text="View Drugs" />
-                <MenuItem text="Search Drug" />
+                <MenuItem text="Manage Drugs" onAction="#loadManageDrugSection"/>
             </Menu>
             <!-- Sales Menu -->
             <Menu text="Sales">
-                <MenuItem text="Add Sales" />
-                <MenuItem text="View Sales" />
+                <MenuItem text="Manage Sales" onAction="#loadManageSalesSection"/>
             </Menu>
             <!-- Suppliers Menu -->
-            <Menu text="Suppliers">
-                <MenuItem text="Add Suppliers" />
-                <MenuItem text="View Suppliers" />
+            <Menu text="Supplier">
+                <MenuItem text="Manage Supplier" onAction="#loadManageSupplierSection"/>
             </Menu>
-         <padding>
-            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-         </padding>
+            <padding>
+                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+            </padding>
         </MenuBar>
     </top>
 
     <!-- Center content will be set programmatically -->
     <center>
         <StackPane fx:id="middleSection">
-         <children>
-            <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="422.0">
-               <StackPane.margin>
-                  <Insets />
-               </StackPane.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding></Pane>
-            <Label alignment="CENTER" text="WELCOME! " textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Arial Black" size="25.0" />
-               </font></Label>
-         </children></StackPane>
+            <children>
+                <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="422.0">
+                    <StackPane.margin>
+                        <Insets />
+                    </StackPane.margin>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </Pane>
+                <Label alignment="CENTER" text="WELCOME! " textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font name="Arial Black" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </StackPane>
     </center>
 
     <!-- Bottom TableView -->
@@ -61,19 +60,19 @@
                     <TableColumn fx:id="column4" text="Column 4" />
                     <TableColumn fx:id="column5" text="Column 5" />
                 </columns>
-            <StackPane.margin>
-               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-            </StackPane.margin>
-            <padding>
-               <Insets bottom="20.0" />
-            </padding>
-            <columnResizePolicy>
-               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
+                <StackPane.margin>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                </StackPane.margin>
+                <padding>
+                    <Insets bottom="20.0" />
+                </padding>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
             </TableView>
         </StackPane>
     </bottom>
-   <padding>
-      <Insets bottom="10.0" />
-   </padding>
+    <padding>
+        <Insets bottom="10.0" />
+    </padding>
 </BorderPane>

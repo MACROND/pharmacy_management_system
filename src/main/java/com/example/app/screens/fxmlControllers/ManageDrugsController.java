@@ -5,10 +5,12 @@ import com.example.app.controllers.DrugController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
-public class AddDrugController {
+
+public class ManageDrugsController {
     @FXML
     public TableColumn dugIdColumn;
     @FXML
@@ -30,7 +32,7 @@ public class AddDrugController {
     @FXML
     private TextField nameField;
     @FXML
-    private TextField descriptionField;
+    private TextArea descriptionField;
     @FXML
     private TextField quantityField;
     @FXML

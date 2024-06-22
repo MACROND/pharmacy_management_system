@@ -24,6 +24,12 @@ public class Supplier {
         this.contact = contact;
     }
 
+    public Supplier(String name, String location, String contact) {
+        this.name = name;
+        this.location = location;
+        this.contact = contact;
+    }
+
     // Getters and setters...
     public String getId() {
         return id;

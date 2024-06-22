@@ -72,7 +72,7 @@ public class LoginScreen extends Application {
             Stage dashboardStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/MainDashboard.fxml"));
             Parent dashboardRoot = loader.load();
-            Scene dashboardScene = new Scene(dashboardRoot, 800, 700 );
+            Scene dashboardScene = new Scene(dashboardRoot, 800, 710 );
             dashboardScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/app/views/style.css")).toExternalForm());
             dashboardStage.setScene(dashboardScene);
             dashboardStage.setTitle("PharMacrond-Dashboard");

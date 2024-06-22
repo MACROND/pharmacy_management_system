@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+
 public class SupplierController {
 
     private static final List<Supplier> supplierList = new ArrayList<>();
@@ -23,14 +24,13 @@ public class SupplierController {
      * @param supplier - supplier.getId(): The ID of the supplier
      */
     public void addSupplier(Supplier supplier) {
-        String query = "INSERT INTO suppliers (supplier_id, name, location, contact) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO suppliers (name, location, contact) VALUES (?, ?, ?)";
 
         try (Connection conn = DatabaseUtil.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, supplier.getId());
-            stmt.setString(2, supplier.getName());
-            stmt.setString(3, supplier.getLocation());
-            stmt.setString(4, supplier.getContact());
+            stmt.setString(1, supplier.getName());
+            stmt.setString(2, supplier.getLocation());
+            stmt.setString(3, supplier.getContact());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

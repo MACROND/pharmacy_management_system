@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import static java.lang.Integer.parseInt;
 
 
-public class AddSaleController {
+public class ManageSaleController {
 
     private final SaleController saleController = new SaleController();
 

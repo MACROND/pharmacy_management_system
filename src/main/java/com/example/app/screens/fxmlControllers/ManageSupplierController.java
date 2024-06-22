@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class AddSupplierController {
+public class ManageSupplierController {
 
     @FXML
     private TableView<?> suppliersTable; // Adjust the types based on your Supplier class
@@ -21,8 +21,6 @@ public class AddSupplierController {
     private TableColumn<?, ?> contactColumn; // Adjust the types based on your Supplier class
 
     @FXML
-    private TextField idField;
-    @FXML
     private TextField nameField;
     @FXML
     private TextField locationField;
@@ -33,16 +31,14 @@ public class AddSupplierController {
 
     @FXML
     private void handleAddSupplier() {
-        String id = idField.getText();
         String name = nameField.getText();
         String address = locationField.getText();
         String contact = contactField.getText();
 
-        Supplier supplier = new Supplier(id, name, address, contact);
+        Supplier supplier = new Supplier(name, address, contact);
         supplierController.addSupplier(supplier);
 
         // Clear the fields after adding
-        idField.clear();
         nameField.clear();
         locationField.clear();
         contactField.clear();
