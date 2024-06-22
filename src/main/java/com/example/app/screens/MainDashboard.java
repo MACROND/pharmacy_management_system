@@ -1,4 +1,10 @@
+/**
+ * The MainDashboard class in a Java application sets up a GUI with a menu bar for managing drugs,
+ * sales, and suppliers, allowing users to add, view, and search for information.
+ */
 package com.example.app.screens;
+
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,54 +22,63 @@ public class MainDashboard extends Application {
     private BorderPane bottomPane;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("PharMacrond-Dashboard");
 
-        layout = new BorderPane();
+        // layout = new BorderPane();
 
-        // Create a MenuBar
-        MenuBar menuBar = new MenuBar();
+        // // Create a MenuBar
+        // MenuBar menuBar = new MenuBar();
 
-        // Drugs menu
-        Menu drugsMenu = new Menu("Drugs");
-        MenuItem addDrugItem = new MenuItem("Add Drug");
-        addDrugItem.setOnAction(e -> loadContent("/com/example/app/views/AddDrugs.fxml"));
-        MenuItem viewDrugsItem = new MenuItem("View Drugs");
-        viewDrugsItem.setOnAction(e -> loadContent("/com/example/app/views/ViewDrugs.fxml"));
-        MenuItem searchDrugItem = new MenuItem("Search Drug");
-        searchDrugItem.setOnAction((e -> loadContent("/com/example/app/views/SearchDrug.fxml")));
-        drugsMenu.getItems().addAll(addDrugItem, viewDrugsItem, searchDrugItem);
+        // // Drugs menu
+        // Menu drugsMenu = new Menu("Drugs");
+        // MenuItem addDrugItem = new MenuItem("Add Drug");
+        // addDrugItem.setOnAction(e ->
+        // loadContent("/com/example/app/views/AddDrugs.fxml"));
+        // MenuItem viewDrugsItem = new MenuItem("View Drugs");
+        // viewDrugsItem.setOnAction(e ->
+        // loadContent("/com/example/app/views/ViewDrugs.fxml"));
+        // MenuItem searchDrugItem = new MenuItem("Search Drug");
+        // searchDrugItem.setOnAction((e ->
+        // loadContent("/com/example/app/views/SearchDrug.fxml")));
+        // drugsMenu.getItems().addAll(addDrugItem, viewDrugsItem, searchDrugItem);
 
-        // Sales menu
-        Menu salesMenu = new Menu("Sales");
-        MenuItem addSalesItem = new MenuItem("Add Sales");
-        addSalesItem.setOnAction(e -> loadContent("/com/example/app/views/AddSale.fxml"));
-        MenuItem viewSalesItem = new MenuItem("View Sales");
-        viewSalesItem.setOnAction(e -> loadContent("/com/example/app/views/ViewSales.fxml"));
-        salesMenu.getItems().addAll(addSalesItem, viewSalesItem);
+        // // Sales menu
+        // Menu salesMenu = new Menu("Sales");
+        // MenuItem addSalesItem = new MenuItem("Add Sales");
+        // addSalesItem.setOnAction(e ->
+        // loadContent("/com/example/app/views/AddSale.fxml"));
+        // MenuItem viewSalesItem = new MenuItem("View Sales");
+        // viewSalesItem.setOnAction(e ->
+        // loadContent("/com/example/app/views/ViewSales.fxml"));
+        // salesMenu.getItems().addAll(addSalesItem, viewSalesItem);
 
-        // Suppliers menu
-        Menu suppliersMenu = new Menu("Suppliers");
-        MenuItem addSuppliersItem = new MenuItem("Add Suppliers");
-        addSuppliersItem.setOnAction(e -> loadContent("/com/example/app/views/AddSupplier.fxml"));
-        MenuItem viewSuppliersItem = new MenuItem("View Suppliers");
-        viewSuppliersItem.setOnAction(e -> loadContent("/com/example/app/views/ViewSuppliers.fxml"));
-        suppliersMenu.getItems().addAll(addSuppliersItem, viewSuppliersItem);
+        // // Suppliers menu
+        // Menu suppliersMenu = new Menu("Suppliers");
+        // MenuItem addSuppliersItem = new MenuItem("Add Suppliers");
+        // addSuppliersItem.setOnAction(e ->
+        // loadContent("/com/example/app/views/AddSupplier.fxml"));
+        // MenuItem viewSuppliersItem = new MenuItem("View Suppliers");
+        // viewSuppliersItem.setOnAction(e ->
+        // loadContent("/com/example/app/views/ViewSuppliers.fxml"));
+        // suppliersMenu.getItems().addAll(addSuppliersItem, viewSuppliersItem);
 
-        // Add menus to the MenuBar
-        menuBar.getMenus().addAll(drugsMenu, salesMenu, suppliersMenu);
+        // // Add menus to the MenuBar
+        // menuBar.getMenus().addAll(drugsMenu, salesMenu, suppliersMenu);
 
-        // Set the MenuBar at the top of the layout
-        layout.setTop(menuBar);
+        // // Set the MenuBar at the top of the layout
+        // layout.setTop(menuBar);
 
-        // Buttom pane layout
-        bottomPane = new BorderPane();
-        bottomPane.setPadding(new Insets(10));
+        // // Buttom pane layout
+        // bottomPane = new BorderPane();
+        // bottomPane.setPadding(new Insets(10));
 
-        layout.setCenter(bottomPane);
+        // layout.setCenter(bottomPane);
 
-        Scene scene = new Scene(layout, 1000, 600);
-        primaryStage.setScene(scene);
+        // Scene scene = new Scene(layout, 1000, 600);
+        Parent dashboardRoot = FXMLLoader.load(getClass().getResource("/com/example/app/views/MainDashboard.fxml"));
+        Scene dashboardScene = new Scene(dashboardRoot, 1000, 6000);
+        primaryStage.setScene(dashboardScene);
         primaryStage.show();
     }
 

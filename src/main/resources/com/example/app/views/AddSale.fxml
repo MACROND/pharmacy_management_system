@@ -3,52 +3,62 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.app.screens.fxmlControllers.AddSaleController">
+<GridPane hgap="10" prefHeight="234.0" prefWidth="815.0" vgap="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.AddSaleController">
     <padding>
-        <Insets bottom="20" left="20" right="20" top="20"/>
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
-    <hgap>10</hgap>
-    <vgap>10</vgap>
 
     <!-- Input Fields -->
-    <Label text="Drug ID:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <TextField fx:id="drugIdField" promptText="Enter drug ID" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Label text="Drug ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="drugIdField" prefHeight="35.0" prefWidth="274.0" promptText="Enter drug ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-    <Label text="Customer ID:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <TextField fx:id="customerIdField" promptText="Enter customer ID" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Label text="Customer ID:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="customerIdField" prefHeight="31.0" prefWidth="274.0" promptText="Enter customer ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <TextField fx:id="quantityField" promptText="Enter quantity" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="quantityField" prefHeight="32.0" prefWidth="274.0" promptText="Enter quantity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Total Price:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-    <TextField fx:id="totalPriceField" promptText="Enter total price" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    <Label text="Total Price:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField fx:id="totalPriceField" prefHeight="36.0" prefWidth="278.0" promptText="Enter total price" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Button text="Add Purchase" onAction="#handleAddSale" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    <Button onAction="#handleAddSale" prefHeight="36.0" prefWidth="278.0" text="Add Purchase" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <font>
+            <Font name="Fira Code Retina" size="14.0" />
+        </font>
+    </Button>
 
-    <!-- Table View -->
-    <TableView fx:id="saleTable" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn fx:id="saleIdColumn" text="Purchase ID"/>
-            <TableColumn fx:id="drugIdColumn" text="Drug ID"/>
-            <TableColumn fx:id="customerNameColumn" text="Customer ID"/>
-            <TableColumn fx:id="dateColumn" text="Date"/>
-            <TableColumn fx:id="quantityColumn" text="Quantity"/>
-            <TableColumn fx:id="totalPriceColumn" text="Total Price"/>
-        </columns>
-    </TableView>
+    <TextField prefHeight="28.0" prefWidth="225.0" promptText="Enter sale ID or Customer ID to search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="169.0" text="Search Sales" GridPane.columnIndex="3" GridPane.rowIndex="0">
+        <font>
+            <Font name="Fira Code Retina" size="14.0" />
+        </font>
+    </Button>
+    <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="225.0" text="View All Sales" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <font>
+            <Font name="Fira Code Medium" size="14.0" />
+        </font>
+    </Button>
+    <TextField layoutX="372.0" layoutY="20.0" prefHeight="29.0" prefWidth="225.0" promptText="Enter sale ID to delete" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="169.0" text="Remove Sale" GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <font>
+            <Font name="Fira Code Retina" size="14.0" />
+        </font>
+    </Button>
 
     <columnConstraints>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
+        <ColumnConstraints maxWidth="107.0" minWidth="73.0" prefWidth="88.0" />
+        <ColumnConstraints maxWidth="293.0" minWidth="259.0" prefWidth="278.0" />
+        <ColumnConstraints maxWidth="227.0" minWidth="40.0" prefWidth="225.0" />
+        <ColumnConstraints maxWidth="194.0" minWidth="40.0" prefWidth="169.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
     </rowConstraints>
 </GridPane>

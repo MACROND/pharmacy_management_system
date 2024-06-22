@@ -11,6 +11,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class LoginScreen extends Application {
     @Override
@@ -43,13 +48,13 @@ public class LoginScreen extends Application {
         loginButton.setOnAction(e -> {
             String userID = userIDInput.getText();
             String password = passwordInput.getText();
-            User user = UserController.login(userID, password); // User login functionality
+            User user = UserController.login(userID, password);
             assert user != null;
             System.out.println(user.toString());
-            if (user != null && "pharmacist".equals(user.getRole())) {
-                new MainDashboard().start(new Stage());
+            if ("pharmacist".equals(user.getRole())) {
                 messageLabel.setText("Authenticated");
                 primaryStage.close();
+                loadMainDashboard();
             } else {
                 messageLabel.setText("Invalid credentials or insufficient permissions.");
             }
@@ -62,8 +67,22 @@ public class LoginScreen extends Application {
         primaryStage.show();
     }
 
+    private void loadMainDashboard() {
+        try {
+            Stage dashboardStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/MainDashboard.fxml"));
+            Parent dashboardRoot = loader.load();
+            Scene dashboardScene = new Scene(dashboardRoot, 800, 700 );
+            dashboardScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/app/views/style.css")).toExternalForm());
+            dashboardStage.setScene(dashboardScene);
+            dashboardStage.setTitle("PharMacrond-Dashboard");
+            dashboardStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
 }
-
