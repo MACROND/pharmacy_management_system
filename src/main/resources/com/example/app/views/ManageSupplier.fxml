@@ -1,54 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane hgap="10" prefHeight="221.0" prefWidth="826.0" vgap="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageSupplierController">
+<GridPane alignment="CENTER" hgap="10" prefHeight="221.0" prefWidth="826.0" vgap="10" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageSupplierController">
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
 
     <!-- Input Fields -->
-    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <TextField fx:id="nameField" prefHeight="32.0" prefWidth="278.0" promptText="Enter supplier name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label prefHeight="18.0" prefWidth="50.0" text="Name:" />
+    <TextField fx:id="nameField" prefHeight="32.0" prefWidth="278.0" promptText="Enter supplier name" GridPane.columnIndex="1" />
 
-    <Label text="Location:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <TextField fx:id="locationField" prefHeight="31.0" prefWidth="278.0" promptText="Enter supplier location" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="Location:" GridPane.rowIndex="1" />
+    <TextField fx:id="locationField" prefHeight="31.0" prefWidth="278.0" promptText="Enter supplier location" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="Contact:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-    <TextField fx:id="contactField" prefHeight="38.0" prefWidth="278.0" promptText="Enter supplier contact" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Label text="Contact:" GridPane.rowIndex="2" />
+    <TextField fx:id="contactField" prefHeight="38.0" prefWidth="278.0" promptText="Enter supplier contact" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Button onAction="#handleAddSupplier" prefHeight="36.0" prefWidth="278.0" text="Add Supplier" GridPane.columnIndex="1" GridPane.rowIndex="4">
+    <Button onAction="#handleAddSupplier" prefHeight="36.0" prefWidth="309.0" style="-fx-background-color: #ff7b00;" text="Add Supplier" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
         <font>
-            <Font name="Fira Code Retina" size="14.0" />
+            <Font name="Berlin Sans FB" size="14.0" />
         </font>
     </Button>
 
-    <TextField prefHeight="30.0" prefWidth="213.0" promptText="Enter supplier ID or name to search" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="204.0" text="Search Suppliers" GridPane.columnIndex="3" GridPane.rowIndex="0">
+    <TextField fx:id="searchField" prefHeight="30.0" prefWidth="213.0" promptText="Enter supplier ID or name to search" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+    <Button mnemonicParsing="false" onAction="#handleSearchSupplier" prefHeight="31.0" prefWidth="204.0" style="-fx-background-color: #ff7b00;" text="Search Suppliers" textFill="#fffafa" GridPane.columnIndex="4" GridPane.rowIndex="0">
         <font>
-            <Font name="Fira Code Retina" size="14.0" />
+            <Font name="Berlin Sans FB" size="14.0" />
         </font>
     </Button>
-    <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="216.0" text="View All Suppliers" GridPane.columnIndex="2" GridPane.rowIndex="2">
+    <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSuppliers" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #ff7b00;" text="View All Suppliers" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
         <font>
-            <Font name="Fira Code Medium" size="14.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
         </font>
     </Button>
-    <TextField layoutX="372.0" layoutY="20.0" prefHeight="28.0" prefWidth="151.0" promptText="Enter supplier ID to delete" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="218.0" text="Remove Supplier" GridPane.columnIndex="3" GridPane.rowIndex="1">
+    <TextField fx:id="deleteField" layoutX="372.0" layoutY="20.0" prefHeight="28.0" prefWidth="151.0" promptText="Enter supplier ID to delete" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleDeleteSupplier" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #ff7b00;" text="Remove Supplier" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
         <font>
-            <Font name="Fira Code Retina" size="14.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
         </font>
     </Button>
 
     <columnConstraints>
-        <ColumnConstraints maxWidth="107.0" minWidth="73.0" prefWidth="88.0" />
-        <ColumnConstraints maxWidth="293.0" minWidth="259.0" prefWidth="278.0" />
-        <ColumnConstraints maxWidth="234.0" minWidth="40.0" prefWidth="209.0" />
-        <ColumnConstraints maxWidth="195.0" minWidth="40.0" prefWidth="191.0" />
+        <ColumnConstraints maxWidth="107.0" minWidth="44.79998779296876" prefWidth="57.59997558593751" />
+        <ColumnConstraints maxWidth="321.6000122070312" minWidth="259.0" prefWidth="300.3999877929688" />
+      <ColumnConstraints maxWidth="321.6000122070312" minWidth="16.0" prefWidth="35.20001220703125" />
+        <ColumnConstraints maxWidth="309.3999877929688" minWidth="40.0" prefWidth="231.59995117187498" />
+        <ColumnConstraints maxWidth="195.0" minWidth="40.0" prefWidth="165.20004882812498" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />

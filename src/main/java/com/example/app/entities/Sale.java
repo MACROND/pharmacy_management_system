@@ -13,6 +13,7 @@ public class Sale {
     private int id;
     private String drugId;
     private String customerName;
+    private String contact;
     private LocalDateTime date;
     private int quantity;
     private double totalPrice;
@@ -22,21 +23,30 @@ public class Sale {
         this.id = id;
     }
 
-    public Sale(int sale_id, String drugId, String customerName, LocalDateTime date, int quantity, double totalPrice) {
+    public Sale(int sale_id, String drugId, LocalDateTime date, int quantity, double totalPrice, String customerName, String contact) {
         this.id = sale_id;
         this.drugId = drugId;
         this.customerName = customerName;
+        this.contact = contact;;
         this.date = date;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
 
-    public Sale(String drugId, String customerName, LocalDateTime date, int quantity, double totalPrice) {
+    public Sale(String drugId, LocalDateTime date, int quantity, double totalPrice, String customerName, String contact) {
         this.drugId = drugId;
         this.customerName = customerName;
-        this.date = date;
+        this.contact = contact;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
+    }
+
+    public Sale(String drugId, int quantity, double totalPrice, String customerName, String customerContact) {
+        this.drugId = drugId;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.customerName = customerName;
+        this.contact = customerContact;
     }
 
     // Getters, and setters
@@ -61,11 +71,11 @@ public class Sale {
     }
 
     public void setCustomerName(String customerId) {
-        this.customerName = customerId;
+        this.customerName = customerName;
     }
 
     public LocalDateTime getDate() {
-        return LocalDateTime.now();
+        return date;
     }
 
     public void setDate(LocalDateTime date) {
@@ -100,5 +110,9 @@ public class Sale {
                 ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +
                 '}';
+    }
+
+    public String getCustomerContact() {
+        return contact;
     }
 }

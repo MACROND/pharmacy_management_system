@@ -5,15 +5,15 @@ import com.example.app.controllers.SaleController;
 import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
-import com.example.app.entities.Supplier;
 import com.example.app.utils.comparators.DrugComparators;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-//import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,18 +23,19 @@ import java.util.List;
  */
 public class Functions {
 
-    private static final String SALES_FILE_PATH = Paths.get("com/example/app/files/Sales.txt").toString();
+    private static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
-    public static HashMap<String, List<Drug>> drugsSuppliers = SupplierController.getSupplierAndDrugs();
+    public static HashMap<Integer, List<Drug>> drugsSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
+
     /**
      * The function `sortDrugsByID` returns a sorted list of drugs based on their
      * ID.
-     * 
+     *
      * @return The method `sortDrugsByID` is returning a sorted list of drugs based
-     *         on their ID.
+     * on their ID.
      */
     public static List<Drug> sortDrugsByID() {
         return Sorting.sort(drugsCollection, DrugComparators.byID());
@@ -43,7 +44,7 @@ public class Functions {
     /**
      * The function `sortDrugsByQuantity` sorts a collection of drugs based on their
      * quantity.
-     * 
+     *
      * @return A list of Drug objects sorted by quantity.
      */
     public static List<Drug> sortDrugsByQuantity() {
@@ -53,7 +54,7 @@ public class Functions {
     /**
      * The function `sortDrugsByPrice` sorts a collection of drugs by price using a
      * comparator.
-     * 
+     *
      * @return A list of Drug objects sorted by price.
      */
     public static List<Drug> sortDrugsByPrice() {
@@ -63,7 +64,7 @@ public class Functions {
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified
      * path.
-     * 
+     *
      * @param drugId The `drugId` parameter in the `saveToSales` method is a unique
      *               identifier for a drug
      *               that needs to be saved to a sales file. This method ensures

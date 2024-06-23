@@ -87,7 +87,7 @@ public class DrugController {
      *         returned. If no matching drug is found, it returns `null`.
      */
     public static Drug getDrugByName(String name) {
-        String query = "SELECT * FROM drugs WHERE name = ?";
+        String query = "SELECT * FROM drugs WHERE name= ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -121,20 +121,17 @@ public class DrugController {
      *           should be deleted from the `drugs` table in the database.
      */
     public void deleteDrug(String id) {
-        String query = "DELETE * FROM drugs WHERE drug_id = ?";
+        String query = "DELETE FROM drugs WHERE drug_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                stmt.executeQuery();
-            }
+            stmt.executeUpdate(); // Execute the DELETE statement
 
-            // Update the drugList variable with the latest drug list after the deletion
-            drugList = getAllDrugs();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        // Update drugList
+        drugList = getAllDrugs();
     }
 }

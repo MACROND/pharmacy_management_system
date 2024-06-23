@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SaleController {
 
-    private static final List<Sale> saleList = new ArrayList<>();
+    private static List<Sale> saleList = new ArrayList<>();
 
     /**
      * The `addSale` function inserts a new sale record into a database table and
@@ -24,14 +24,14 @@ public class SaleController {
      *             as the drug ID, customer name, quantity, and total price.
      */
     public void addSale(Sale sale) {
-        String query = "INSERT INTO sales (drug_id, customer_name, quantity, total_price) VALUES (?, ?, ?, ?)";
-
+        String query = "INSERT INTO sales (drug_id, customer_name, customer_contact, quantity, total_price) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, sale.getDrugId());
             stmt.setString(2, sale.getCustomerName());
-            stmt.setInt(3, sale.getQuantity());
-            stmt.setDouble(4, sale.getTotalPrice());
+            stmt.setString(3, sale.getCustomerContact());
+            stmt.setInt(4, sale.getQuantity());
+            stmt.setDouble(5, sale.getTotalPrice());
             stmt.executeUpdate();
 
             // Write sale code to Save file
@@ -58,11 +58,13 @@ public class SaleController {
 
             while (rs.next()) {
                 Sale purchase = new Sale(
+                        rs.getInt("sale_id"),
                         rs.getString("drug_id"),
-                        rs.getString("customer_id"),
-                        rs.getDate("date").toLocalDate().atStartOfDay(),
+                        rs.getTimestamp("date").toLocalDateTime(),
                         rs.getInt("quantity"),
-                        rs.getDouble("total_price"));
+                        rs.getDouble("total_price"),
+                        rs.getString("customer_name"),
+                        rs.getString("customer_contact"));
                 saleList.add(purchase);
             }
         } catch (SQLException e) {
@@ -74,22 +76,15 @@ public class SaleController {
     /**
      * This Java function retrieves a sale record from a database based on the
      * provided sale ID.
-     * 
+     *
      * @param purchaseId The `purchaseId` parameter in the `getSaleById` method is
      *                   used to specify the
      *                   unique identifier of the sale that you want to retrieve
      *                   from the database. This method executes a
      *                   SQL query to select a sale record from the `sales` table
      *                   based on the provided `sale_id`.
-     * 
-     * @return The `getSaleById` method is returning a `Sale` object based on the
-     *         `purchaseId` provided as
-     *         a parameter. If a sale with the specified `sale_id` (purchaseId) is
-     *         found in the database, a new
-     *         `Sale` object is created using the data retrieved from the database
-     *         (sale_id, drug_id, customer_id,date, quantity, total_price)
      */
-    public Sale getSaleById(String purchaseId) {
+    public void searchSale(String purchaseId) {
         String query = "SELECT * FROM sales WHERE sale_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
@@ -98,17 +93,37 @@ public class SaleController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Sale(
-                        rs.getInt("sale_id"),
-                        rs.getString("drug_id"),
-                        rs.getString("customer_id"),
-                        rs.getDate("date").toLocalDate().atStartOfDay(),
-                        rs.getInt("quantity"),
-                        rs.getDouble("total_price"));
+                rs.getInt("sale_id");
+                rs.getString("drug_id");
+                rs.getDate("date").toLocalDate().atStartOfDay();
+                rs.getInt("quantity");
+                rs.getDouble("total_price");
+                rs.getString("customer_name");
+                rs.getString("customer_contact");
             }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * The `deleteSale` method deletes a purchase from the database and updates
+     * the sale and drug lists.
+     *
+     * @param saleID The ID of the supplier to be deleted.
+     */
+    public static void deleteSale(int saleID) {
+        String query = "DELETE FROM sales WHERE sale_id = ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, saleID);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+
+        // Update sale
+        saleList = SaleController.getAllSales();
     }
 }

@@ -1,6 +1,8 @@
 package com.example.app.screens.fxmlControllers;
 
+import com.example.app.controllers.DrugController;
 import com.example.app.controllers.SaleController;
+import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -9,53 +11,78 @@ import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import static java.lang.Integer.parseInt;
 
 
 public class ManageSaleController {
 
     private final SaleController saleController = new SaleController();
+    public MainDashboardController mainController;
 
-    @FXML
-    public TableView<Sale> saleTable;  // Specify the generic type
-    @FXML
-    public TableColumn<Sale, String> saleIdColumn;
-    @FXML
-    public TableColumn<Sale, String> drugIdColumn;
-    @FXML
-    public TableColumn<Sale, String> customerNameColumn;
-    @FXML
-    public TableColumn<Sale, LocalDateTime> dateColumn;
-    @FXML
-    private TableColumn<Sale, Integer> quantityColumn;
-    @FXML
-    private TableColumn<Sale, Double> totalPriceColumn;
-
+    public void setMainController(MainDashboardController<Sale> mainController) {
+        this.mainController = mainController;
+    }
 
     @FXML
     private TextField drugIdField;
     @FXML
     private TextField customerNameField;
     @FXML
+    private TextField customerContactField;
+    @FXML
     private TextField quantityField;
     @FXML
     private TextField totalPriceField;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private TextField deleteField;
+
 
     @FXML
     private void handleAddSale() {
         String drugId = drugIdField.getText();
         String customerName = customerNameField.getText();
-        LocalDate date = LocalDate.now();
+        String customerContact = customerContactField.getText();
+        LocalDateTime date = LocalDate.now().atStartOfDay();
         int quantity = parseInt(quantityField.getText());
         double totalPrice = Double.parseDouble(totalPriceField.getText()) * quantity;
 
-        Sale sale = new Sale(drugId, customerName, date.atStartOfDay(), quantity, totalPrice);
+        Sale sale = new Sale(drugId, date, quantity, totalPrice,customerName, customerContact);
         saleController.addSale(sale);
+
+        updateTableView();
 
         // Clear the fields after adding
         drugIdField.clear();
         customerNameField.clear();
         quantityField.clear();
         totalPriceField.clear();
+    }
+
+    @FXML
+    private void handleViewAllSales(){
+        updateTableView();
+    }
+
+    @FXML
+    private void handleDeleteSale(){
+        String id = deleteField.getText();
+        SaleController.deleteSale(parseInt(id));
+        updateTableView();
+    }
+
+    @FXML
+    private void handleSearchSale(){
+        String id = searchField.getText();
+        saleController.searchSale(id);
+        updateTableView();
+    }
+
+    private void updateTableView() {
+        List<Sale> salesHistoryList = SaleController.getAllSales();
+        mainController.configureTableForSalesHistory(salesHistoryList);
     }
 }
