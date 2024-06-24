@@ -50,8 +50,8 @@ public class SaleController {
      * @return The `getAllSales` method returns a List of Sale objects.
      */
     public static List<Sale> getAllSales() {
+        saleList.clear();
         String query = "SELECT * FROM sales";
-
         try (Connection conn = DatabaseUtil.getConnection();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query)) {
@@ -84,7 +84,7 @@ public class SaleController {
      *                   SQL query to select a sale record from the `sales` table
      *                   based on the provided `sale_id`.
      */
-    public void searchSale(String purchaseId) {
+    public static List<Sale> searchSale(String purchaseId) {
         String query = "SELECT * FROM sales WHERE sale_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
@@ -92,18 +92,24 @@ public class SaleController {
             stmt.setString(1, purchaseId);
             ResultSet rs = stmt.executeQuery();
 
+            Sale searchedSale = null;
             if (rs.next()) {
-                rs.getInt("sale_id");
-                rs.getString("drug_id");
-                rs.getDate("date").toLocalDate().atStartOfDay();
-                rs.getInt("quantity");
-                rs.getDouble("total_price");
-                rs.getString("customer_name");
-                rs.getString("customer_contact");
+                searchedSale = new Sale(
+                        rs.getInt("sale_id"),
+                        rs.getString("drug_id"),
+                        rs.getDate("date").toLocalDate().atStartOfDay(),
+                        rs.getInt("quantity"),
+                        rs.getDouble("total_price"),
+                        rs.getString("customer_name"),
+                        rs.getString("customer_contact")
+                );
             }
+            saleList.clear();
+            saleList.add(searchedSale);
         } catch (SQLException e){
             e.printStackTrace();
         }
+        return saleList;
     }
 
     /**
@@ -124,6 +130,7 @@ public class SaleController {
         }
 
         // Update sale
+        saleList.clear();
         saleList = SaleController.getAllSales();
     }
 }

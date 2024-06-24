@@ -19,9 +19,6 @@ import javafx.scene.layout.StackPane;
 import java.util.List;
 
 public class MainDashboardController<T> {
-    private final ObservableList<Drug> drugList = FXCollections.observableArrayList(Functions.drugsCollection);
-    private final ObservableList<Sale> purchaseHistory = FXCollections.observableArrayList(Functions.purchaseHistory);
-
     // Loading Middle section components dynamically
     @FXML
     private StackPane middleSection;
@@ -157,12 +154,17 @@ public class MainDashboardController<T> {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         TableColumn<Supplier, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Supplier, String> locationCol = new TableColumn<>("Location");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+
         TableColumn<Supplier, String> contactCol = new TableColumn<>("Contact");
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
         bottomTableView.getColumns().addAll(
                 (TableColumn<T, ?>) idCol,
-                (TableColumn<T, ?>)nameCol,
+                (TableColumn<T, ?>) nameCol,
+                (TableColumn<T, ?>) locationCol,
                 (TableColumn<T, ?>) contactCol
         );
         ObservableList<Supplier> observableList = FXCollections.observableArrayList(supplierList);

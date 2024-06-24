@@ -4,6 +4,7 @@ import com.example.app.controllers.DrugController;
 import com.example.app.controllers.SaleController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,36 +54,36 @@ public class ManageSaleController {
         Sale sale = new Sale(drugId, date, quantity, totalPrice,customerName, customerContact);
         saleController.addSale(sale);
 
-        updateTableView();
-
         // Clear the fields after adding
         drugIdField.clear();
         customerNameField.clear();
+        customerContactField.clear();
         quantityField.clear();
         totalPriceField.clear();
     }
 
     @FXML
     private void handleViewAllSales(){
-        updateTableView();
+        mainController.configureTableForSalesHistory(SaleController.getAllSales());
     }
+
 
     @FXML
     private void handleDeleteSale(){
         String id = deleteField.getText();
         SaleController.deleteSale(parseInt(id));
-        updateTableView();
+
+        deleteField.clear();
     }
 
     @FXML
     private void handleSearchSale(){
         String id = searchField.getText();
-        saleController.searchSale(id);
-        updateTableView();
+        mainController.configureTableForSalesHistory(SaleController.searchSale(id));
+
     }
 
-    private void updateTableView() {
-        List<Sale> salesHistoryList = SaleController.getAllSales();
-        mainController.configureTableForSalesHistory(salesHistoryList);
+    private void updateTableForViewAllSales() {
+        mainController.configureTableForSalesHistory(SaleController.getAllSales());
     }
 }

@@ -23,10 +23,10 @@ import java.util.List;
  */
 public class Functions {
 
-    private static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
+    public static final String SALES_FILE_PATH = Paths.get("C:\\Users\\Maxwell Odoom Anane\\OneDrive\\Desktop\\Pharmacy\\src\\main\\java\\com\\example\\app\\files\\Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
-    public static HashMap<Integer, List<Drug>> drugsSuppliers = SupplierController.getSupplierAndDrugs();
+    public static HashMap<Integer, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
 
@@ -41,6 +41,7 @@ public class Functions {
         return Sorting.sort(drugsCollection, DrugComparators.byID());
     }
 
+
     /**
      * The function `sortDrugsByQuantity` sorts a collection of drugs based on their
      * quantity.
@@ -50,6 +51,7 @@ public class Functions {
     public static List<Drug> sortDrugsByQuantity() {
         return Sorting.sort(drugsCollection, DrugComparators.byQuantity());
     }
+
 
     /**
      * The function `sortDrugsByPrice` sorts a collection of drugs by price using a
@@ -61,6 +63,7 @@ public class Functions {
         return Sorting.sort(drugsCollection, DrugComparators.byPrice());
     }
 
+    
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified
      * path.
@@ -73,21 +76,33 @@ public class Functions {
      *               the file along.
      */
     public static void saveToSales(String drugId) {
+        BufferedWriter writer = null;
         try {
             // Ensure the directory exists
             File file = new File(SALES_FILE_PATH);
             File parentDir = file.getParentFile();
             if (parentDir != null && !parentDir.exists()) {
-                parentDir.mkdirs();
+                if (!parentDir.mkdirs()) {
+                    throw new IOException("Failed to create directory: " + parentDir.getAbsolutePath());
+                }
             }
 
             // Write the drug ID to the file
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(SALES_FILE_PATH, true))) {
-                writer.write(drugId);
-                writer.newLine();
-            }
+            writer = new BufferedWriter(new FileWriter(SALES_FILE_PATH, true));
+            System.out.println("Writing Sales ID in Sales file...");
+            writer.write(drugId);
+            writer.newLine();
+            System.out.println("Sales ID written in Sales file.");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

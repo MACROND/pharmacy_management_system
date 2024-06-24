@@ -47,7 +47,7 @@ public class DrugController {
      *         retrieved from the database.
      */
     public static List<Drug> getAllDrugs() {
-
+        drugList.clear();
         String query = "SELECT * FROM drugs";
 
         try (Connection conn = DatabaseUtil.getConnection();
@@ -72,7 +72,7 @@ public class DrugController {
     /**
      * This `getDrugByName` function retrieves a drug from a database by its name.
      * 
-     * @param name The `getDrugByName` method takes a `String` parameter `name`,
+     * @param nameOrID The `getDrugByName` method takes a `String` parameter `name`,
      *             which represents the name
      *             of the drug you want to retrieve from the database. The method
      *             then queries the database to find the
@@ -86,27 +86,30 @@ public class DrugController {
      *         quantity, price, supplier_id) and
      *         returned. If no matching drug is found, it returns `null`.
      */
-    public static Drug getDrugByName(String name) {
-        String query = "SELECT * FROM drugs WHERE name= ?";
+    public static List<Drug> getDrugByName(String nameOrID) {
+        drugList.clear();
+        String query = "SELECT * FROM drugs WHERE drug_id= ? OR name= ? ";
 
         try (Connection conn = DatabaseUtil.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, name);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, nameOrID);
+            stmt.setString(2, nameOrID);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Drug(rs.getString("drug_id"),
+                 Drug searchedDrug = new Drug(rs.getString("drug_id"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("quantity"),
                         rs.getDouble("price"),
-                        rs.getString("supplier_id"));
+                        rs.getString("supplier_id")
+                 );
+                 drugList.add(searchedDrug);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return drugList;
     }
 
     /**
@@ -120,7 +123,8 @@ public class DrugController {
      *           to specify which drug record
      *           should be deleted from the `drugs` table in the database.
      */
-    public void deleteDrug(String id) {
+    public List<Drug> deleteDrug(String id) {
+        drugList.clear();
         String query = "DELETE FROM drugs WHERE drug_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
@@ -132,6 +136,6 @@ public class DrugController {
             e.printStackTrace();
         }
         // Update drugList
-        drugList = getAllDrugs();
+        return drugList = getAllDrugs();
     }
 }
