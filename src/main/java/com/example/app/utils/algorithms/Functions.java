@@ -20,22 +20,23 @@ import java.util.List;
 /**
  * The `Functions` class contains methods for sorting drugs and saving drug IDs
  * to a sales file.
+ * 
+ *
  */
 public class Functions {
-
     private static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
+
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
     public static HashMap<Integer, List<Drug>> drugsSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
-
     /**
      * The function `sortDrugsByID` returns a sorted list of drugs based on their
      * ID.
      *
      * @return The method `sortDrugsByID` is returning a sorted list of drugs based
-     * on their ID.
+     *         on their ID.
      */
     public static List<Drug> sortDrugsByID() {
         return Sorting.sort(drugsCollection, DrugComparators.byID());
