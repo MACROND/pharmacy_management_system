@@ -90,12 +90,12 @@ public class SupplierController {
      *         the specified name is found in
      *         the database. If no supplier is found, it returns `null`.
      */
-    public Supplier getSupplierByName(String name) {
-        String query = "SELECT * FROM suppliers WHERE name = ?";
+    public static Supplier getSupplierByID(int id) {
+        String query = "SELECT * FROM suppliers WHERE supplier_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, name);
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {

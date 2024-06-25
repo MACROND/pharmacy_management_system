@@ -56,8 +56,10 @@ public class ManageSupplierController {
     @FXML
     private void handleSearchSupplier(){
         String id = searchField.getText();
-        SupplierController.deleteSupplier(parseInt(id));
+        Supplier supplier = SupplierController.getSupplierByID(parseInt(id));
         List<Supplier> supplierList = SupplierController.getAllSuppliers();
+        supplierList.clear();
+        supplierList.add(supplier);
 
         searchField.clear();
     }

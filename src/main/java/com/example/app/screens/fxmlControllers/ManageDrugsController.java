@@ -69,8 +69,7 @@ public class ManageDrugsController {
     @FXML
     private void handleDeleteDrug() {
         String id = deleteField.getText();
-        drugController.deleteDrug(id);
-        updateTableView();
+        mainController.configureTableForDrugs(drugController.deleteDrug(id));
 
         // Clear the fields after deleting
         deleteField.clear();
@@ -80,10 +79,8 @@ public class ManageDrugsController {
     @FXML
     private void handleSearchDrug() {
         String id = searchField.getText();
-        DrugController.getDrugByName(id);
-        updateTableView();
+        mainController.configureTableForDrugs(drugController.getDrugByName(id));
 
-        // Clear the fields after deleting
         searchField.clear();
     }
 

@@ -1,5 +1,4 @@
 package com.example.app.screens.fxmlControllers;
-
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.entities.Supplier;
@@ -7,6 +6,7 @@ import com.example.app.utils.algorithms.Functions;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,14 +19,26 @@ import javafx.scene.layout.StackPane;
 import java.util.List;
 
 public class MainDashboardController<T> {
-    private final ObservableList<Drug> drugList = FXCollections.observableArrayList(Functions.drugsCollection);
-    private final ObservableList<Sale> purchaseHistory = FXCollections.observableArrayList(Functions.purchaseHistory);
-
     // Loading Middle section components dynamically
     @FXML
     private StackPane middleSection;
 
-    public void loadManageSalesSection() {
+    public void loadManageDrugSection() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/ManageDrugs.fxml"));
+            Parent newContent = loader.load();
+
+            ManageDrugsController manageDrugsController = loader.getController();
+            manageDrugsController.setMainController(this);
+
+            middleSection.getChildren().clear();
+            middleSection.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadManageSalesSection(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/ManageSales.fxml"));
             Parent newContent = loader.load();
@@ -41,7 +53,7 @@ public class MainDashboardController<T> {
         }
     }
 
-    public void loadManageSupplierSection() {
+    public void loadManageSupplierSection(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/ManageSupplier.fxml"));
             Parent newContent = loader.load();
@@ -59,6 +71,7 @@ public class MainDashboardController<T> {
     // Loading TableView data dynamically
     @FXML
     private TableView<T> bottomTableView;
+
 
     @FXML
     private void initialize() {
@@ -88,15 +101,17 @@ public class MainDashboardController<T> {
         supplierIdCol.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
 
         bottomTableView.getColumns().addAll(
-                (TableColumn<T, ?>) idCol,
-                (TableColumn<T, ?>) nameCol,
-                (TableColumn<T, ?>) descCol,
-                (TableColumn<T, ?>) quantityCol,
-                (TableColumn<T, ?>) priceCol,
-                (TableColumn<T, ?>) supplierIdCol);
+                (TableColumn<T, ?>)idCol,
+                (TableColumn<T, ?>)nameCol,
+                (TableColumn<T, ?>)descCol,
+                (TableColumn<T, ?>)quantityCol,
+                (TableColumn<T, ?>)priceCol,
+                (TableColumn<T, ?>)supplierIdCol
+        );
         ObservableList<Drug> observableList = FXCollections.observableArrayList(drugList);
         bottomTableView.setItems((ObservableList<T>) observableList);
     }
+
 
     public void configureTableForSalesHistory(List<Sale> salesHistoryList) {
         bottomTableView.getColumns().clear();
@@ -117,6 +132,7 @@ public class MainDashboardController<T> {
         TableColumn<Sale, String> customerContactCol = new TableColumn<>("Contact");
         customerContactCol.setCellValueFactory(new PropertyValueFactory<>("customerContact"));
 
+
         bottomTableView.getColumns().addAll(
                 (TableColumn<T, ?>) idCol,
                 (TableColumn<T, ?>) drugIdCol,
@@ -124,7 +140,8 @@ public class MainDashboardController<T> {
                 (TableColumn<T, ?>) totalPriceCol,
                 (TableColumn<T, ?>) saleDateCol,
                 (TableColumn<T, ?>) customerNameCol,
-                (TableColumn<T, ?>) customerContactCol);
+                (TableColumn<T, ?>) customerContactCol
+        );
         ObservableList<Sale> observableList = FXCollections.observableArrayList(salesHistoryList);
         bottomTableView.setItems((ObservableList<T>) observableList);
     }
@@ -137,13 +154,19 @@ public class MainDashboardController<T> {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         TableColumn<Supplier, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Supplier, String> locationCol = new TableColumn<>("Location");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+
         TableColumn<Supplier, String> contactCol = new TableColumn<>("Contact");
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
         bottomTableView.getColumns().addAll(
                 (TableColumn<T, ?>) idCol,
                 (TableColumn<T, ?>) nameCol,
-                (TableColumn<T, ?>) contactCol);
+                (TableColumn<T, ?>) locationCol,
+                (TableColumn<T, ?>) contactCol
+        );
         ObservableList<Supplier> observableList = FXCollections.observableArrayList(supplierList);
         bottomTableView.setItems((ObservableList<T>) observableList);
     }
