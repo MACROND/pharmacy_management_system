@@ -7,22 +7,22 @@ import java.util.List;
 
 
 public class Searching {
-
-    public static int searchDrug(List<Drug> drugs, Comparator<Drug> comparator, Drug key) {
+    public static <T> int search(List<T> list, Comparator<T> comparator, T key) {
         int low = 0;
-        int high = drugs.size() - 1;
+        int high = list.size() - 1;
 
         while (low <= high) {
             int mid = (low + high) / 2;
-            int cmp = comparator.compare(drugs.get(mid), key);
+            int cmp = comparator.compare(list.get(mid), key);
             if (cmp < 0) {
                 low = mid + 1;
             } else if (cmp > 0) {
                 high = mid - 1;
             } else {
-                return mid; // Found the drug
+                return mid; // Found the element
             }
         }
-        return -1; // Drug not found
+        return -1; // Element not found
     }
+
 }

@@ -5,32 +5,25 @@ import com.example.app.controllers.DrugController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+import java.util.List;
 
-public class AddDrugController {
-    @FXML
-    public TableColumn dugIdColumn;
-    @FXML
-    public TableView drugsTable;
-    @FXML
-    public TableColumn nameColumn;
-    @FXML
-    public TableColumn descriptionColumn;
-    @FXML
-    public TableColumn quantityColumn;
-    @FXML
-    public TableColumn priceColumn;
-    @FXML
-    public TableColumn supplierIdColumn;
+public class ManageDrugsController {
 
-
+    @FXML
+    public TextField searchField;
+    @FXML
+    public TextField deleteField;
     @FXML
     private TextField idField;
     @FXML
     private TextField nameField;
     @FXML
-    private TextField descriptionField;
+    private TextArea descriptionField;
     @FXML
     private TextField quantityField;
     @FXML
@@ -38,7 +31,12 @@ public class AddDrugController {
     @FXML
     private TextField supplierIdField;
 
-    private final DrugController drugController = new DrugController();
+    private DrugController drugController = new DrugController();
+    public MainDashboardController mainController;
+
+    public void setMainController(MainDashboardController mainController) {
+        this.mainController = mainController;
+    }
 
     @FXML
     private void handleAddDrug() {
@@ -51,6 +49,7 @@ public class AddDrugController {
 
         Drug drug = new Drug(id, name, description, quantity, price, supplierId);
         drugController.addDrug(drug);
+        updateTableView();
 
         // Clear the fields after adding
         idField.clear();
@@ -61,12 +60,32 @@ public class AddDrugController {
         supplierIdField.clear();
     }
 
-    private void handleDeleteDrug(){
-        String id = idField.getText();
+    @FXML
+    private void updateTableView() {
+        List<Drug> drugList = DrugController.getAllDrugs();
+        mainController.configureTableForDrugs(drugList);
+    }
 
-        drugController.deleteDrug(id);
+    @FXML
+    private void handleDeleteDrug() {
+        String id = deleteField.getText();
+        mainController.configureTableForDrugs(drugController.deleteDrug(id));
 
-        // Clear the fields after adding
-        idField.clear();
+        // Clear the fields after deleting
+        deleteField.clear();
+    }
+
+
+    @FXML
+    private void handleSearchDrug() {
+        String id = searchField.getText();
+        mainController.configureTableForDrugs(drugController.getDrugByName(id));
+
+        searchField.clear();
+    }
+
+    @FXML
+    private void handleViewAllDrugs() {
+        updateTableView();
     }
 }

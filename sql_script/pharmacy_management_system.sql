@@ -1,6 +1,3 @@
--- NOTE: You can run the quaries one after the other to create the database.
-
-
 -- Create the pharmacy database
 CREATE DATABASE pharmacy;
 
@@ -9,7 +6,7 @@ USE pharmacy;
 
 -- Create the users table
 CREATE TABLE users (
-    user_id VARCHAR(255) PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(225),
     lastName VARCHAR(225),
     password VARCHAR(255) NOT NULL,
@@ -18,7 +15,7 @@ CREATE TABLE users (
 
 -- Create the suppliers table
 CREATE TABLE suppliers (
-    supplier_id VARCHAR(255) PRIMARY KEY,
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     location VARCHAR(100),
     contact VARCHAR(50)
@@ -26,25 +23,23 @@ CREATE TABLE suppliers (
 
 -- Create the drugs table
 CREATE TABLE drugs (
-    drug_id VARCHAR(255) PRIMARY KEY,
+    drug_id VARCHAR(225) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     quantity INT NOT NULL,
     price DOUBLE NOT NULL,
-    supplier_id VARCHAR(255),
+    supplier_id INT,
     FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
 );
 
 -- Create the sales table
 CREATE TABLE sales (
-    sale_id INT PRIMARY KEY AUTO_INCREMENT,
-    drug_id VARCHAR(255),
-    customer_name VARCHAR(255),
+    sale_id INT AUTO_INCREMENT PRIMARY KEY,
+    drug_id VARCHAR(225),
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     quantity INT NOT NULL,
     total_price DOUBLE NOT NULL,
-    FOREIGN KEY (drug_id)
-        REFERENCES drugs (drug_id)
+    customer_name VARCHAR(225),
+    customer_contact VARCHAR(50),
+    FOREIGN KEY (drug_id) REFERENCES drugs (drug_id)
 );
-
-alter table sales auto_increment=00001;

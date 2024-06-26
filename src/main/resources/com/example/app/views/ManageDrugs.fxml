@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="345.0" prefWidth="901.0" vgap="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageDrugsController">
+
+          <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+          <!-- Labels and TextFields for drug information -->
+    <Label text="ID:" GridPane.rowIndex="1" />
+    <TextField fx:id="idField" prefHeight="40.0" prefWidth="274.0" promptText="Enter drug ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+          <Label text="Name:" GridPane.rowIndex="2" />
+    <TextField fx:id="nameField" prefHeight="34.0" prefWidth="274.0" promptText="Enter Drug Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+          <Label alignment="TOP_LEFT" text="Description:" GridPane.rowIndex="3" />
+    <TextArea fx:id="descriptionField" prefHeight="53.0" prefWidth="266.0" promptText="Enter drug description" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+          <Label text="Quantity:" GridPane.rowIndex="4" />
+    <TextField fx:id="quantityField" prefHeight="38.0" prefWidth="273.0" promptText="Enter drug quantity" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+          <Label text="Price:" GridPane.rowIndex="5" />
+    <TextField fx:id="priceField" prefHeight="34.0" prefWidth="273.0" promptText="Enter unit price" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+          <Label text="Supplier ID:" GridPane.rowIndex="6" />
+    <TextField fx:id="supplierIdField" prefHeight="35.0" prefWidth="273.0" promptText="Enter supplier ID" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+          <!-- Buttons for actions -->
+    <Button onAction="#handleAddDrug" prefHeight="30.0" prefWidth="276.0" style="-fx-background-color: #ff7b00;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+
+          <TextField fx:id="searchField" prefHeight="38.0" prefWidth="200.0" promptText="Enter drug name or ID to search" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+          <Button mnemonicParsing="false" onAction="#handleSearchDrug" prefHeight="34.0" prefWidth="201.0" style="-fx-background-color: #ff7b00;" text="Search Drugs" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+        <font>
+            <Font name="System Bold" size="15.0" />
+        </font>
+    </Button>
+
+          <Button mnemonicParsing="false" onAction="#handleViewAllDrugs" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #ff7b00;" text="View All Drugs" textFill="#fff6f6" GridPane.columnIndex="4" GridPane.rowIndex="7">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+
+          <TextField fx:id="deleteField" prefHeight="38.0" prefWidth="200.0" promptText="Enter drug ID to delete" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+          <Button mnemonicParsing="#handleDeleteDrug" onAction="#handleDeleteDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #ff7b00;" text="Delete Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="135.1999740600586" minWidth="12.79998779296875" prefWidth="73.00000610351563" />
+      <ColumnConstraints maxWidth="317.40001220703124" minWidth="149.6000259399414" prefWidth="272.9999938964844" />
+      <ColumnConstraints maxWidth="285.0" minWidth="46.399987792968716" prefWidth="46.399987792968716" />
+      <ColumnConstraints maxWidth="366.3999877929688" minWidth="185.0" prefWidth="238.39998779296877" />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

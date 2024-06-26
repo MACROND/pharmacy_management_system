@@ -3,6 +3,16 @@ package com.example.app.utils.algorithms;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The `Sorting` class provides a generic method to sort a list of elements
+ * using the insertion sort
+ * algorithm.
+ * 
+ * @params list is a list of generic type T
+ * @params comparator is a comparator of generict type T,
+ *         which allows sorting the list in ascending order based on a the
+ *         specidied class attribute.
+ */
 public class Sorting {
     public static <T> List<T> sort(List<T> list, Comparator<? super T> comparator) {
         int n = list.size();
@@ -17,4 +27,6 @@ public class Sorting {
         }
         return list;
     }
+
+
 }
