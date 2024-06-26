@@ -2,6 +2,7 @@ package com.example.app.screens.fxmlControllers;
 
 import com.example.app.entities.Drug;
 import com.example.app.controllers.DrugController;
+import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -86,6 +87,11 @@ public class ManageDrugsController {
 
     @FXML
     private void handleViewAllDrugs() {
+        SortDrugs(); // Sorts the drugs by id
         updateTableView();
+    }
+
+    private void SortDrugs(){
+        Functions.sortDrugsByID();
     }
 }
