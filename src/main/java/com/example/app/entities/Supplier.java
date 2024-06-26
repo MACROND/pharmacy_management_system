@@ -1,5 +1,9 @@
 package com.example.app.entities;
 
+/**
+ * The Supplier class represents a supplier entity with properties such as id,
+ * name, location, and contact information.
+ */
 public class Supplier {
     private String id;
     private String name;
@@ -15,6 +19,12 @@ public class Supplier {
 
     public Supplier(String id, String name, String location, String contact) {
         this.id = id;
+        this.name = name;
+        this.location = location;
+        this.contact = contact;
+    }
+
+    public Supplier(String name, String location, String contact) {
         this.name = name;
         this.location = location;
         this.contact = contact;
@@ -65,4 +75,3 @@ public class Supplier {
                 '}';
     }
 }
-
