@@ -1,7 +1,6 @@
 package com.example.app.controllers;
 
 import com.example.app.entities.Drug;
-// import com.example.app.entities.Supplier;
 import com.example.app.utils.DatabaseUtil;
 import java.sql.*;
 import java.util.ArrayList;

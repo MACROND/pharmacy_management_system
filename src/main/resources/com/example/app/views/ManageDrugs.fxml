@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<GridPane alignment="CENTER" hgap="10.0" prefHeight="345.0" prefWidth="901.0" vgap="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageDrugsController">
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="345.0" prefWidth="901.0" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageDrugsController">
 
           <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
@@ -30,14 +24,14 @@
           <Label text="Quantity:" GridPane.rowIndex="4" />
     <TextField fx:id="quantityField" prefHeight="38.0" prefWidth="273.0" promptText="Enter drug quantity" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-          <Label text="Price:" GridPane.rowIndex="5" />
+          <Label text="Unit Price:" GridPane.rowIndex="5" />
     <TextField fx:id="priceField" prefHeight="34.0" prefWidth="273.0" promptText="Enter unit price" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
           <Label text="Supplier ID:" GridPane.rowIndex="6" />
     <TextField fx:id="supplierIdField" prefHeight="35.0" prefWidth="273.0" promptText="Enter supplier ID" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
           <!-- Buttons for actions -->
-    <Button onAction="#handleAddDrug" prefHeight="30.0" prefWidth="276.0" style="-fx-background-color: #ff7b00;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+    <Button onAction="#handleAddDrug" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #ff7b00;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
         <font>
             <Font name="Berlin Sans FB" size="16.0" />
         </font>
@@ -64,6 +58,15 @@
             <Font name="Berlin Sans FB" size="16.0" />
         </font>
     </Button>
+
+
+    <Button mnemonicParsing="#handleUpdateDrug" onAction="#handleUpdateDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #ff7b00;" text="Update Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+
+   <TextField fx:id="updateField" promptText="Enter drug ID to update" GridPane.columnIndex="3" GridPane.rowIndex="4" />
    <columnConstraints>
       <ColumnConstraints maxWidth="135.1999740600586" minWidth="12.79998779296875" prefWidth="73.00000610351563" />
       <ColumnConstraints maxWidth="317.40001220703124" minWidth="149.6000259399414" prefWidth="272.9999938964844" />
@@ -75,8 +78,8 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
+      <RowConstraints maxHeight="65.0" minHeight="39.0" prefHeight="46.0" />
+      <RowConstraints maxHeight="40.0" minHeight="14.0" prefHeight="33.0" />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

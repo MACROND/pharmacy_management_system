@@ -35,10 +35,10 @@ public class ManageSupplierController {
     @FXML
     private void handleAddSupplier() {
         String name = nameField.getText();
-        String address = locationField.getText();
+        String location = locationField.getText();
         String contact = contactField.getText();
 
-        Supplier supplier = new Supplier(name, address, contact);
+        Supplier supplier = new Supplier(name, location, contact);
         supplierController.addSupplier(supplier);
         updateTableView();
 
