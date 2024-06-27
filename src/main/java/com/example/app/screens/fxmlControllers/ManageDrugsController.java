@@ -136,7 +136,6 @@ public class ManageDrugsController {
         updateField.clear();
         addDrugButton.setVisible(true);
         confirmUpdateButton.setVisible(false);
-
     }
 
     private void SortDrugs(){

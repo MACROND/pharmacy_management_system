@@ -147,4 +147,19 @@ public class SupplierController {
         HashMap<Integer, List<Drug>> supplierList = getSupplierAndDrugs();
         supplierList.remove(supplierID);
     }
+
+    public static void updateSupplier(Supplier supplier) {
+        String query = "UPDATE suppliers SET  name = ?, location = ?, contact = ? WHERE supplier_id = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, supplier.getName());
+                stmt.setString(2, supplier.getLocation());
+                stmt.setString(3, supplier.getContact());
+                stmt.setInt(4, supplier.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
