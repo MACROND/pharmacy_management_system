@@ -100,7 +100,7 @@ public class ManageDrugsController {
 
         idField.setText(drug.getId());
         nameField.setText(drug.getName());
-        descriptionField.setText(drug.getDescription());11
+        descriptionField.setText(drug.getDescription());
         quantityField.setText(Integer.toString(drug.getQuantity()));
         priceField.setText(Double.toString(drug.getPrice()));
         supplierIdField.setText(drug.getSupplierId());
