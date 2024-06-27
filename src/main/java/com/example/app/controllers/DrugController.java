@@ -134,7 +134,27 @@ public class DrugController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         // Update drugList
         return drugList = getAllDrugs();
+    }
+
+
+    public void updateDrug(Drug drug) {
+        String query = "UPDATE drugs SET  drug_id = ?, name = ?, description = ?, quantity = ?, price = ? , supplier_id = ? WHERE drug_id = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, drug.getId());
+                stmt.setString(2, drug.getName());
+                stmt.setString(3, drug.getDescription());
+                stmt.setInt(4, drug.getQuantity());
+                stmt.setDouble(5, drug.getPrice());
+                stmt.setString(6, drug.getSupplierId());
+                stmt.setString(7, drug.getId());
+                stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

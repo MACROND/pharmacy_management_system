@@ -31,7 +31,7 @@
     <TextField fx:id="supplierIdField" prefHeight="35.0" prefWidth="273.0" promptText="Enter supplier ID" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
           <!-- Buttons for actions -->
-    <Button onAction="#handleAddDrug" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #ff7b00;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+    <Button fx:id="addDrugButton" onAction="#handleAddDrug" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #ff7b00;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
         <font>
             <Font name="Berlin Sans FB" size="16.0" />
         </font>
@@ -61,6 +61,12 @@
 
 
     <Button mnemonicParsing="#handleUpdateDrug" onAction="#handleUpdateDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #ff7b00;" text="Update Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="confirmUpdateButton" onAction="#handleConfirmUpdate" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #ff7b00;" text="Confirm Update" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7" visible="false">
         <font>
             <Font name="Berlin Sans FB" size="16.0" />
         </font>
