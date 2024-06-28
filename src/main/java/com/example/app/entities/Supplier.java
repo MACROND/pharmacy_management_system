@@ -1,31 +1,41 @@
 package com.example.app.entities;
 
+/**
+ * The Supplier class represents a supplier entity with properties such as id,
+ * name, location, and contact information.
+ */
 public class Supplier {
-    private String id;
+    private int id;
     private String name;
     private String location;
     private String contact;
 
     // Constructors
 
-    public Supplier(String id, String name) {
+    public Supplier(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Supplier(String id, String name, String location, String contact) {
+    public Supplier(int id, String name, String location, String contact) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.contact = contact;
     }
 
+    public Supplier(String name, String location, String contact) {
+        this.name = name;
+        this.location = location;
+        this.contact = contact;
+    }
+
     // Getters and setters...
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -65,4 +75,3 @@ public class Supplier {
                 '}';
     }
 }
-
