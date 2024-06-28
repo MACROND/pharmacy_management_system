@@ -4,10 +4,7 @@ import com.example.app.entities.Drug;
 import com.example.app.controllers.DrugController;
 import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -31,6 +28,12 @@ public class ManageDrugsController {
     private TextField priceField;
     @FXML
     private TextField supplierIdField;
+    @FXML
+    private TextField updateField;
+    @FXML
+    public Button addDrugButton;
+    @FXML
+    private Button confirmUpdateButton;
 
     private DrugController drugController = new DrugController();
     public MainDashboardController mainController;
@@ -89,6 +92,50 @@ public class ManageDrugsController {
     private void handleViewAllDrugs() {
         SortDrugs(); // Sorts the drugs by id
         updateTableView();
+    }
+
+    @FXML
+    private void handleUpdateDrug(){
+        String id = updateField.getText();
+        Drug drug = DrugController.getDrugByName(id).getFirst();
+
+        idField.setText(drug.getId());
+        nameField.setText(drug.getName());
+        descriptionField.setText(drug.getDescription());
+        quantityField.setText(Integer.toString(drug.getQuantity()));
+        priceField.setText(Double.toString(drug.getPrice()));
+        supplierIdField.setText(drug.getSupplierId());
+
+        addDrugButton.setVisible(false);
+        confirmUpdateButton.setVisible(true);
+
+    }
+
+    @FXML
+    private void handleConfirmUpdate(){
+        String id = idField.getText();
+        String name = nameField.getText();
+        String description = descriptionField.getText();
+        int quantity = Integer.parseInt(quantityField.getText());
+        double price = Double.parseDouble(priceField.getText());
+        String supplierId = supplierIdField.getText();
+
+        Drug drug = new Drug(id, name, description, quantity, price, supplierId);
+        drugController.updateDrug(drug);
+
+        updateTableView();
+
+        // Clear the fields after adding
+        idField.clear();
+        nameField.clear();
+        descriptionField.clear();
+        quantityField.clear();
+        priceField.clear();
+        supplierIdField.clear();
+
+        updateField.clear();
+        addDrugButton.setVisible(true);
+        confirmUpdateButton.setVisible(false);
     }
 
     private void SortDrugs(){

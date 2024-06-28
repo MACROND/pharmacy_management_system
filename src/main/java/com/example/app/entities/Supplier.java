@@ -5,19 +5,19 @@ package com.example.app.entities;
  * name, location, and contact information.
  */
 public class Supplier {
-    private String id;
+    private int id;
     private String name;
     private String location;
     private String contact;
 
     // Constructors
 
-    public Supplier(String id, String name) {
+    public Supplier(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Supplier(String id, String name, String location, String contact) {
+    public Supplier(int id, String name, String location, String contact) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -31,11 +31,11 @@ public class Supplier {
     }
 
     // Getters and setters...
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
