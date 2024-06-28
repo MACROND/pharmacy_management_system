@@ -156,7 +156,7 @@ public class MainDashboardController<T> {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         TableColumn<Supplier, String> locationCol = new TableColumn<>("Location");
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
 
         TableColumn<Supplier, String> contactCol = new TableColumn<>("Contact");
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
