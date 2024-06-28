@@ -32,6 +32,7 @@ public class Drug {
         this.supplierId = supplierId;
     }
 
+
     // Getters and setters
     public String getId() {
         return id;

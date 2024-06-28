@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class Functions {
 
-    public static final String SALES_FILE_PATH = Paths.get("C:\\Users\\Maxwell Odoom Anane\\OneDrive\\Desktop\\Pharmacy\\src\\main\\java\\com\\example\\app\\files\\Sales.txt").toString();
+    public static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
     public static HashMap<Integer, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();

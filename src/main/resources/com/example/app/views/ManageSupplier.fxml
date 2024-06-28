@@ -24,7 +24,7 @@
     <Label text="Contact:" GridPane.rowIndex="2" />
     <TextField fx:id="contactField" prefHeight="38.0" prefWidth="278.0" promptText="Enter supplier contact" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Button onAction="#handleAddSupplier" prefHeight="36.0" prefWidth="309.0" style="-fx-background-color: #ff7b00;" text="Add Supplier" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+    <Button fx:id="addSupplierButton" onAction="#handleAddSupplier" prefHeight="36.0" prefWidth="309.0" style="-fx-background-color: #ff7b00;" text="Add Supplier" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
         <font>
             <Font name="Berlin Sans FB" size="14.0" />
         </font>
@@ -42,9 +42,22 @@
         </font>
     </Button>
     <TextField fx:id="deleteField" layoutX="372.0" layoutY="20.0" prefHeight="28.0" prefWidth="151.0" promptText="Enter supplier ID to delete" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleDeleteSupplier" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #ff7b00;" text="Remove Supplier" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleDeleteSupplier" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #ff7b00;" text="Delete Supplier" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
         <font>
             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+        </font>
+    </Button>
+
+    <TextField fx:id="updateField" layoutX="372.0" layoutY="20.0" prefHeight="28.0" prefWidth="151.0" promptText="Enter supplier ID to update" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleUpdateSupplier" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #ff7b00;" text="Update Supplier" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+        <font>
+            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="confirmUpdateButton" onAction="#handleConfirmUpdate" prefHeight="36.0" prefWidth="309.0" style="-fx-background-color: #ff7b00;" text="Confirm Update" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" visible="false">
+        <font>
+            <Font name="Berlin Sans FB" size="14.0" />
         </font>
     </Button>
 
