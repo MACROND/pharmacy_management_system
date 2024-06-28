@@ -1,10 +1,13 @@
 package com.example.app.screens.fxmlControllers;
 
+import com.example.app.controllers.DrugController;
 import com.example.app.controllers.SaleController;
 import com.example.app.controllers.SupplierController;
+import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.entities.Supplier;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,14 +34,20 @@ public class ManageSupplierController {
     private TextField locationField;
     @FXML
     private TextField contactField;
+    @FXML
+    private TextField updateField;
+    @FXML
+    private Button confirmUpdateButton;
+    @FXML
+    private Button addSupplierButton;
 
     @FXML
     private void handleAddSupplier() {
         String name = nameField.getText();
-        String address = locationField.getText();
+        String location = locationField.getText();
         String contact = contactField.getText();
 
-        Supplier supplier = new Supplier(name, address, contact);
+        Supplier supplier = new Supplier(name, location, contact);
         supplierController.addSupplier(supplier);
         updateTableView();
 
@@ -71,6 +80,43 @@ public class ManageSupplierController {
         updateTableView();
 
         deleteField.clear();
+    }
+
+    @FXML
+    private void handleUpdateSupplier(){
+        int id = parseInt(updateField.getText());
+        Supplier supplier = SupplierController.getSupplierByID(id);
+
+        assert supplier != null;
+        nameField.setText(supplier.getName());
+        locationField.setText(supplier.getLocation());
+        contactField.setText(supplier.getContact());
+
+        addSupplierButton.setVisible(false);
+        confirmUpdateButton.setVisible(true);
+
+    }
+
+    @FXML
+    private void handleConfirmUpdate(){
+        int id = parseInt(updateField.getText());
+        String name = nameField.getText();
+        String location = locationField.getText();
+        String contact = contactField.getText();
+
+        Supplier supplier = new Supplier(id, name, location, contact);
+        SupplierController.updateSupplier(supplier);
+
+        updateTableView();
+
+        // Clear the fields after adding
+        nameField.clear();
+        locationField.clear();
+        contactField.clear();
+
+        updateField.clear();
+        addSupplierButton.setVisible(true);
+        confirmUpdateButton.setVisible(false);
     }
 
     private void updateTableView(){

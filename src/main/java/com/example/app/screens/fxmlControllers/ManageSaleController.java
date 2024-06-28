@@ -49,7 +49,10 @@ public class ManageSaleController {
         String customerContact = customerContactField.getText();
         LocalDateTime date = LocalDate.now().atStartOfDay();
         int quantity = parseInt(quantityField.getText());
-        double totalPrice = Double.parseDouble(totalPriceField.getText()) * quantity;
+
+        Drug drug = DrugController.getDrugByName(drugId).getFirst();
+        double unitPrice = drug.getPrice();
+        double totalPrice = unitPrice * quantity;
 
         Sale sale = new Sale(drugId, date, quantity, totalPrice,customerName, customerContact);
         saleController.addSale(sale);
@@ -59,7 +62,6 @@ public class ManageSaleController {
         customerNameField.clear();
         customerContactField.clear();
         quantityField.clear();
-        totalPriceField.clear();
     }
 
     @FXML

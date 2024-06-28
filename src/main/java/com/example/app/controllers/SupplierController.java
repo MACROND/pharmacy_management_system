@@ -29,7 +29,7 @@ public class SupplierController {
         String query = "INSERT INTO suppliers (name, location, contact) VALUES (?, ?, ?)";
 
         try (Connection conn = DatabaseUtil.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)){
             stmt.setString(1, supplier.getName());
             stmt.setString(2, supplier.getLocation());
             stmt.setString(3, supplier.getContact());
@@ -61,7 +61,7 @@ public class SupplierController {
 
             while (rs.next()) {
                 Supplier supplier = new Supplier(
-                        rs.getString("supplier_id"),
+                        rs.getInt("supplier_id"),
                         rs.getString("name"),
                         rs.getString("location"),
                         rs.getString("contact"));
@@ -77,7 +77,7 @@ public class SupplierController {
      * The function `getSupplierByName` retrieves a supplier from the database based
      * on the given name.
      * 
-     * @param name The `getSupplierByName` method takes a `String` parameter `name`,
+     * @param id The `getSupplierByName` method takes a `String` parameter `name`,
      *             which represents the
      *             name of the supplier you want to retrieve from the database. The
      *             method then queries the database to
@@ -100,10 +100,11 @@ public class SupplierController {
 
             if (rs.next()) {
                 return new Supplier(
-                        rs.getString("supplier_id"),
+                        rs.getInt("supplier_id"),
                         rs.getString("name"),
                         rs.getString("location"),
-                        rs.getString("contact"));
+                        rs.getString("contact")
+                );
             }
 
         } catch (SQLException e) {
@@ -136,7 +137,7 @@ public class SupplierController {
                     drugsForSupplier.add(drug);
                 }
             }
-            supplierAndDrugs.put(parseInt(supplier.getId()), drugsForSupplier);
+            supplierAndDrugs.put(supplier.getId(), drugsForSupplier);
         }
 
         return supplierAndDrugs;
@@ -145,5 +146,20 @@ public class SupplierController {
     public static void deleteSupplier(int supplierID) {
         HashMap<Integer, List<Drug>> supplierList = getSupplierAndDrugs();
         supplierList.remove(supplierID);
+    }
+
+    public static void updateSupplier(Supplier supplier) {
+        String query = "UPDATE suppliers SET  name = ?, location = ?, contact = ? WHERE supplier_id = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, supplier.getName());
+                stmt.setString(2, supplier.getLocation());
+                stmt.setString(3, supplier.getContact());
+                stmt.setInt(4, supplier.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
