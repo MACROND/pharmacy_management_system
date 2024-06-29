@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="311.0" prefWidth="549.0" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageStockController">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <TextField fx:id="searchField" prefHeight="44.0" prefWidth="236.0" promptText="Enter drug name or ID to search stock data" GridPane.rowIndex="1" />
+
+    <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #ff7b00;" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <font>
+            <Font name="System Bold" size="15.0" />
+        </font>
+    </Button>
+
+    <Button mnemonicParsing="false" onAction="#handleRefresh" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #ff7b00;" text="Refresh" textFill="#fff6f6" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+
+    <TextField fx:id="deleteField" prefHeight="44.0" prefWidth="236.0" promptText="Enter drug ID to delete stock data" GridPane.rowIndex="2" />
+
+    <Button mnemonicParsing="#handleDeleteDrug" onAction="#handleDelete" prefHeight="43.0" prefWidth="172.0" style="-fx-background-color: #ff7b00;" text="Delete Stock" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+        </font>
+    </Button>
+
+    <columnConstraints>
+        <ColumnConstraints maxWidth="366.3999877929688" minWidth="185.0" prefWidth="267.0" />
+        <ColumnConstraints maxWidth="200.0" minWidth="161.0" prefWidth="172.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints maxHeight="39.0" minHeight="26.0" prefHeight="33.0" />
+        <RowConstraints maxHeight="42.0" minHeight="26.0" prefHeight="35.0" />
+        <RowConstraints maxHeight="40.0" minHeight="8.0" prefHeight="35.0" />
+        <RowConstraints maxHeight="34.0" minHeight="22.0" prefHeight="28.0" />
+    </rowConstraints>
+</GridPane>

@@ -20,6 +20,7 @@ public class StockController {
             preparedStatement.setInt(3, stock.getInitialQuantity());
             preparedStatement.setInt(4, stock.getQuantityLeft());
             preparedStatement.setInt(5, stock.getAmountSold());
+            // Update time will be set by default
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -42,7 +43,9 @@ public class StockController {
                         resultSet.getString("name"),
                         resultSet.getInt("initial_quantity"),
                         resultSet.getInt("quantity_left"),
-                        resultSet.getInt("amount_sold")
+                        resultSet.getInt("amount_sold"),
+                        resultSet.getTimestamp("last_updated").toLocalDateTime(),
+                        resultSet.getString("status")
                 );
                 stockList.add(stock);
             }

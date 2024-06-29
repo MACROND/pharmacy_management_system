@@ -3,11 +3,12 @@ package com.example.app.utils.algorithms;
 import com.example.app.entities.Drug;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class Searching {
-    public static <T> int search(List<T> list, Comparator<T> comparator, T key) {
+    public static <T> int binarySearch(List<T> list, Comparator<T> comparator, T key) {
         int low = 0;
         int high = list.size() - 1;
 
@@ -25,4 +26,15 @@ public class Searching {
         return -1; // Element not found
     }
 
+
+    public static <T, K> T customSearch(List<T> list, K key, Comparator<T> comparator) {
+        Iterator<T> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            T item = iterator.next();
+            if (comparator.equals(key)) {
+                return item;
+            }
+        }
+        return null; // Item not found
+    }
 }
