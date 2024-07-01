@@ -72,7 +72,7 @@ public class MainDashboardController<T> {
 
     public void loadManageStockSection(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("com/example/app/views/ManageStock.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/ManageStock.fxml"));
             Parent newContent = loader.load();
 
             ManageStockController manageStockController = loader.getController();
@@ -202,24 +202,25 @@ public class MainDashboardController<T> {
         TableColumn<Stock, Integer> initialQuantityCol = new TableColumn<>("Initial");
         initialQuantityCol.setCellValueFactory(new PropertyValueFactory<>("initialQuantity"));
 
-        TableColumn<Stock, Integer> quantitySold = new TableColumn<>("Sold");
-        quantitySold.setCellValueFactory(new PropertyValueFactory<>("quantitySold"));
+        TableColumn<Stock, Integer> quantitySoldCol = new TableColumn<>("Sold");
+        quantitySoldCol.setCellValueFactory(new PropertyValueFactory<>("amountSold"));
 
-        TableColumn<Stock, Integer> quantityLeft = new TableColumn<>("Left");
-        quantityLeft.setCellValueFactory(new PropertyValueFactory<>("quantityLeft"));
+        TableColumn<Stock, Integer> quantityLeftCol = new TableColumn<>("Left");
+        quantityLeftCol.setCellValueFactory(new PropertyValueFactory<>("quantityLeft"));
 
-        TableColumn<Stock, LocalDateTime> lastUpdated = new TableColumn<>("Last Updated");
-        lastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
+        TableColumn<Stock, LocalDateTime> lastUpdatedCol = new TableColumn<>("Last Updated");
+        lastUpdatedCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
 
         TableColumn<Stock, String> status = new TableColumn<>("Status");
-        status.setCellValueFactory(new PropertyValueFactory<>("stockStatus"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         bottomTableView.getColumns().addAll(
                 (TableColumn<T, ?>) idCol,
                 (TableColumn<T, ?>) nameCol,
-                (TableColumn<T, ?>) quantitySold,
-                (TableColumn<T, ?>) quantityLeft,
-                (TableColumn<T, ?>) lastUpdated,
+                (TableColumn<T, ?>) initialQuantityCol,
+                (TableColumn<T, ?>) quantitySoldCol,
+                (TableColumn<T, ?>) quantityLeftCol,
+                (TableColumn<T, ?>) lastUpdatedCol,
                 (TableColumn<T, ?>) status
         );
         ObservableList<Stock> observableList = FXCollections.observableArrayList(stockData);

@@ -52,6 +52,6 @@ CREATE TABLE stock (
     amount_sold INT NOT NULL,
     quantity_left INT NOT NULL,
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(225) NOT NULL DEFAULT 'Moderate'
+    status VARCHAR(225) NOT NULL DEFAULT 'N/A'
 );
 
