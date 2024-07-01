@@ -35,6 +35,12 @@ public class Stock {
         this.drugId = drugId;
     }
 
+    // For adding stock data of a drug when a drug object is added
+    public Stock(String id, String name, int quantity) {
+        this.drugId = id;
+        this.name = name;
+        this.initialQuantity = quantity;
+    }
 
 
     // Getters and Setters

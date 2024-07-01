@@ -1,16 +1,19 @@
 package com.example.app.controllers;
 
+import com.example.app.entities.Drug;
 import com.example.app.entities.Stock;
 import com.example.app.utils.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SequencedCollection;
 
 public class StockController {
+    public static List<Stock> stockList = new ArrayList<>();
 
     // Method to create a new stock record
-    public void addStock(Stock stock) {
+    public static void addStock(Stock stock) {
         String query = "INSERT INTO stock (drug_id, name, initial_quantity, quantity_left, amount_sold) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseUtil.getConnection();
@@ -29,7 +32,7 @@ public class StockController {
     }
 
     // Method to retrieve all stock records
-    public List<Stock> getAllStock() {
+    public static List<Stock> getAllStock() {
         List<Stock> stockList = new ArrayList<>();
         String query = "SELECT * FROM stock";
 
@@ -57,33 +60,34 @@ public class StockController {
     }
 
     // Method to retrieve a stock record by drug ID
-    public Stock getStockById(String drugId) {
-        Stock stock = null;
+    public static List<Stock> getStockById(String drugId) {
+        stockList.clear();
         String query = "SELECT * FROM stock WHERE drug_id = ?";
 
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, drugId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                preparedStatement.setString(1, drugId);
+                ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
-                    stock = new Stock(
+                    Stock stock = new Stock(
                             resultSet.getString("drug_id"),
                             resultSet.getString("name"),
                             resultSet.getInt("initial_quantity"),
                             resultSet.getInt("quantity_left"),
                             resultSet.getInt("amount_sold")
                     );
+                    stockList.add(stock);
                 }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return stock;
+        return stockList;
     }
 
+
     // Method to update a stock record
-    public void updateStock(Stock stock) {
+    public static void updateStock(Stock stock) {
         String query = "UPDATE stock SET name = ?, initial_quantity = ?, quantity_left = ?, amount_sold = ? WHERE drug_id = ?";
 
         try (Connection connection = DatabaseUtil.getConnection();

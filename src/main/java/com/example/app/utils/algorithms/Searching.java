@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public class Searching {
+    //   Used when searching an object with a numeric ID
     public static <T> int binarySearch(List<T> list, Comparator<T> comparator, T key) {
         int low = 0;
         int high = list.size() - 1;
@@ -27,6 +28,7 @@ public class Searching {
     }
 
 
+    // Used when looking for an object
     public static <T, K> T customSearch(List<T> list, K key, Comparator<T> comparator) {
         Iterator<T> iterator = list.iterator();
         while (iterator.hasNext()) {
