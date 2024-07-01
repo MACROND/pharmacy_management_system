@@ -2,9 +2,12 @@ package com.example.app.screens.fxmlControllers;
 
 import com.example.app.controllers.DrugController;
 import com.example.app.controllers.SaleController;
+import com.example.app.controllers.StockController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.entities.Stock;
 import com.example.app.utils.algorithms.Functions;
+import eu.hansolo.tilesfx.addons.Switch;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,12 +53,25 @@ public class ManageSaleController {
         LocalDateTime date = LocalDate.now().atStartOfDay();
         int quantity = parseInt(quantityField.getText());
 
+        // Record Sales data
         Drug drug = DrugController.getDrugByName(drugId).getFirst();
         double unitPrice = drug.getPrice();
         double totalPrice = unitPrice * quantity;
 
+
         Sale sale = new Sale(drugId, date, quantity, totalPrice,customerName, customerContact);
         saleController.addSale(sale);
+
+        // Update stock data of the sold drug
+        Stock stock = StockController.getStockById(drugId).getFirst();
+        int quantityLeft = stock.getInitialQuantity() - quantity;
+        int amountSold = stock.getAmountSold() + quantity;
+
+        Stock stockUpdate = new Stock(drugId, stock.getName(), stock.getInitialQuantity(), quantityLeft, amountSold,
+                date,
+                updateStockStatus(drugId, quantityLeft));
+
+        StockController.updateStock(stockUpdate);
 
         // Clear the fields after adding
         drugIdField.clear();
@@ -87,5 +103,17 @@ public class ManageSaleController {
 
     private void updateTableForViewAllSales() {
         mainController.configureTableForSalesHistory(SaleController.getAllSales());
+    }
+
+    private String updateStockStatus(String drugId, int quantityLeft) {
+        Stock stockData = StockController.getAllStock().getFirst();
+        assert stockData != null;
+        if (quantityLeft <= 0.1 * stockData.getInitialQuantity()){
+            return "Low";
+        } else if (quantityLeft <= 0.8 * stockData.getInitialQuantity()){
+            return "Moderate";
+        } else {
+            return "High";
+        }
     }
 }
