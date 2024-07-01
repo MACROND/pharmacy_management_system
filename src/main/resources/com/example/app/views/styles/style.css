@@ -1,0 +1,10 @@
+#loginbtn{
+    -fx-border-radius: 30px;
+}
+
+#loginButton{
+    --fxbackground-color: black;
+}
+#mybutton{
+    -fx-background-color: orange;
+}
