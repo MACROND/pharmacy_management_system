@@ -29,6 +29,10 @@
                 <Menu text="Supplier">
                     <MenuItem onAction="#loadManageSupplierSection" text="Manage Supplier" />
                 </Menu>
+                <!-- Stock Menu -->
+                <Menu text="Stock">
+                    <MenuItem onAction="#loadManageStockSection" text="Manage Stock" />
+                </Menu>
             <padding>
                <Insets bottom="10.0" left="90.0" top="10.0" />
             </padding>
