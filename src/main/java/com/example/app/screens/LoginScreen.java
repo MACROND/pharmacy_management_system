@@ -15,7 +15,7 @@ import java.util.Objects;
 public class LoginScreen extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("MacrondPharmacy - Sign in");
+        primaryStage.setTitle("MacrondPharmacy");
 
         Parent root = FXMLLoader
                 .load(Objects.requireNonNull(getClass().getResource("/com/example/app/views/LoginScreen.fxml")));

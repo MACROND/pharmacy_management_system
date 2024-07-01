@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="567.0" prefWidth="828.0" style="-fx-background-color: #4d4dff;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.MainDashboardController">
+<BorderPane prefHeight="567.0" prefWidth="828.0" style="-fx-background-color: #4d4dff;" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.MainDashboardController">
     <!-- Top MenuBar centered -->
     <top>
         <HBox alignment="CENTER" prefHeight="43.0" prefWidth="584.0" style="-fx-background-color: #4d4dff;">
@@ -28,6 +28,10 @@
                 <!-- Suppliers Menu -->
                 <Menu text="Supplier">
                     <MenuItem onAction="#loadManageSupplierSection" text="Manage Supplier" />
+                </Menu>
+                <!-- Stock Menu -->
+                <Menu text="Stock">
+                    <MenuItem onAction="#loadManageStockSection" text="Manage Stock" />
                 </Menu>
             <padding>
                <Insets bottom="10.0" left="90.0" top="10.0" />

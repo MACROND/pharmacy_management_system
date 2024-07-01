@@ -1,7 +1,9 @@
 package com.example.app.screens.fxmlControllers;
 
+import com.example.app.controllers.StockController;
 import com.example.app.entities.Drug;
 import com.example.app.controllers.DrugController;
+import com.example.app.entities.Stock;
 import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -52,7 +54,10 @@ public class ManageDrugsController {
         String supplierId = supplierIdField.getText();
 
         Drug drug = new Drug(id, name, description, quantity, price, supplierId);
+        Stock stock = new Stock(id, name, quantity, 0, 0);
+
         drugController.addDrug(drug);
+        StockController.addStock(stock);
         updateTableView();
 
         // Clear the fields after adding
@@ -121,7 +126,9 @@ public class ManageDrugsController {
         String supplierId = supplierIdField.getText();
 
         Drug drug = new Drug(id, name, description, quantity, price, supplierId);
+        Stock stock = new Stock(id, name, quantity);
         drugController.updateDrug(drug);
+        StockController.updateStock(stock);     // Immediately update stock data for the specified drug
 
         updateTableView();
 

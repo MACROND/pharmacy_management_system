@@ -1,6 +1,7 @@
 package com.example.app.screens.fxmlControllers;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.entities.Stock;
 import com.example.app.entities.Supplier;
 import com.example.app.utils.algorithms.Functions;
 
@@ -16,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MainDashboardController<T> {
@@ -63,6 +65,22 @@ public class MainDashboardController<T> {
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadManageStockSection(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("com/example/app/views/ManageStock.fxml"));
+            Parent newContent = loader.load();
+
+            ManageStockController manageStockController = loader.getController();
+            manageStockController.setMainController((MainDashboardController<Stock>) this);
+
+            middleSection.getChildren().clear();
+            middleSection.getChildren().add(newContent);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -168,6 +186,43 @@ public class MainDashboardController<T> {
                 (TableColumn<T, ?>) contactCol
         );
         ObservableList<Supplier> observableList = FXCollections.observableArrayList(supplierList);
+        bottomTableView.setItems((ObservableList<T>) observableList);
+    }
+
+    public void configureTableForStock(List<Stock> stockData) {
+        bottomTableView.getColumns().clear();
+        bottomTableView.getItems().clear();
+
+        TableColumn<Stock, String> idCol = new TableColumn<>("Drug ID");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("drugId"));
+
+        TableColumn<Stock, String> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Stock, Integer> initialQuantityCol = new TableColumn<>("Initial");
+        initialQuantityCol.setCellValueFactory(new PropertyValueFactory<>("initialQuantity"));
+
+        TableColumn<Stock, Integer> quantitySold = new TableColumn<>("Sold");
+        quantitySold.setCellValueFactory(new PropertyValueFactory<>("quantitySold"));
+
+        TableColumn<Stock, Integer> quantityLeft = new TableColumn<>("Left");
+        quantityLeft.setCellValueFactory(new PropertyValueFactory<>("quantityLeft"));
+
+        TableColumn<Stock, LocalDateTime> lastUpdated = new TableColumn<>("Last Updated");
+        lastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
+
+        TableColumn<Stock, String> status = new TableColumn<>("Status");
+        status.setCellValueFactory(new PropertyValueFactory<>("stockStatus"));
+
+        bottomTableView.getColumns().addAll(
+                (TableColumn<T, ?>) idCol,
+                (TableColumn<T, ?>) nameCol,
+                (TableColumn<T, ?>) quantitySold,
+                (TableColumn<T, ?>) quantityLeft,
+                (TableColumn<T, ?>) lastUpdated,
+                (TableColumn<T, ?>) status
+        );
+        ObservableList<Stock> observableList = FXCollections.observableArrayList(stockData);
         bottomTableView.setItems((ObservableList<T>) observableList);
     }
 }
