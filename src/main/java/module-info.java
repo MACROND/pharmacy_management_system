@@ -12,6 +12,7 @@ module com.example.app {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires com.google.protobuf;
+    exports com.example.app.screens to javafx.graphics;
 
     opens com.example.app to javafx.fxml;
     exports com.example.app;
