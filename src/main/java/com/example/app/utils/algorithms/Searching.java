@@ -1,7 +1,5 @@
 package com.example.app.utils.algorithms;
 
-import com.example.app.entities.Drug;
-
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.List;
 
 public class Searching {
     //   Used when searching an object with a numeric ID
-    public static <T> int binarySearch(List<T> list, Comparator<T> comparator, T key) {
+    public static <T> Object binarySearch(List<T> list, Comparator<T> comparator, T key) {
         int low = 0;
         int high = list.size() - 1;
 
@@ -21,10 +19,10 @@ public class Searching {
             } else if (cmp > 0) {
                 high = mid - 1;
             } else {
-                return mid; // Found the element
+                return list.get(mid); // Found the element
             }
         }
-        return -1; // Element not found
+        return list; // Element not found
     }
 
 

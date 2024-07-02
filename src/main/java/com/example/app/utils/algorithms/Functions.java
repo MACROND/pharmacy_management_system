@@ -6,8 +6,6 @@ import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.utils.comparators.DrugComparators;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -33,12 +31,9 @@ public class Functions {
     /**
      * The function `sortDrugsByID` returns a sorted list of drugs based on their
      * ID.
-     *
-     * @return The method `sortDrugsByID` is returning a sorted list of drugs based
-     * on their ID.
      */
-    public static List<Drug> sortDrugsByID() {
-        return Sorting.sort(drugsCollection, DrugComparators.byID());
+    public static void sortDrugsByID() {
+        Sorting.sort(drugsCollection, DrugComparators.byID());
     }
 
 
@@ -63,6 +58,10 @@ public class Functions {
         return Sorting.sort(drugsCollection, DrugComparators.byPrice());
     }
 
+    public static List<Drug> searchDrugByID(Drug drug){
+        List<Drug> sortedDrugList = Sorting.sort(drugsCollection, DrugComparators.byID()); // Sort the array first
+        return (List<Drug>) Searching.binarySearch(sortedDrugList, DrugComparators.byID(), drug);
+    }
     
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified
