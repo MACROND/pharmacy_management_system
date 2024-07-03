@@ -37,7 +37,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="48.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../sales.png" />
+                  <Image url="@images/sales.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -45,7 +45,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="52.0" layoutX="33.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../suppliers.png" />
+                  <Image url="@images/suppliers.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -53,7 +53,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="62.0" layoutX="39.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../stock.png" />
+                  <Image url="@images/stock.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -66,7 +66,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: white;">
                <image>
-                  <Image url="@../../../../../../../../doctor.png" />
+                  <Image url="@images/doctor.png" />
                </image>
             </ImageView>
             <Label layoutX="6.0" layoutY="23.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #003153;" text="Welcome, Pharmacist." />
