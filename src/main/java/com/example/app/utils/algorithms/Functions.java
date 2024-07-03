@@ -5,6 +5,7 @@ import com.example.app.controllers.SaleController;
 import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.entities.Supplier;
 import com.example.app.utils.comparators.DrugComparators;
 
 import java.io.BufferedWriter;
@@ -12,11 +13,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * The `Functions` class contains methods for sorting drugs and saving drug IDs
+ * The `Functions` class contains methods for sorting and sorting entities and saving drug IDs
  * to a sales file.
  */
 public class Functions {
@@ -24,7 +26,7 @@ public class Functions {
     public static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
-    public static HashMap<Integer, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
+    public static HashMap<Supplier, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
 
@@ -35,7 +37,6 @@ public class Functions {
     public static void sortDrugsByID() {
         Sorting.sort(drugsCollection, DrugComparators.byID());
     }
-
 
     /**
      * The function `sortDrugsByQuantity` sorts a collection of drugs based on their
@@ -58,9 +59,11 @@ public class Functions {
         return Sorting.sort(drugsCollection, DrugComparators.byPrice());
     }
 
-    public static List<Drug> searchDrugByID(Drug drug){
-        List<Drug> sortedDrugList = Sorting.sort(drugsCollection, DrugComparators.byID()); // Sort the array first
-        return (List<Drug>) Searching.binarySearch(sortedDrugList, DrugComparators.byID(), drug);
+    public static List<Drug> searchDrugByID(int drug_id){
+        List<Drug> resultList = new ArrayList<>();
+        Drug result = Searching.customSearch(drugsCollection, drug_id, DrugComparators.byID());
+        resultList.add(result);
+        return resultList;
     }
     
     /**
