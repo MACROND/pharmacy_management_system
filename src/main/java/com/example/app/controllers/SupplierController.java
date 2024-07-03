@@ -16,7 +16,7 @@ import static java.lang.Integer.parseInt;
 public class SupplierController {
 
     private static final List<Supplier> supplierList = new ArrayList<>();
-    public static final HashMap<Integer, List<Drug>> supplierAndDrugs = new HashMap<>();
+    public static final HashMap<Supplier, List<Drug>> supplierAndDrugs = new HashMap<>();
 
     /**
      * The `addSupplier` function inserts a new supplier into a database table using
@@ -124,7 +124,7 @@ public class SupplierController {
      * objects associated with that
      * supplier.
      */
-    public static HashMap<Integer, List<Drug>> getSupplierAndDrugs() {
+    public static HashMap<Supplier, List<Drug>> getSupplierAndDrugs() {
         supplierAndDrugs.clear();
 
         List<Supplier> supplierList = getAllSuppliers();
@@ -137,15 +137,19 @@ public class SupplierController {
                     drugsForSupplier.add(drug);
                 }
             }
-            supplierAndDrugs.put(supplier.getId(), drugsForSupplier);
+            supplierAndDrugs.put(supplier, drugsForSupplier);
         }
 
         return supplierAndDrugs;
     }
 
     public static void deleteSupplier(int supplierID) {
-        HashMap<Integer, List<Drug>> supplierList = getSupplierAndDrugs();
-        supplierList.remove(supplierID);
+        HashMap<Supplier, List<Drug>> supplierList = getSupplierAndDrugs();
+        for (Supplier supplier: supplierList.keySet()){
+            if (supplier.getId() == supplierID){
+                supplierAndDrugs.remove(supplier);
+            }
+        }
     }
 
     public static void updateSupplier(Supplier supplier) {

@@ -29,7 +29,7 @@ CREATE TABLE drugs (
     quantity INT NOT NULL,
     price DOUBLE NOT NULL,
     supplier_id INT,
-    FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id) ON  DELETE CASCADE
 );
 
 -- Create the sales table
@@ -41,17 +41,19 @@ CREATE TABLE sales (
     total_price DOUBLE NOT NULL,
     customer_name VARCHAR(225),
     customer_contact VARCHAR(50),
-    FOREIGN KEY (drug_id) REFERENCES drugs (drug_id)
+    FOREIGN KEY (drug_id) REFERENCES drugs (drug_id) ON DELETE CASCADE
 );
 
 -- Create the stock table
 CREATE TABLE stock (
-    drug_id VARCHAR(225) PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    drug_id VARCHAR(225) NOT NULL,
     name VARCHAR(225) NOT NULL,
     initial_quantity INT NOT NULL,
     amount_sold INT NOT NULL,
     quantity_left INT NOT NULL,
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(225) NOT NULL DEFAULT 'N/A'
+    status VARCHAR(225) NOT NULL DEFAULT 'N/A',
+    FOREIGN KEY (drug_id) REFERENCES drugs (drug_id) ON DELETE CASCADE
 );
 

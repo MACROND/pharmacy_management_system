@@ -20,6 +20,7 @@ public class ManageSupplierController {
     private final SupplierController supplierController = new SupplierController();
 
     private MainDashboardController<Supplier> mainController;
+
     public void setMainController(MainDashboardController<Supplier> mainController) {
         this.mainController = mainController;
     }
@@ -41,6 +42,11 @@ public class ManageSupplierController {
     @FXML
     private Button addSupplierButton;
 
+    /**
+     * The handleAddSupplier function adds a new supplier to the system, updates the
+     * table view, and clears
+     * the input fields.
+     */
     @FXML
     private void handleAddSupplier() {
         String name = nameField.getText();
@@ -57,13 +63,22 @@ public class ManageSupplierController {
         contactField.clear();
     }
 
+    /**
+     * The handleViewAllSuppliers function updates the TableView for viewing all
+     * suppliers.
+     */
     @FXML
-    private void handleViewAllSuppliers(){
+    private void handleViewAllSuppliers() {
         updateTableView();
     }
 
+    /**
+     * The handleSearchSupplier function retrieves a supplier by ID, clears the
+     * supplier list, and adds the
+     * retrieved supplier to the list.
+     */
     @FXML
-    private void handleSearchSupplier(){
+    private void handleSearchSupplier() {
         String id = searchField.getText();
         Supplier supplier = SupplierController.getSupplierByID(parseInt(id));
         List<Supplier> supplierList = SupplierController.getAllSuppliers();
@@ -73,8 +88,13 @@ public class ManageSupplierController {
         searchField.clear();
     }
 
+    /**
+     * The handleDeleteSupplier function deletes a supplier based on the ID entered
+     * in a text field and
+     * updates the table view.
+     */
     @FXML
-    private void handleDeleteSupplier(){
+    private void handleDeleteSupplier() {
         String id = deleteField.getText();
         SupplierController.deleteSupplier(parseInt(id));
         updateTableView();
@@ -82,8 +102,13 @@ public class ManageSupplierController {
         deleteField.clear();
     }
 
+    /**
+     * The function `handleUpdateSupplier` retrieves a supplier by ID, populates
+     * text fields with supplier
+     * information, and updates the visibility of buttons.
+     */
     @FXML
-    private void handleUpdateSupplier(){
+    private void handleUpdateSupplier() {
         int id = parseInt(updateField.getText());
         Supplier supplier = SupplierController.getSupplierByID(id);
 
@@ -97,8 +122,13 @@ public class ManageSupplierController {
 
     }
 
+    /**
+     * The handleConfirmUpdate function updates a supplier's information in the
+     * system and clears the input
+     * fields.
+     */
     @FXML
-    private void handleConfirmUpdate(){
+    private void handleConfirmUpdate() {
         int id = parseInt(updateField.getText());
         String name = nameField.getText();
         String location = locationField.getText();
@@ -119,7 +149,12 @@ public class ManageSupplierController {
         confirmUpdateButton.setVisible(false);
     }
 
-    private void updateTableView(){
+    /**
+     * The `updateTableView` function retrieves a list of suppliers and updates the
+     * table view with the new
+     * data.
+     */
+    private void updateTableView() {
         List<Supplier> supplierList = SupplierController.getAllSuppliers();
         mainController.configureTableForSuppliers(supplierList);
     }

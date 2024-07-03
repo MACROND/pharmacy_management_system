@@ -5,6 +5,7 @@ import com.example.app.entities.Stock;
 import com.example.app.utils.DatabaseUtil;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SequencedCollection;
@@ -96,7 +97,7 @@ public class StockController {
             preparedStatement.setInt(2, stock.getInitialQuantity());
             preparedStatement.setInt(3, stock.getQuantityLeft());
             preparedStatement.setInt(4, stock.getAmountSold());
-            preparedStatement.setTimestamp(5, Timestamp.valueOf(stock.getLastUpdated()));
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now().toLocalDate().atStartOfDay()));
             preparedStatement.setString(6, stock.getStatus());
             preparedStatement.setString(7, stock.getDrugId());
 
