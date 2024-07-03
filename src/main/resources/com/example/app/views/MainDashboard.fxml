@@ -16,7 +16,7 @@
                <children>
                   <ImageView fitHeight="37.0" fitWidth="83.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+                        <Image url="@/com/example/app/views/images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="25.0" layoutY="52.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #3cb043;" text="Macrond" />
@@ -29,7 +29,7 @@
             <Button layoutX="18.0" layoutY="410.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff;" text="Stock" />
             <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="40.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pill.png" />
+                  <Image url="@/com/example/app/views/images/pill.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -37,7 +37,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="48.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../sales.png" />
+                  <Image url="@/com/example/app/views/images/sales.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -45,7 +45,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="52.0" layoutX="33.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../suppliers.png" />
+                  <Image url="@/com/example/app/views/images/suppliers.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -53,7 +53,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="62.0" layoutX="39.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../stock.png" />
+                  <Image url="@/com/example/app/views/images/stock.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -66,7 +66,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: white;">
                <image>
-                  <Image url="@../../../../../../../../doctor.png" />
+                  <Image url="@/com/example/app/views/images/doctor.png" />
                </image>
             </ImageView>
             <Label layoutX="6.0" layoutY="23.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #003153;" text="Welcome, Pharmacist." />
