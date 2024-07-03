@@ -59,6 +59,18 @@ public class Functions {
         return Sorting.sort(drugsCollection, DrugComparators.byPrice());
     }
 
+/**
+ * The function `searchDrugByID` searches for a drug in a collection by its ID and returns a list
+ * containing the result.
+ * 
+ * @param drug_id The `searchDrugByID` method takes an integer `drug_id` as a parameter. This method
+ * searches for a drug in a collection based on the provided `drug_id` using a custom search method. It
+ * then adds the found drug to a list and returns the list of drugs that match the given
+ * @return This method returns a List of Drug objects that match the provided drug_id. The method
+ * performs a custom search on the drugsCollection using the DrugComparators.byID() comparator to find
+ * the Drug object with the specified drug_id. The found Drug object is then added to a new List and
+ * returned as the result.
+ */
     public static List<Drug> searchDrugByID(int drug_id){
         List<Drug> resultList = new ArrayList<>();
         Drug result = Searching.customSearch(drugsCollection, drug_id, DrugComparators.byID());
