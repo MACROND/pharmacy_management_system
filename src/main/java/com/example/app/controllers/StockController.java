@@ -88,7 +88,7 @@ public class StockController {
 
     // Method to update a stock record
     public static void updateStock(Stock stock) {
-        String query = "UPDATE stock SET name = ?, initial_quantity = ?, quantity_left = ?, amount_sold = ? WHERE drug_id = ?";
+        String query = "UPDATE stock SET name = ?, initial_quantity = ?, quantity_left = ?, amount_sold = ?, last_updated= ?, status = ? WHERE drug_id = ?";
 
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -96,7 +96,9 @@ public class StockController {
             preparedStatement.setInt(2, stock.getInitialQuantity());
             preparedStatement.setInt(3, stock.getQuantityLeft());
             preparedStatement.setInt(4, stock.getAmountSold());
-            preparedStatement.setString(5, stock.getDrugId());
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(stock.getLastUpdated()));
+            preparedStatement.setString(6, stock.getStatus());
+            preparedStatement.setString(7, stock.getDrugId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

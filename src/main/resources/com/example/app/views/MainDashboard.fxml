@@ -8,8 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="803.0" style="-fx-background-color: #e8e9eb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" stylesheets="styles/style.css">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="803.0" style="-fx-background-color: #e8e9eb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="-6.0" prefHeight="572.0" prefWidth="186.0" style="-fx-background-color: #d3d3d3;">
          <children>
@@ -30,7 +29,7 @@
             <Button layoutX="18.0" layoutY="410.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff;" text="Stock" />
             <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="40.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pill.png" />
+                  <Image url="@images/pill.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -38,7 +37,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="48.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../sales.png" />
+                  <Image url="@images/sales.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -46,7 +45,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="52.0" layoutX="33.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../suppliers.png" />
+                  <Image url="@images/suppliers.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -54,7 +53,7 @@
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="62.0" layoutX="39.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../stock.png" />
+                  <Image url="@images/stock.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" />
@@ -62,20 +61,17 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView fx:id="table" editable="true" fixedCellSize="0.0" layoutX="227.0" layoutY="307.0" prefHeight="251.0" prefWidth="562.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-region-background: 30;" />
-      <AnchorPane layoutX="247.0" layoutY="29.0" prefHeight="200.0" prefWidth="521.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
+      <TableView fx:id="table" editable="true" fixedCellSize="0.0" layoutX="222.0" layoutY="300.0" prefHeight="258.0" prefWidth="567.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-region-background: 30;" />
+      <AnchorPane layoutX="236.0" layoutY="29.0" prefHeight="204.0" prefWidth="547.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="346.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: white;">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: white;">
                <image>
-                  <Image url="@../../../../../../../../doctor.png" />
+                  <Image url="@images/doctor.png" />
                </image>
             </ImageView>
             <Label layoutX="6.0" layoutY="23.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #003153;" text="Welcome, Pharmacist." />
-            <Label layoutX="113.0" layoutY="94.0" text="Label" />
-            <Label layoutX="223.0" layoutY="112.0" text="Label" />
-            <Label layoutX="171.0" layoutY="121.0" text="Label" />
-            <Label layoutX="148.0" layoutY="121.0" text="Label" />
-            <Label layoutX="16.0" layoutY="33.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #003153;" text="Welcome, Pharmacist." />
+            <Label layoutX="22.0" layoutY="83.0" style="-fx-text-fill: #003153; -fx-font-size: 15;" text="Your Health, Our Priority: Connecting You to Wellness." />
+            <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #003153;" text="Get started" />
          </children>
       </AnchorPane>
    </children>
