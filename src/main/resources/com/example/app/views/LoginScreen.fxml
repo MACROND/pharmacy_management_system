@@ -28,12 +28,12 @@
                         <Insets />
                      </opaqueInsets></TextField>
                         <PasswordField fx:id="passwordInput" layoutX="296.0" layoutY="233.0" prefHeight="30.0" prefWidth="273.0" promptText="Password" style="-fx-background-radius: 15; -fx-background-color: #d3d3d3;" />
-                        <Button id="loginbtn" fx:id="loginButton" layoutX="373.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: #ff7b00; -fx-background-radius: 15;" text="Login" textFill="WHITE" />
+                        <Button id="loginbtn" fx:id="loginButton" layoutX="373.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Login" textFill="WHITE" />
                         <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="321.0" prefHeight="46.0" prefWidth="301.0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <AnchorPane prefHeight="492.0" prefWidth="200.0" style="-fx-background-color: blue;">
+                  <AnchorPane prefHeight="492.0" prefWidth="200.0" style="-fx-background-color: #0492c2;">
                      <children>
                         <ImageView fitHeight="232.0" fitWidth="171.0" layoutX="15.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
                            <image>
