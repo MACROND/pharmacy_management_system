@@ -64,8 +64,8 @@ public class ManageSaleController {
 
         // Update stock data of the sold drug
         Stock stock = StockController.getStockById(drugId).getFirst();
-        int quantityLeft = stock.getInitialQuantity() - quantity;
         int amountSold = stock.getAmountSold() + quantity;
+        int quantityLeft = stock.getInitialQuantity() - amountSold;
 
         Stock stockUpdate = new Stock(drugId, stock.getName(), stock.getInitialQuantity(), quantityLeft, amountSold,
                 date,

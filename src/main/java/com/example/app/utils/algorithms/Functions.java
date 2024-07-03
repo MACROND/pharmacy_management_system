@@ -5,20 +5,20 @@ import com.example.app.controllers.SaleController;
 import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.entities.Supplier;
 import com.example.app.utils.comparators.DrugComparators;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * The `Functions` class contains methods for sorting drugs and saving drug IDs
+ * The `Functions` class contains methods for sorting and sorting entities and saving drug IDs
  * to a sales file.
  */
 public class Functions {
@@ -26,21 +26,17 @@ public class Functions {
     public static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
-    public static HashMap<Integer, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
+    public static HashMap<Supplier, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
 
     /**
      * The function `sortDrugsByID` returns a sorted list of drugs based on their
      * ID.
-     *
-     * @return The method `sortDrugsByID` is returning a sorted list of drugs based
-     * on their ID.
      */
-    public static List<Drug> sortDrugsByID() {
-        return Sorting.sort(drugsCollection, DrugComparators.byID());
+    public static void sortDrugsByID() {
+        Sorting.sort(drugsCollection, DrugComparators.byID());
     }
-
 
     /**
      * The function `sortDrugsByQuantity` sorts a collection of drugs based on their
@@ -63,6 +59,24 @@ public class Functions {
         return Sorting.sort(drugsCollection, DrugComparators.byPrice());
     }
 
+/**
+ * The function `searchDrugByID` searches for a drug in a collection by its ID and returns a list
+ * containing the result.
+ * 
+ * @param drug_id The `searchDrugByID` method takes an integer `drug_id` as a parameter. This method
+ * searches for a drug in a collection based on the provided `drug_id` using a custom search method. It
+ * then adds the found drug to a list and returns the list of drugs that match the given
+ * @return This method returns a List of Drug objects that match the provided drug_id. The method
+ * performs a custom search on the drugsCollection using the DrugComparators.byID() comparator to find
+ * the Drug object with the specified drug_id. The found Drug object is then added to a new List and
+ * returned as the result.
+ */
+    public static List<Drug> searchDrugByID(int drug_id){
+        List<Drug> resultList = new ArrayList<>();
+        Drug result = Searching.customSearch(drugsCollection, drug_id, DrugComparators.byID());
+        resultList.add(result);
+        return resultList;
+    }
     
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified
