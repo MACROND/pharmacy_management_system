@@ -43,7 +43,7 @@
     <TextField fx:id="supplierIdField" prefHeight="35.0" prefWidth="273.0" promptText="Enter supplier ID" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
           <!-- Buttons for actions -->
-    <Button fx:id="addDrugButton" onAction="#handleAddDrug" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #0492c2; -fx-background-radius: 18;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
+    <Button fx:id="addDrugButton" onAction="#handleAddDrug" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #3cb043; -fx-background-radius: 18;" text="Add Drug" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
         <font>
             <Font name="Berlin Sans FB" size="16.0" />
         </font>
@@ -65,7 +65,7 @@
 
           <TextField fx:id="deleteField" prefHeight="38.0" prefWidth="200.0" promptText="Enter drug ID to delete" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
-          <Button mnemonicParsing="#handleDeleteDrug" onAction="#handleDeleteDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #0492c2; -fx-background-radius: 18; -fx-border-radius: 18;" text="Delete Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+          <Button mnemonicParsing="#handleDeleteDrug" onAction="#handleDeleteDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: red; -fx-background-radius: 18; -fx-border-radius: 18;" text="Delete Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
         <font>
             <Font name="Berlin Sans FB" size="16.0" />
         </font>
