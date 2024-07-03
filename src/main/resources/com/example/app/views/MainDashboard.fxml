@@ -69,9 +69,9 @@
                   <Image url="@images/doctor.png" />
                </image>
             </ImageView>
-            <Label layoutX="6.0" layoutY="23.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #003153;" text="Welcome, Pharmacist." />
-            <Label layoutX="22.0" layoutY="83.0" style="-fx-text-fill: #003153; -fx-font-size: 15;" text="Your Health, Our Priority: Connecting You to Wellness." />
-            <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #003153;" text="Get started" />
+            <Label layoutX="6.0" layoutY="23.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #0492c2;" text="Welcome, Pharmacist." />
+            <Label layoutX="22.0" layoutY="83.0" style="-fx-text-fill: #0492c2; -fx-font-size: 15;" text="Your Health, Our Priority: Connecting You to Wellness." />
+            <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #0492c2;" text="Get started" />
          </children>
       </AnchorPane>
    </children>
