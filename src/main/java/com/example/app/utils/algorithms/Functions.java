@@ -6,7 +6,7 @@ import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.entities.Supplier;
-import com.example.app.utils.comparators.DrugComparators;
+import com.example.app.utils.comparators.Comparators;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,7 +26,7 @@ public class Functions {
     public static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
     public static List<Sale> purchaseHistory = SaleController.getAllSales();
-    public static HashMap<Supplier, List<Drug>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
+    public static HashMap<Drug, List<Supplier>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
 
@@ -35,7 +35,7 @@ public class Functions {
      * ID.
      */
     public static void sortDrugsByID() {
-        Sorting.sort(drugsCollection, DrugComparators.byID());
+        Sorting.sort(drugsCollection, Comparators.byDrugID());
     }
 
     /**
@@ -45,7 +45,7 @@ public class Functions {
      * @return A list of Drug objects sorted by quantity.
      */
     public static List<Drug> sortDrugsByQuantity() {
-        return Sorting.sort(drugsCollection, DrugComparators.byQuantity());
+        return Sorting.sort(drugsCollection, Comparators.byDrugQuantity());
     }
 
 
@@ -56,7 +56,7 @@ public class Functions {
      * @return A list of Drug objects sorted by price.
      */
     public static List<Drug> sortDrugsByPrice() {
-        return Sorting.sort(drugsCollection, DrugComparators.byPrice());
+        return Sorting.sort(drugsCollection, Comparators.byDrugPrice());
     }
 
 /**
@@ -73,10 +73,12 @@ public class Functions {
  */
     public static List<Drug> searchDrugByID(int drug_id){
         List<Drug> resultList = new ArrayList<>();
-        Drug result = Searching.customSearch(drugsCollection, drug_id, DrugComparators.byID());
+        Drug result = Searching.customSearch(drugsCollection, drug_id, Comparators.byDrugID());
         resultList.add(result);
         return resultList;
     }
+
+
     
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified
