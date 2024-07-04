@@ -16,7 +16,7 @@ import static java.lang.Integer.parseInt;
 public class SupplierController {
 
     private static final List<Supplier> supplierList = new ArrayList<>();
-    public static final HashMap<Supplier, List<Drug>> supplierAndDrugs = new HashMap<>();
+    public static final HashMap<Drug, List<Supplier>> supplierAndDrugs = new HashMap<>();
 
     /**
      * The `addSupplier` function inserts a new supplier into a database table using
@@ -113,44 +113,32 @@ public class SupplierController {
         return null;
     }
 
-    /**
-     * The function `getSupplierAndDrugs` retrieves a mapping of suppliers to the
-     * list of drugs they
-     * supply.
-     *
-     * @return The `getSupplierAndDrugs` method returns a `HashMap` where the key is
-     * a `String`
-     * representing the supplier ID, and the value is a `List` of `Drug`
-     * objects associated with that
-     * supplier.
-     */
-    public static HashMap<Supplier, List<Drug>> getSupplierAndDrugs() {
+    public static HashMap<Drug, List<Supplier>> getSupplierAndDrugs(){
         supplierAndDrugs.clear();
 
-        List<Supplier> supplierList = getAllSuppliers();
         List<Drug> drugList = DrugController.getAllDrugs();
+        List<Supplier> supplierList = getAllSuppliers();
 
-        for (Supplier supplier : supplierList) {
-            List<Drug> drugsForSupplier = new ArrayList<>();
-            for (Drug drug : drugList) {
-                if (Objects.equals(parseInt(drug.getSupplierId()), supplier.getId())) {
-                    drugsForSupplier.add(drug);
+        for (Drug drug : drugList){
+            List<Supplier> suppliersOfDrug = new ArrayList<>();
+            for (Supplier supplier : supplierList){
+                if (Objects.equals(supplier.getId(), parseInt(drug.getSupplierId()))){
+                    suppliersOfDrug.add(supplier);
                 }
             }
-            supplierAndDrugs.put(supplier, drugsForSupplier);
+            supplierAndDrugs.put(drug, suppliersOfDrug);
         }
-
         return supplierAndDrugs;
     }
 
-    public static void deleteSupplier(int supplierID) {
-        HashMap<Supplier, List<Drug>> supplierList = getSupplierAndDrugs();
-        for (Supplier supplier: supplierList.keySet()){
-            if (supplier.getId() == supplierID){
-                supplierAndDrugs.remove(supplier);
-            }
-        }
-    }
+//    public static void deleteSupplier(int supplierID) {
+//        HashMap<Drug, List<Supplier>> supplierList = getSupplierAndDrugs();
+//        for (Supplier supplier: supplierList.keySet()){
+//            if (supplier.getId() == supplierID){
+//                supplierAndDrugs.remove(supplier);
+//            }
+//        }
+//    }
 
     public static void updateSupplier(Supplier supplier) {
         String query = "UPDATE suppliers SET  name = ?, location = ?, contact = ? WHERE supplier_id = ?";
