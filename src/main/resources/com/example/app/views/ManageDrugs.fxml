@@ -19,7 +19,7 @@
     </padding>
    <ImageView fitHeight="360.0" fitWidth="526.0" opacity="0.16" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
       <image>
-         <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+         <Image url="@images/logo.png" />
       </image>
    </ImageView>
 
