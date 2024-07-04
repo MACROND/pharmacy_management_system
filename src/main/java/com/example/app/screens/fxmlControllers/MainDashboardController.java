@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.time.LocalDateTime;
@@ -23,7 +25,8 @@ import java.util.List;
 public class MainDashboardController<T> {
     // Loading Middle section components dynamically
     @FXML
-    private StackPane middleSection;
+//    private AnchorPane middleSection;
+    private Pane middleSection;
 
     public void loadManageDrugSection() {
         try {
@@ -32,6 +35,9 @@ public class MainDashboardController<T> {
 
             ManageDrugsController manageDrugsController = loader.getController();
             manageDrugsController.setMainController(this);
+
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
@@ -48,6 +54,9 @@ public class MainDashboardController<T> {
             ManageSaleController manageSaleController = loader.getController();
             manageSaleController.setMainController((MainDashboardController<Sale>) this);
 
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
+
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
         } catch (Exception e) {
@@ -63,6 +72,9 @@ public class MainDashboardController<T> {
             ManageSupplierController manageSupplierController = loader.getController();
             manageSupplierController.setMainController((MainDashboardController<Supplier>) this);
 
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
+
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
         } catch (Exception e) {
@@ -77,6 +89,9 @@ public class MainDashboardController<T> {
 
             ManageStockController manageStockController = loader.getController();
             manageStockController.setMainController((MainDashboardController<Stock>) this);
+
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
