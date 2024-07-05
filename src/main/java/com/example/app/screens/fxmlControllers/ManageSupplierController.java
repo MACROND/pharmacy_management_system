@@ -95,11 +95,11 @@ public class ManageSupplierController {
      */
     @FXML
     private void handleDeleteSupplier() {
-//        String id = deleteField.getText();
+        String id = deleteField.getText();
 //        SupplierController.deleteSupplier(parseInt(id));
-//        updateTableView();
-//
-//        deleteField.clear();
+        updateTableView();
+
+        deleteField.clear();
     }
 
     /**

@@ -31,4 +31,8 @@ public class Comparators {
     public static Comparator<Sale> byPurchaseTime() { return Comparator.comparing(Sale::getDate);}
 
     public static Comparator<Sale> byPurchaseQuantity() { return Comparator.comparing(Sale::getQuantity);}
+
+    public static Comparator<Sale> byPurchaseID(){ return  Comparator.comparing(Sale::getId);}
+
+    public static Comparator<Sale> byTime(){ return Comparator.comparing(Sale::getDate);}
 }

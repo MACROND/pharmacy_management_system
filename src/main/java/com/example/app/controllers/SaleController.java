@@ -3,10 +3,15 @@ package com.example.app.controllers;
 import com.example.app.entities.Sale;
 import com.example.app.utils.DatabaseUtil;
 import com.example.app.utils.algorithms.Functions;
+import com.example.app.utils.algorithms.Searching;
+import com.example.app.utils.comparators.Comparators;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 public class SaleController {
 
@@ -84,33 +89,33 @@ public class SaleController {
      *                   SQL query to select a sale record from the `sales` table
      *                   based on the provided `sale_id`.
      */
-    public static List<Sale> searchSale(String purchaseId) {
-        String query = "SELECT * FROM sales WHERE sale_id = ?";
-
-        try (Connection conn = DatabaseUtil.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, purchaseId);
-            ResultSet rs = stmt.executeQuery();
-
-            Sale searchedSale = null;
-            if (rs.next()) {
-                searchedSale = new Sale(
-                        rs.getInt("sale_id"),
-                        rs.getString("drug_id"),
-                        rs.getDate("date").toLocalDate().atStartOfDay(),
-                        rs.getInt("quantity"),
-                        rs.getDouble("total_price"),
-                        rs.getString("customer_name"),
-                        rs.getString("customer_contact")
-                );
-            }
-            saleList.clear();
-            saleList.add(searchedSale);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return saleList;
-    }
+//    public static List<Sale> searchSale(String purchaseId) {
+//        String query = "SELECT * FROM sales WHERE sale_id = ?";
+//
+//        try (Connection conn = DatabaseUtil.getConnection();
+//                PreparedStatement stmt = conn.prepareStatement(query)) {
+//            stmt.setString(1, purchaseId);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            Sale searchedSale = null;
+//            if (rs.next()) {
+//                searchedSale = new Sale(
+//                        rs.getInt("sale_id"),
+//                        rs.getString("drug_id"),
+//                        rs.getDate("date").toLocalDate().atStartOfDay(),
+//                        rs.getInt("quantity"),
+//                        rs.getDouble("total_price"),
+//                        rs.getString("customer_name"),
+//                        rs.getString("customer_contact")
+//                );
+//            }
+//            saleList.clear();
+//            saleList.add(searchedSale);
+//        } catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return saleList;
+//    }
 
     /**
      * The `deleteSale` method deletes a purchase from the database and updates
@@ -133,4 +138,14 @@ public class SaleController {
         saleList.clear();
         saleList = SaleController.getAllSales();
     }
+    public static List<Sale> searchSale(String purchaseId) {
+        saleList = SaleController.getAllSales();
+        Sale searchedData = Searching.customSearch(saleList, parseInt(purchaseId), Comparators.byPurchaseID());
+        searchedData.toString();
+
+        saleList.clear();
+        saleList.add(searchedData);
+        return saleList;
+    }
+
 }

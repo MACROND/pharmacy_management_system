@@ -101,9 +101,6 @@ public class ManageSaleController {
 
     }
 
-    private void updateTableForViewAllSales() {
-        mainController.configureTableForSalesHistory(SaleController.getAllSales());
-    }
 
     private String updateStockStatus(String drugId, int quantityLeft) {
         Stock stockData = StockController.getAllStock().getFirst();
