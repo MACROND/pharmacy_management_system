@@ -1,15 +1,15 @@
 package com.example.app.controllers;
 
+import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.utils.DatabaseUtil;
 import com.example.app.utils.algorithms.Functions;
-import com.example.app.utils.algorithms.Searching;
-import com.example.app.utils.comparators.Comparators;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 
@@ -79,73 +79,84 @@ public class SaleController {
     }
 
     /**
-     * This Java function retrieves a sale record from a database based on the
-     * provided sale ID.
-     *
-     * @param purchaseId The `purchaseId` parameter in the `getSaleById` method is
-     *                   used to specify the
-     *                   unique identifier of the sale that you want to retrieve
-     *                   from the database. This method executes a
-     *                   SQL query to select a sale record from the `sales` table
-     *                   based on the provided `sale_id`.
-     */
-//    public static List<Sale> searchSale(String purchaseId) {
-//        String query = "SELECT * FROM sales WHERE sale_id = ?";
-//
-//        try (Connection conn = DatabaseUtil.getConnection();
-//                PreparedStatement stmt = conn.prepareStatement(query)) {
-//            stmt.setString(1, purchaseId);
-//            ResultSet rs = stmt.executeQuery();
-//
-//            Sale searchedSale = null;
-//            if (rs.next()) {
-//                searchedSale = new Sale(
-//                        rs.getInt("sale_id"),
-//                        rs.getString("drug_id"),
-//                        rs.getDate("date").toLocalDate().atStartOfDay(),
-//                        rs.getInt("quantity"),
-//                        rs.getDouble("total_price"),
-//                        rs.getString("customer_name"),
-//                        rs.getString("customer_contact")
-//                );
-//            }
-//            saleList.clear();
-//            saleList.add(searchedSale);
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return saleList;
-//    }
-
-    /**
      * The `deleteSale` method deletes a purchase from the database and updates
      * the sale and drug lists.
      *
      * @param saleID The ID of the supplier to be deleted.
      */
-    public static void deleteSale(int saleID) {
+    public static List<Sale> deleteSale(Integer saleID) {
+
+        saleList.clear();
+        // Remove sales from sales collection
+        saleList = SaleController.getAllSales();
+
+        Iterator<Sale> iterator = saleList.iterator();
+        while (iterator.hasNext()) {
+            Sale sale = iterator.next();
+            if (saleID.equals(sale.getId())) {
+                iterator.remove();
+            }
+        }
+
+        //Delete sales from databases
         String query = "DELETE FROM sales WHERE sale_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, saleID);
             stmt.executeUpdate();
+            System.out.println("Sales record deleted from database.");
         } catch (SQLException e) {
+            System.out.println("Couldn't delete sales record.");
             e.printStackTrace();
         }
 
-        // Update sale
-        saleList.clear();
-        saleList = SaleController.getAllSales();
-    }
-    public static List<Sale> searchSale(String purchaseId) {
-        saleList = SaleController.getAllSales();
-        Sale searchedData = Searching.customSearch(saleList, parseInt(purchaseId), Comparators.byPurchaseID());
-        searchedData.toString();
-
-        saleList.clear();
-        saleList.add(searchedData);
         return saleList;
     }
 
+
+    public static List<Object> searchSale(String purchaseId) {
+        saleList = getAllSales();
+        System.out.println("Searching sales collection");
+        List<Object> result = new ArrayList<>();
+
+        int size = saleList.size();
+
+        Iterator<Sale> iterator = saleList.iterator();
+        double start = System.currentTimeMillis();
+        List<Sale> foundSales = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            Sale sale = iterator.next();
+            if (
+                    purchaseId.equals(Integer.toString(sale.getId())) ||
+                            purchaseId.equalsIgnoreCase(sale.getCustomerName()) ||
+                            purchaseId.equals(sale.getCustomerContact())
+            ) {
+                double end = System.currentTimeMillis();
+
+                foundSales.add(sale);
+
+                System.out.println("Found sales record.");
+
+                result.add(foundSales); // Add the list of matched sales
+                result.add(Functions.generateReport(
+                        "Sale record found.\nThe sales collection was traversed from " +
+                                "the front to the rear of the collection while comparing the sale ID passed to that of the " +
+                                "sales objects in the collection using the Iterator class.",
+                        start, end, "Ω(1)", "O(n)", size, "Iterator search"));
+
+                return result;
+            }
+        }
+
+        // If no match is found, add appropriate results
+        double end = System.currentTimeMillis();
+        System.out.println("No sales record found.");
+
+        result.add(foundSales); // Add the empty list to the result
+        result.add("No sales record matching the provided purchase ID was found.");
+
+        return result;
+    }
 }

@@ -5,10 +5,7 @@ import com.example.app.entities.Supplier;
 import com.example.app.utils.DatabaseUtil;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static java.lang.Integer.parseInt;
 
@@ -131,14 +128,10 @@ public class SupplierController {
         return supplierAndDrugs;
     }
 
-//    public static void deleteSupplier(int supplierID) {
-//        HashMap<Drug, List<Supplier>> supplierList = getSupplierAndDrugs();
-//        for (Supplier supplier: supplierList.keySet()){
-//            if (supplier.getId() == supplierID){
-//                supplierAndDrugs.remove(supplier);
-//            }
-//        }
-//    }
+    public static void deleteSupplier(int supplierID) {
+        supplierList.clear();
+        
+    }
 
     public static void updateSupplier(Supplier supplier) {
         String query = "UPDATE suppliers SET  name = ?, location = ?, contact = ? WHERE supplier_id = ?";
@@ -154,4 +147,44 @@ public class SupplierController {
             e.printStackTrace();
         }
     }
+
+
+    public static List<Supplier> searchSupplierByDrugAndSupplierData(String drugNameOrID, String supplierInfo) {
+        List<Supplier> matchingSuppliers = new ArrayList<>();
+
+        // Iterate over the map entries using an iterator
+        Iterator<Map.Entry<Drug, List<Supplier>>> iterator = supplierAndDrugs.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Drug, List<Supplier>> entry = iterator.next();
+            Drug drug = entry.getKey();
+            List<Supplier> suppliers = entry.getValue();
+
+            // Check if the drug name matches
+            if (drugNameOrID.equalsIgnoreCase(drug.getName()) || drugNameOrID.equals(drug.getId())) {
+                // Iterate over the suppliers using an iterator
+                Iterator<Supplier> supplierIterator = suppliers.iterator();
+                while (supplierIterator.hasNext()) {
+                    Supplier supplier = supplierIterator.next();
+                    // Check if the supplier's location matches
+                    if (
+                        supplierInfo.equalsIgnoreCase(supplier.getLocation()) ||
+                        supplierInfo.equalsIgnoreCase(supplier.getName()) ||
+                        supplierInfo.equalsIgnoreCase(supplier.getContact()) ||
+                        supplierInfo.equals(Integer.toString(supplier.getId())))
+                    {
+                        matchingSuppliers.add(supplier);
+                    }
+                }
+            }
+        }
+
+        if (matchingSuppliers.isEmpty()) {
+            System.out.println("No matching suppliers found for the specified drug and location.");
+        } else {
+            System.out.println("Matching suppliers found.");
+        }
+
+        return matchingSuppliers;
+    }
+
 }

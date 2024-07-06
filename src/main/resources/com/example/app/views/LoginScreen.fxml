@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.LoginController">
    <center>
       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="700.0">
@@ -34,7 +33,7 @@
                         </TextField>
                               <PasswordField fx:id="passwordInput" layoutX="296.0" layoutY="233.0" prefHeight="30.0" prefWidth="273.0" promptText="Password" style="-fx-background-radius: 15; -fx-background-color: #d3d3d3;" />
                               <Button id="loginbtn" fx:id="loginButton" layoutX="373.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Login" textFill="WHITE" />
-                              <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="321.0" prefHeight="46.0" prefWidth="301.0" textFill="WHITE">
+                              <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="281.0" layoutY="338.0" prefHeight="46.0" prefWidth="301.0" textFill="#080808">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>

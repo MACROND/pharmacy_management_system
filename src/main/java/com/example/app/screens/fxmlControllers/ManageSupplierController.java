@@ -38,6 +38,8 @@ public class ManageSupplierController {
     @FXML
     private TextField updateField;
     @FXML
+    private TextField drugsAndSuppliersField;
+    @FXML
     private Button confirmUpdateButton;
     @FXML
     private Button addSupplierButton;
@@ -88,6 +90,16 @@ public class ManageSupplierController {
         searchField.clear();
     }
 
+    @FXML
+    private void handleSearchDrugsAndSupplier(){
+        String[] data = drugsAndSuppliersField.getText().split(",");
+        String drugInfo = data[0];
+        String supplierInfo = data[1];
+        List<Supplier> matchingSuppliers = SupplierController.searchSupplierByDrugAndSupplierData(drugInfo, supplierInfo);
+
+        mainController.configureTableForSuppliers(matchingSuppliers);
+    }
+
     /**
      * The handleDeleteSupplier function deletes a supplier based on the ID entered
      * in a text field and
@@ -96,7 +108,7 @@ public class ManageSupplierController {
     @FXML
     private void handleDeleteSupplier() {
         String id = deleteField.getText();
-//        SupplierController.deleteSupplier(parseInt(id));
+        SupplierController.deleteSupplier(parseInt(id));
         updateTableView();
 
         deleteField.clear();

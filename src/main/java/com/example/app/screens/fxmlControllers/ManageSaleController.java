@@ -54,7 +54,10 @@ public class ManageSaleController {
         int quantity = parseInt(quantityField.getText());
 
         // Record Sales data
-        Drug drug = DrugController.getDrugByName(drugId).getFirst();
+        List<Object> result = DrugController.getDrugByName(drugId);
+        List<Drug> drugList = (List<Drug>) result.getFirst();
+        Drug drug = drugList.getFirst();
+
         double unitPrice = drug.getPrice();
         double totalPrice = unitPrice * quantity;
 
@@ -82,6 +85,7 @@ public class ManageSaleController {
 
     @FXML
     private void handleViewAllSales(){
+        sortSalesByTime();
         mainController.configureTableForSalesHistory(SaleController.getAllSales());
     }
 
@@ -89,7 +93,7 @@ public class ManageSaleController {
     @FXML
     private void handleDeleteSale(){
         String id = deleteField.getText();
-        SaleController.deleteSale(parseInt(id));
+        mainController.configureTableForSalesHistory(SaleController.deleteSale(parseInt(id)));
 
         deleteField.clear();
     }
@@ -97,8 +101,19 @@ public class ManageSaleController {
     @FXML
     private void handleSearchSale(){
         String id = searchField.getText();
-        mainController.configureTableForSalesHistory(SaleController.searchSale(id));
+        List<Object> result = SaleController.searchSale(id);
+        List<Sale> searchedSale = (List<Sale>) result.getFirst();
+        String report = (String) result.get(1);
+        mainController.configureTableForSalesHistory(searchedSale);
+        mainController.configureFieldForGeneratedReport(report);
 
+        searchField.clear();
+
+    }
+
+    private void sortSalesByTime(){
+        String report = Functions.sortSalesByTime();
+        mainController.configureFieldForGeneratedReport(report);
     }
 
 
