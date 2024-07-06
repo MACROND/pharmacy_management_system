@@ -71,8 +71,7 @@ public class Functions {
         double end = System.currentTimeMillis();
 
         return Functions.generateReport("Sorting Complete.\n" +
-                "The sorting algorithm used is known as Insertion Sort. Used to sort the sales records " +
-                "in ascending order by time." +,start,end,"Ω(n)" ,"O(n^2)", size, "Insertion Sort");
+                "The sorting algorithm used is Insertion Sort. Used to sort the sales records in ascending order by time.", start,end,"Ω(n)" ,"O(n^2)", size, "Insertion Sort");
     }
 
     /**
