@@ -5,10 +5,7 @@ import com.example.app.entities.Supplier;
 import com.example.app.utils.DatabaseUtil;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static java.lang.Integer.parseInt;
 
@@ -16,7 +13,7 @@ import static java.lang.Integer.parseInt;
 public class SupplierController {
 
     private static final List<Supplier> supplierList = new ArrayList<>();
-    public static final HashMap<Supplier, List<Drug>> supplierAndDrugs = new HashMap<>();
+    public static final HashMap<Drug, List<Supplier>> supplierAndDrugs = new HashMap<>();
 
     /**
      * The `addSupplier` function inserts a new supplier into a database table using
@@ -113,43 +110,27 @@ public class SupplierController {
         return null;
     }
 
-    /**
-     * The function `getSupplierAndDrugs` retrieves a mapping of suppliers to the
-     * list of drugs they
-     * supply.
-     *
-     * @return The `getSupplierAndDrugs` method returns a `HashMap` where the key is
-     * a `String`
-     * representing the supplier ID, and the value is a `List` of `Drug`
-     * objects associated with that
-     * supplier.
-     */
-    public static HashMap<Supplier, List<Drug>> getSupplierAndDrugs() {
+    public static HashMap<Drug, List<Supplier>> getSupplierAndDrugs(){
         supplierAndDrugs.clear();
 
-        List<Supplier> supplierList = getAllSuppliers();
         List<Drug> drugList = DrugController.getAllDrugs();
+        List<Supplier> supplierList = getAllSuppliers();
 
-        for (Supplier supplier : supplierList) {
-            List<Drug> drugsForSupplier = new ArrayList<>();
-            for (Drug drug : drugList) {
-                if (Objects.equals(parseInt(drug.getSupplierId()), supplier.getId())) {
-                    drugsForSupplier.add(drug);
+        for (Drug drug : drugList){
+            List<Supplier> suppliersOfDrug = new ArrayList<>();
+            for (Supplier supplier : supplierList){
+                if (Objects.equals(supplier.getId(), parseInt(drug.getSupplierId()))){
+                    suppliersOfDrug.add(supplier);
                 }
             }
-            supplierAndDrugs.put(supplier, drugsForSupplier);
+            supplierAndDrugs.put(drug, suppliersOfDrug);
         }
-
         return supplierAndDrugs;
     }
 
     public static void deleteSupplier(int supplierID) {
-        HashMap<Supplier, List<Drug>> supplierList = getSupplierAndDrugs();
-        for (Supplier supplier: supplierList.keySet()){
-            if (supplier.getId() == supplierID){
-                supplierAndDrugs.remove(supplier);
-            }
-        }
+        supplierList.clear();
+        
     }
 
     public static void updateSupplier(Supplier supplier) {
@@ -166,4 +147,44 @@ public class SupplierController {
             e.printStackTrace();
         }
     }
+
+
+    public static List<Supplier> searchSupplierByDrugAndSupplierData(String drugNameOrID, String supplierInfo) {
+        List<Supplier> matchingSuppliers = new ArrayList<>();
+
+        // Iterate over the map entries using an iterator
+        Iterator<Map.Entry<Drug, List<Supplier>>> iterator = supplierAndDrugs.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Drug, List<Supplier>> entry = iterator.next();
+            Drug drug = entry.getKey();
+            List<Supplier> suppliers = entry.getValue();
+
+            // Check if the drug name matches
+            if (drugNameOrID.equalsIgnoreCase(drug.getName()) || drugNameOrID.equals(drug.getId())) {
+                // Iterate over the suppliers using an iterator
+                Iterator<Supplier> supplierIterator = suppliers.iterator();
+                while (supplierIterator.hasNext()) {
+                    Supplier supplier = supplierIterator.next();
+                    // Check if the supplier's location matches
+                    if (
+                        supplierInfo.equalsIgnoreCase(supplier.getLocation()) ||
+                        supplierInfo.equalsIgnoreCase(supplier.getName()) ||
+                        supplierInfo.equalsIgnoreCase(supplier.getContact()) ||
+                        supplierInfo.equals(Integer.toString(supplier.getId())))
+                    {
+                        matchingSuppliers.add(supplier);
+                    }
+                }
+            }
+        }
+
+        if (matchingSuppliers.isEmpty()) {
+            System.out.println("No matching suppliers found for the specified drug and location.");
+        } else {
+            System.out.println("Matching suppliers found.");
+        }
+
+        return matchingSuppliers;
+    }
+
 }

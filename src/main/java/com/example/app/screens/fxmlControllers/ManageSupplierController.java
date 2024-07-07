@@ -38,6 +38,8 @@ public class ManageSupplierController {
     @FXML
     private TextField updateField;
     @FXML
+    private TextField drugsAndSuppliersField;
+    @FXML
     private Button confirmUpdateButton;
     @FXML
     private Button addSupplierButton;
@@ -86,6 +88,16 @@ public class ManageSupplierController {
         supplierList.add(supplier);
 
         searchField.clear();
+    }
+
+    @FXML
+    private void handleSearchDrugsAndSupplier(){
+        String[] data = drugsAndSuppliersField.getText().split(",");
+        String drugInfo = data[0];
+        String supplierInfo = data[1];
+        List<Supplier> matchingSuppliers = SupplierController.searchSupplierByDrugAndSupplierData(drugInfo, supplierInfo);
+
+        mainController.configureTableForSuppliers(matchingSuppliers);
     }
 
     /**

@@ -3,6 +3,7 @@ package com.example.app.screens.fxmlControllers;
 import com.example.app.controllers.SaleController;
 import com.example.app.controllers.StockController;
 import com.example.app.entities.Stock;
+import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -40,6 +41,7 @@ public class ManageStockController {
 
     private void updateTableView(){
         List<Stock> stockList = StockController.getAllStock();
+//        stocklist = Functions.
         mainController.configureTableForStock(stockList);
     }
 }

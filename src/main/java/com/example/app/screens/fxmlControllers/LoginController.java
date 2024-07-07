@@ -55,7 +55,7 @@ public class LoginController {
             Stage dashboardStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/MainDashboard.fxml"));
             Parent dashboardRoot = loader.load();
-            Scene dashboardScene = new Scene(dashboardRoot, 900, 700  );
+            Scene dashboardScene = new Scene(dashboardRoot, 1200, 700  );
             dashboardStage.setScene(dashboardScene);
             dashboardStage.setTitle("PharMacrond-Dashboard");
             dashboardStage.show();

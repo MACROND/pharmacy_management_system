@@ -7,8 +7,6 @@ import com.example.app.entities.Stock;
 import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.util.List;
 
@@ -36,6 +34,7 @@ public class ManageDrugsController {
     public Button addDrugButton;
     @FXML
     private Button confirmUpdateButton;
+
 
     private DrugController drugController = new DrugController();
     public MainDashboardController mainController;
@@ -88,21 +87,28 @@ public class ManageDrugsController {
     @FXML
     private void handleSearchDrug() {
         String id = searchField.getText();
-        mainController.configureTableForDrugs(drugController.getDrugByName(id));
+        List<Object> result = DrugController.getDrugByName(id);
+        List<Drug> drugList = (List<Drug>) result.getFirst();
+        String report = (String) result.get(1);
+        mainController.configureTableForDrugs(drugList);
+        mainController.configureFieldForGeneratedReport(report);
 
         searchField.clear();
     }
 
     @FXML
     private void handleViewAllDrugs() {
-        SortDrugs(); // Sorts the drugs by id
+        SortDrugsByID(); // Sorts the drugs by id
         updateTableView();
     }
 
     @FXML
     private void handleUpdateDrug(){
         String id = updateField.getText();
-        Drug drug = DrugController.getDrugByName(id).getFirst();
+        List<Drug> drugs = (List<Drug>) DrugController.getDrugByName(id).getFirst();
+        Drug drug = drugs.getFirst();
+
+        String report = (String) DrugController.getDrugByName(id).get(1);
 
         idField.setText(drug.getId());
         nameField.setText(drug.getName());
@@ -113,6 +119,7 @@ public class ManageDrugsController {
 
         addDrugButton.setVisible(false);
         confirmUpdateButton.setVisible(true);
+        mainController.configureFieldForGeneratedReport(report);
 
     }
 
@@ -145,7 +152,8 @@ public class ManageDrugsController {
         confirmUpdateButton.setVisible(false);
     }
 
-    private void SortDrugs(){
-        Functions.sortDrugsByID();
+    private void SortDrugsByID(){
+        String report = Functions.sortDrugsByID();
+        mainController.configureFieldForGeneratedReport(report);
     }
 }

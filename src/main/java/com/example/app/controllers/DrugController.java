@@ -2,9 +2,12 @@ package com.example.app.controllers;
 
 import com.example.app.entities.Drug;
 import com.example.app.utils.DatabaseUtil;
+import com.example.app.utils.algorithms.Functions;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DrugController {
 
@@ -35,6 +38,7 @@ public class DrugController {
             e.printStackTrace();
         }
     }
+
 
     /**
      * The function getAllDrugs retrieves all drug records from the database and
@@ -68,47 +72,32 @@ public class DrugController {
         return drugList;
     }
 
-    /**
-     * This `getDrugByName` function retrieves a drug from a database by its name.
-     * 
-     * @param nameOrID The `getDrugByName` method takes a `String` parameter `name`,
-     *             which represents the name
-     *             of the drug you want to retrieve from the database. The method
-     *             then queries the database to find the
-     *             drug with the specified name and returns a `Drug` object if it
-     *             exists in the database.
-     * @return The method `getDrugByName` is returning a `Drug` object based on the
-     *         input name provided. If
-     *         a drug with the specified name is found in the database, a new `Drug`
-     *         object is created using the
-     *         data retrieved from the database (drug_id, name, description,
-     *         quantity, price, supplier_id) and
-     *         returned. If no matching drug is found, it returns `null`.
-     */
-    public static List<Drug> getDrugByName(String nameOrID) {
+
+    public static List<Object> getDrugByName(String nameOrID) {
         drugList.clear();
-        String query = "SELECT * FROM drugs WHERE drug_id= ? OR name= ? ";
+        drugList = DrugController.getAllDrugs();
+        int size = drugList.size();
+        List<Object> result = new ArrayList<>();
 
-        try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, nameOrID);
-            stmt.setString(2, nameOrID);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                 Drug searchedDrug = new Drug(rs.getString("drug_id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getInt("quantity"),
-                        rs.getDouble("price"),
-                        rs.getString("supplier_id")
-                 );
-                 drugList.add(searchedDrug);
+        double start = System.currentTimeMillis();
+        for (Drug drug : drugList){
+            if(nameOrID.equals(drug.getId()) || nameOrID.equals(drug.getName())){
+                drugList.clear();
+                double end = System.currentTimeMillis();
+                drugList.add(drug);
+                System.out.println("Found Drug: " + drug.toString());
+                result.add(drugList);
+                result.add(Functions.generateReport("Found the drug\nThis operation was performed, by traversing the dugs collection" +
+                        "and comparing the passed drug name or ID to each drug object", start, end, "Ω(1)" ,"O(n)",size, "Custom Loop"));
+                return result;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return drugList;
+
+        System.out.println("Couldn't find drug");
+        drugList.clear();
+        result.add(drugList);
+        result.add("Couldn't find the drug");
+        return result;
     }
 
     /**
@@ -124,19 +113,34 @@ public class DrugController {
      */
     public List<Drug> deleteDrug(String id) {
         drugList.clear();
+        // Remove drug from drugs collection
+        drugList = DrugController.getAllDrugs();
+
+        for (Drug drug : drugList){
+            if (id.equals(drug.getId())){
+                drugList.remove(drug);
+                System.out.println("Removed drug from Drugs collection");
+            } else {
+                System.out.println("Couldn't find drug");
+            }
+        }
+
+        // Delete drug object from database
         String query = "DELETE FROM drugs WHERE drug_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, id);
             stmt.executeUpdate(); // Execute the DELETE statement
+            System.out.println("Removed drug from the database");
 
         } catch (SQLException e) {
+            System.out.println("Couldn't remove drug");
             e.printStackTrace();
         }
 
         // Update drugList
-        return drugList = getAllDrugs();
+        return drugList;
     }
 
 
