@@ -52,7 +52,7 @@
                         </AnchorPane>
                         <ImageView fitHeight="46.0" fitWidth="78.0" layoutX="393.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+                              <Image url="@images/logo.png" />
                            </image>
                         </ImageView>
                           </children>

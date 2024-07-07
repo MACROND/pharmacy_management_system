@@ -25,7 +25,7 @@
                       <children>
                           <ImageView fitHeight="37.0" fitWidth="83.0" layoutX="77.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                  <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+                                  <Image url="@images/logo.png" />
                               </image>
                           </ImageView>
                           <Label layoutX="26.0" layoutY="82.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #3cb043;" text="Macrond" />
