@@ -1,77 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="803.0" style="-fx-background-color: #e8e9eb;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.MainDashboardController">
-    <children>
-        <AnchorPane layoutX="-6.0" prefHeight="572.0" prefWidth="186.0" style="-fx-background-color: #d3d3d3;">
-            <children>
-                <AnchorPane prefHeight="103.0" prefWidth="215.0" style="-fx-background-color: #ffff;">
-                    <children>
-                        <ImageView fitHeight="37.0" fitWidth="83.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
-                            </image>
-                        </ImageView>
-                        <Label layoutX="25.0" layoutY="52.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #3cb043;" text="Macrond" />
-                        <Label layoutX="104.0" layoutY="52.0" prefHeight="0.0" prefWidth="91.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #0492c2;" text="Pharmacy" />
-                    </children>
-                </AnchorPane>
-                <Button onAction="#loadManageDrugSection" layoutX="20.0" layoutY="150.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff;" text="Drugs" />
-                <Button onAction="#loadManageSalesSection" layoutX="20.0" layoutY="238.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff;" text="Sales" />
-                <Button onAction="#loadManageSupplierSection" layoutX="18.0" layoutY="325.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff;" text="Suppliers" />
-                <Button onAction="#loadManageStockSection" layoutX="18.0" layoutY="410.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff;" text="Stock" />
-                <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="40.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/pill.png" />
-                    </image>
-                    <effect>
-                        <ColorAdjust brightness="1.0" />
-                    </effect>
-                </ImageView>
-                <ImageView fitHeight="24.0" fitWidth="48.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/sales.png" />
-                    </image>
-                    <effect>
-                        <ColorAdjust brightness="1.0" />
-                    </effect>
-                </ImageView>
-                <ImageView fitHeight="24.0" fitWidth="52.0" layoutX="33.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/suppliers.png" />
-                    </image>
-                    <effect>
-                        <ColorAdjust brightness="1.0" />
-                    </effect>
-                </ImageView>
-                <ImageView fitHeight="24.0" fitWidth="62.0" layoutX="39.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/stock.png" />
-                    </image>
-                    <effect>
-                        <ColorAdjust brightness="1.0" />
-                    </effect>
-                </ImageView>
-            </children>
-        </AnchorPane>
-
-        <AnchorPane fx:id="middleSection" layoutX="236.0" layoutY="29.0" prefHeight="252.0" prefWidth="547.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;">
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="380.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: multiply;">
-                <image>
-                    <Image url="@images/doctor.png" />
-                </image>
-            </ImageView>
-            <Label layoutX="6.0" layoutY="23.0" style="-fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #003153;" text="Welcome, Pharmacist." />
-            <Label layoutX="22.0" layoutY="83.0" style="-fx-text-fill: #003153; -fx-font-size: 15;" text="Your Health, Our Priority: Connecting You to Wellness." />
-            <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #003153;" text="Get started" />
-        </AnchorPane>
-        <TableView fx:id="bottomTableView" editable="true" fixedCellSize="0.0" layoutX="232.0" layoutY="300.0" prefHeight="258.0" prefWidth="557.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-background-color: #ffffff;" />
-    </children>
-</AnchorPane>
+<BorderPane prefHeight="599.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.MainDashboardController">
+   <left>
+      <AnchorPane prefHeight="586.0" prefWidth="220.0" style="-fx-background-color: #e8e9eb;" BorderPane.alignment="CENTER">
+      
+          <!-- Left Sidebar -->
+          <AnchorPane layoutX="-1.0" prefHeight="527.0" prefWidth="221.0" style="-fx-background-color: #d3d3d3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
+              <children>
+                  <AnchorPane prefHeight="147.0" prefWidth="222.0" style="-fx-background-color: #ffff;">
+                      <children>
+                          <ImageView fitHeight="37.0" fitWidth="83.0" layoutX="77.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+                              </image>
+                          </ImageView>
+                          <Label layoutX="26.0" layoutY="82.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #3cb043;" text="Macrond" />
+                          <Label layoutX="108.0" layoutY="82.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #0492c2;" text="Pharmacy" />
+                      </children>
+                  </AnchorPane>
+                  <Button layoutX="21.0" layoutY="172.0" mnemonicParsing="false" onAction="#loadManageDrugSection" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff; -fx-background-color: #3eb043;" text=" Drugs" textFill="#00000045" />
+                  <Button layoutX="21.0" layoutY="257.0" mnemonicParsing="false" onAction="#loadManageSalesSection" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff; -fx-background-color: #3cb043;" text="Sales" />
+                  <Button layoutX="21.0" layoutY="335.0" mnemonicParsing="false" onAction="#loadManageSupplierSection" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff; -fx-background-color: #3cb043;" text="       Suppliers" />
+                  <Button layoutX="21.0" layoutY="421.0" mnemonicParsing="false" onAction="#loadManageStockSection" prefHeight="44.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-border-radius: 20; -fx-background-radius: 30; -fx-text-fill: #fff; -fx-background-color: #3cb043;" text="Stock" />
+                  <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="40.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/pill.png" />
+                      </image>
+                      <effect>
+                          <ColorAdjust brightness="1.0" />
+                      </effect>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="48.0" layoutX="40.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/sales.png" />
+                      </image>
+                      <effect>
+                          <ColorAdjust brightness="1.0" />
+                      </effect>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="52.0" layoutX="39.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/suppliers.png" />
+                      </image>
+                      <effect>
+                          <ColorAdjust brightness="1.0" />
+                      </effect>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="62.0" layoutX="38.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/stock.png" />
+                      </image>
+                      <effect>
+                          <ColorAdjust brightness="1.0" />
+                      </effect>
+                  </ImageView>
+                        <Button disable="true" layoutX="21.0" layoutY="477.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="176.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #003153; -fx-text-fill: #ffffff; -fx-background-color: green; -fx-font-weight: bold;" text="Learn more" textFill="#fffdfd00" visible="false" />
+              </children>
+          </AnchorPane>
+      </AnchorPane>
+   </left>
+   <center>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="599.0" prefWidth="3482.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+        <items>
+            <StackPane fx:id="middleSection" prefHeight="296.0" prefWidth="755.0" style="-fx-background-color: #f8f8f8;">
+               <children>
+                  <ImageView disable="true" fitHeight="168.0" fitWidth="307.0" opacity="0.26" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+             <!-- Bottom Table View -->
+             <TableView fx:id="bottomTableView" editable="true" prefHeight="229.0" prefWidth="775.0" style="-fx-background-color: #f8f8f8;">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+        </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <StackPane alignment="TOP_LEFT" prefHeight="178.0" prefWidth="998.0" style="-fx-border-color: #d3d3d3;" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea fx:id="report" editable="false" prefHeight="141.0" prefWidth="976.0" promptText="Report" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </StackPane.margin>
+            </TextArea>
+         </children>
+      </StackPane>
+   </bottom>
+</BorderPane>

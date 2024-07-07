@@ -112,7 +112,7 @@ public class ManageSaleController {
     }
 
     private void sortSalesByTime(){
-        String report = Functions.sortSalesByTime();
+        String report = Functions.sortSalesByID();
         mainController.configureFieldForGeneratedReport(report);
     }
 

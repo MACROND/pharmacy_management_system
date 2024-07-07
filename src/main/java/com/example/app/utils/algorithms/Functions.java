@@ -64,7 +64,7 @@ public class Functions {
         return Sorting.sort(drugsCollection, Comparators.byDrugPrice());
     }
 
-    public static String sortSalesByTime() {
+    public static String sortSalesByID() {
         int size = purchaseHistory.size();
         double start = System.currentTimeMillis();
         Sorting.sort(purchaseHistory, Comparators.byPurchaseID());

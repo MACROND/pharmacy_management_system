@@ -53,7 +53,7 @@ public class LoginController {
         System.out.println("Loading dashboard");
         try {
             Stage dashboardStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/trial.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/MainDashboard.fxml"));
             Parent dashboardRoot = loader.load();
             Scene dashboardScene = new Scene(dashboardRoot, 1200, 700  );
             dashboardStage.setScene(dashboardScene);
