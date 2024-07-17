@@ -55,7 +55,7 @@
       </GridPane>
       <ImageView disable="true" fitHeight="214.0" fitWidth="427.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+            <Image url="@images/logo.png" />
          </image>
       </ImageView>
    </children>

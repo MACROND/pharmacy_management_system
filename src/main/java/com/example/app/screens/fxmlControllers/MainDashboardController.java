@@ -41,6 +41,9 @@ public class MainDashboardController<T> {
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
+
+            report.clear();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +62,9 @@ public class MainDashboardController<T> {
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
+
+            report.clear();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,6 +83,9 @@ public class MainDashboardController<T> {
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
+
+            report.clear();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,6 +104,8 @@ public class MainDashboardController<T> {
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
+
+            report.clear();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -245,5 +256,9 @@ public class MainDashboardController<T> {
     public void configureFieldForGeneratedReport(String genReport){
         report.clear();
         report.setText(genReport);
+    }
+
+    public void clearReportField(){
+        report.clear();
     }
 }

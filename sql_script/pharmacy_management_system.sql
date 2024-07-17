@@ -94,6 +94,29 @@ INSERT INTO drugs (drug_id, name, description, quantity, price, supplier_id) VAL
 ('D019', 'Prilosec', 'Used to treat gastroesophageal reflux disease', 230, 33.0, 8),
 ('D020', 'Synthroid', 'Used to treat thyroid hormone deficiency', 150, 47.0, 9);
 
+-- Insert data into the stock table
+INSERT INTO stock (drug_id, name, initial_quantity, amount_sold, quantity_left) VALUES
+('D001', 'Lipitor', 100, 0, 100),
+('D002', 'Paracetamol', 200, 0, 200),
+('D003', 'Metformin', 150, 0, 150),
+('D004', 'Amoxicillin', 250, 0, 250),
+('D005', 'Aspirin', 300, 0, 300),
+('D006', 'Atorvastatin', 120, 0, 120),
+('D007', 'Ibuprofen', 180, 0, 180),
+('D008', 'Omeprazole', 220, 0, 220),
+('D009', 'Levothyroxine', 130, 0, 130),
+('D010', 'Losartan', 160, 0, 160),
+('D011', 'Simvastatin', 190, 0, 190),
+('D012', 'Zoloft', 140, 0, 140),
+('D013', 'Panadol', 220, 0, 220),
+('D014', 'Amlodipine', 210, 0, 210),
+('D015', 'Lisinopril', 170, 0, 170),
+('D016', 'Ciprofloxacin', 240, 0, 240),
+('D017', 'Zyrtec', 260, 0, 260),
+('D018', 'Naproxen', 200, 0, 200),
+('D019', 'Prilosec', 230, 0, 230),
+('D020', 'Synthroid', 150, 0, 150);
+
 -- Insert data into the users table for testing
 INSERT INTO users (firstName, lastName, password, role) VALUES
 ('John', 'Doe', 'password123', 'admin'),

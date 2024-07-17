@@ -88,6 +88,7 @@ public class ManageSupplierController {
         supplierList.add(supplier);
 
         searchField.clear();
+        mainController.clearReportField();
     }
 
     @FXML
@@ -112,6 +113,7 @@ public class ManageSupplierController {
         updateTableView();
 
         deleteField.clear();
+        mainController.clearReportField();
     }
 
     /**

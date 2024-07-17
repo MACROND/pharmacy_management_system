@@ -10,7 +10,7 @@ import java.util.List;
  * 
  * @params list is a list of generic type T
  * @params comparator is a comparator of generict type T,
- *         which allows sorting the list in ascending order based on a the
+ *         which allows sorting the list in ascending order based on the
  *         specidied class attribute.
  */
 public class Sorting {
