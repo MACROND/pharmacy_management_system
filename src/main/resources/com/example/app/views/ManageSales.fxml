@@ -9,69 +9,74 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" hgap="10" prefHeight="245.0" prefWidth="935.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageSaleController">
-    <padding>
-        <Insets bottom="10" left="10" right="10" top="10" />
-    </padding>
-   <ImageView fitHeight="232.0" fitWidth="369.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
-      <image>
-         <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
-      </image>
-   </ImageView>
-
-    <!-- Input Fields -->
-    <Label text="Drug ID:" />
-    <TextField fx:id="drugIdField" prefHeight="35.0" prefWidth="274.0" promptText="Enter drug ID" style="-fx-background-radius: 15;" GridPane.columnIndex="1" />
-
-    <Label text="Customer Name:" GridPane.rowIndex="1" />
-    <TextField fx:id="customerNameField" promptText="Enter customer name" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-    <Label text="Customer Contact:" GridPane.rowIndex="2" />
-    <TextField fx:id="customerContactField" promptText="Enter customer contact" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-    <Label text="Quantity:" GridPane.rowIndex="3" />
-    <TextField fx:id="quantityField" promptText="Enter quantity" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-    
-    <Button onAction="#handleAddSale" prefHeight="60.0" prefWidth="305.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Add Purchase" textFill="#fffbfb" GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <font>
-            <Font name="Berlin Sans FB" size="14.0" />
-        </font>
-    </Button>
-
-    <TextField fx:id="searchField" prefHeight="28.0" prefWidth="225.0" promptText="Enter sale ID or Customer name to search" style="-fx-background-radius: 15;" GridPane.columnIndex="3" />
-    <Button mnemonicParsing="false" onAction="#handleSearchSale" prefHeight="30.0" prefWidth="245.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="Search Sales" textFill="#fffbfb" GridPane.columnIndex="4">
-        <font>
-            <Font name="Berlin Sans FB" size="14.0" />
-        </font>
-    </Button>
-    <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSales" prefHeight="36.0" prefWidth="254.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="View All Sales" textFill="#fffdfd" GridPane.columnIndex="4" GridPane.rowIndex="4">
-        <font>
-            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-        </font>
-    </Button>
-    <TextField fx:id="deleteField" layoutX="372.0" layoutY="20.0" prefHeight="29.0" prefWidth="154.0" promptText="Enter sale ID to delete" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-    <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleDeleteSale" prefHeight="45.0" prefWidth="169.0" style="-fx-background-color: red; -fx-background-radius: 15;" text="Delete Sale" textFill="#fffbfb" GridPane.columnIndex="4" GridPane.rowIndex="1">
-        <font>
-            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-        </font>
-    </Button>
-
-    <columnConstraints>
-        <ColumnConstraints maxWidth="144.0" minWidth="73.0" prefWidth="115.9999755859375" />
-        <ColumnConstraints maxWidth="357.5999755859375" minWidth="222.0" prefWidth="308.0000244140625" />
-      <ColumnConstraints maxWidth="294.4000061035157" minWidth="31.200048828124977" prefWidth="61.5999755859375" />
-        <ColumnConstraints maxWidth="298.39995117187505" minWidth="40.0" prefWidth="240.59995117187498" />
-        <ColumnConstraints maxWidth="194.0" minWidth="40.0" prefWidth="166.20004882812498" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints maxHeight="46.0" minHeight="31.0" prefHeight="41.0" />
-    </rowConstraints>
-</GridPane>
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageSaleController">
+   <children>
+      <GridPane alignment="CENTER" hgap="10" prefHeight="374.0" prefWidth="1098.0" vgap="10">
+          <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+          </padding>
+      
+                <!-- Input Fields -->
+          <Label text="Drug ID:" />
+          <TextField fx:id="drugIdField" prefHeight="35.0" prefWidth="274.0" promptText="Enter drug ID" style="-fx-background-radius: 15;" GridPane.columnIndex="1" />
+      
+                <Label text="Customer Name:" GridPane.rowIndex="1" />
+          <TextField fx:id="customerNameField" promptText="Enter customer name" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      
+                <Label text="Customer Contact:" GridPane.rowIndex="2" />
+          <TextField fx:id="customerContactField" promptText="Enter customer contact" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      
+                <Label text="Quantity:" GridPane.rowIndex="3" />
+          <TextField fx:id="quantityField" promptText="Enter quantity" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+          
+                <Button onAction="#handleAddSale" prefHeight="60.0" prefWidth="305.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Add Purchase" textFill="#fffbfb" GridPane.columnIndex="1" GridPane.rowIndex="4">
+              <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+              </font>
+          </Button>
+      
+                <TextField fx:id="searchField" prefHeight="28.0" prefWidth="225.0" promptText="Enter sale ID or Customer name to search" style="-fx-background-radius: 15;" GridPane.columnIndex="3" />
+          <Button mnemonicParsing="false" onAction="#handleSearchSale" prefHeight="30.0" prefWidth="245.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="Search Sales" textFill="#fffbfb" GridPane.columnIndex="4">
+              <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+              </font>
+          </Button>
+          <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSales" prefHeight="36.0" prefWidth="254.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="View All Sales" textFill="#fffdfd" GridPane.columnIndex="4" GridPane.rowIndex="4">
+              <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+              </font>
+          </Button>
+          <TextField fx:id="deleteField" layoutX="372.0" layoutY="20.0" prefHeight="29.0" prefWidth="154.0" promptText="Enter sale ID to delete" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+          <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleDeleteSale" prefHeight="45.0" prefWidth="169.0" style="-fx-background-color: red; -fx-background-radius: 15;" text="Delete Sale" textFill="#fffbfb" GridPane.columnIndex="4" GridPane.rowIndex="1">
+              <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+              </font>
+          </Button>
+      
+                <columnConstraints>
+              <ColumnConstraints maxWidth="144.0" minWidth="73.0" prefWidth="115.9999755859375" />
+              <ColumnConstraints maxWidth="357.5999755859375" minWidth="222.0" prefWidth="308.0000244140625" />
+            <ColumnConstraints maxWidth="294.4000061035157" minWidth="31.200048828124977" prefWidth="61.5999755859375" />
+              <ColumnConstraints maxWidth="298.39995117187505" minWidth="40.0" prefWidth="240.59995117187498" />
+              <ColumnConstraints maxWidth="194.0" minWidth="40.0" prefWidth="166.20004882812498" />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints maxHeight="46.0" minHeight="31.0" prefHeight="41.0" />
+          </rowConstraints>
+      </GridPane>
+      <ImageView disable="true" fitHeight="221.0" fitWidth="432.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+         </image>
+      </ImageView>
+   </children>
+</StackPane>

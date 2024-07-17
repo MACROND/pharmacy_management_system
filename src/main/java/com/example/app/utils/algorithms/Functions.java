@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,8 +33,14 @@ public class Functions {
      * The function `sortDrugsByID` returns a sorted list of drugs based on their
      * ID.
      */
-    public static void sortDrugsByID() {
+    public static String sortDrugsByID() {
+        int size = drugsCollection.size();
+        double start = System.currentTimeMillis();
         Sorting.sort(drugsCollection, Comparators.byDrugID());
+        double end = System.currentTimeMillis();
+
+        return Functions.generateReport("Sorting Complete.\n" +
+                "The sorting algorithm used is known as Insertion Sort",start,end,"Ω(n)" ,"O(n^2)", size, "Insertion Sort");
     }
 
     /**
@@ -59,27 +64,16 @@ public class Functions {
         return Sorting.sort(drugsCollection, Comparators.byDrugPrice());
     }
 
-/**
- * The function `searchDrugByID` searches for a drug in a collection by its ID and returns a list
- * containing the result.
- * 
- * @param drug_id The `searchDrugByID` method takes an integer `drug_id` as a parameter. This method
- * searches for a drug in a collection based on the provided `drug_id` using a custom search method. It
- * then adds the found drug to a list and returns the list of drugs that match the given
- * @return This method returns a List of Drug objects that match the provided drug_id. The method
- * performs a custom search on the drugsCollection using the DrugComparators.byID() comparator to find
- * the Drug object with the specified drug_id. The found Drug object is then added to a new List and
- * returned as the result.
- */
-    public static List<Drug> searchDrugByID(int drug_id){
-        List<Drug> resultList = new ArrayList<>();
-        Drug result = Searching.customSearch(drugsCollection, drug_id, Comparators.byDrugID());
-        resultList.add(result);
-        return resultList;
+    public static String sortSalesByID() {
+        int size = purchaseHistory.size();
+        double start = System.currentTimeMillis();
+        Sorting.sort(purchaseHistory, Comparators.byPurchaseID());
+        double end = System.currentTimeMillis();
+
+        return Functions.generateReport("Sorting Complete.\n" +
+                "The sorting algorithm used is Insertion Sort. Used to sort the sales records in ascending order by time.", start,end,"Ω(n)" ,"O(n^2)", size, "Insertion Sort");
     }
 
-
-    
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified
      * path.
@@ -120,5 +114,22 @@ public class Functions {
                 }
             }
         }
+    }
+
+    public static String generateReport(
+            String preText,
+            double start,
+            double end,
+            String bestCase,
+            String wortCase,
+            int collectionSize,
+            String algorithmUsed)
+    {
+        return preText + "\nNumber of objects in the collection: " + collectionSize + "\n" +
+                "Runtime: " + (end - start) + " ms.\n\n" +
+                "-----Time complexity------- \n" +
+                "Best case ( Omega Notation ): " + bestCase + "\n" +
+                "Worst case ( Big O Notation ): " + wortCase + "\n" +
+                "AlgorithmUsed: " + algorithmUsed;
     }
 }

@@ -3,7 +3,6 @@ import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.entities.Stock;
 import com.example.app.entities.Supplier;
-import com.example.app.utils.algorithms.Functions;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,7 +23,10 @@ import java.util.List;
 public class MainDashboardController<T> {
     // Loading Middle section components dynamically
     @FXML
-    private StackPane middleSection;
+    private Pane middleSection;
+
+    @FXML
+    private TextArea report;
 
     public void loadManageDrugSection() {
         try {
@@ -32,6 +35,9 @@ public class MainDashboardController<T> {
 
             ManageDrugsController manageDrugsController = loader.getController();
             manageDrugsController.setMainController(this);
+
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
@@ -48,6 +54,9 @@ public class MainDashboardController<T> {
             ManageSaleController manageSaleController = loader.getController();
             manageSaleController.setMainController((MainDashboardController<Sale>) this);
 
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
+
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
         } catch (Exception e) {
@@ -63,6 +72,9 @@ public class MainDashboardController<T> {
             ManageSupplierController manageSupplierController = loader.getController();
             manageSupplierController.setMainController((MainDashboardController<Supplier>) this);
 
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
+
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
         } catch (Exception e) {
@@ -77,6 +89,9 @@ public class MainDashboardController<T> {
 
             ManageStockController manageStockController = loader.getController();
             manageStockController.setMainController((MainDashboardController<Stock>) this);
+
+            bottomTableView.getColumns().clear();
+            bottomTableView.getItems().clear();
 
             middleSection.getChildren().clear();
             middleSection.getChildren().add(newContent);
@@ -225,5 +240,10 @@ public class MainDashboardController<T> {
         );
         ObservableList<Stock> observableList = FXCollections.observableArrayList(stockData);
         bottomTableView.setItems((ObservableList<T>) observableList);
+    }
+
+    public void configureFieldForGeneratedReport(String genReport){
+        report.clear();
+        report.setText(genReport);
     }
 }
