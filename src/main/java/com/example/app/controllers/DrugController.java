@@ -98,11 +98,11 @@ public class DrugController {
         int size = drugList.size();
         List<Object> result = new ArrayList<>();
 
-        double start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         for (Drug drug : drugList) {
             if (nameOrID.equals(drug.getId()) || nameOrID.equals(drug.getName())) {
                 drugList.clear();
-                double end = System.currentTimeMillis();
+                long end = System.currentTimeMillis();
                 drugList.add(drug);
                 System.out.println("Found Drug: " + drug.toString());
                 result.add(drugList);

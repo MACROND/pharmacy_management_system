@@ -144,7 +144,7 @@ public class SaleController {
         int size = saleList.size();
 
         Iterator<Sale> iterator = saleList.iterator();
-        double start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         List<Sale> foundSales = new ArrayList<>();
 
         while (iterator.hasNext()) {
@@ -152,7 +152,7 @@ public class SaleController {
             if (purchaseId.equals(Integer.toString(sale.getId())) ||
                     purchaseId.equalsIgnoreCase(sale.getCustomerName()) ||
                     purchaseId.equals(sale.getCustomerContact())) {
-                double end = System.currentTimeMillis();
+                long end = System.currentTimeMillis();
 
                 foundSales.add(sale);
 
@@ -171,7 +171,7 @@ public class SaleController {
         }
 
         // If no match is found, add appropriate results
-        double end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
         System.out.println("No sales record found.");
 
         result.add(foundSales); // Add the empty list to the result
