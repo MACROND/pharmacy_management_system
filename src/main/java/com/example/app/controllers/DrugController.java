@@ -6,6 +6,7 @@ import com.example.app.utils.algorithms.Functions;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -112,16 +113,13 @@ public class DrugController {
      *           should be deleted from the `drugs` table in the database.
      */
     public List<Drug> deleteDrug(String id) {
-        drugList.clear();
         // Remove drug from drugs collection
-        drugList = DrugController.getAllDrugs();
-
-        for (Drug drug : drugList){
-            if (id.equals(drug.getId())){
-                drugList.remove(drug);
+        Iterator<Drug> iterator = drugList.iterator();
+        while (iterator.hasNext()) {
+            Drug drug = iterator.next();
+            if (id.equals(drug.getId())) {
+                iterator.remove(); // Safely remove from list while iterating
                 System.out.println("Removed drug from Drugs collection");
-            } else {
-                System.out.println("Couldn't find drug");
             }
         }
 
@@ -130,18 +128,28 @@ public class DrugController {
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, id);
-            stmt.executeUpdate(); // Execute the DELETE statement
-            System.out.println("Removed drug from the database");
+            conn.setAutoCommit(false); // Disable auto-commit to manage transaction manually
 
+            stmt.setString(1, id);
+            int rowsAffected = stmt.executeUpdate(); // Execute the DELETE statement
+
+            if (rowsAffected > 0) {
+                conn.commit(); // Commit the transaction if deletion was successful
+                System.out.println("Removed drug from the database");
+            } else {
+                System.out.println("Drug not found in the database");
+            }
+
+            conn.setAutoCommit(true); // Re-enable auto-commit
         } catch (SQLException e) {
-            System.out.println("Couldn't remove drug");
+            System.out.println("Error deleting drug from database");
             e.printStackTrace();
         }
 
-        // Update drugList
+        // Return updated drugList
         return drugList;
     }
+
 
 
     public void updateDrug(Drug drug) {
