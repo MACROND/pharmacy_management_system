@@ -39,7 +39,6 @@ public class DrugController {
         }
     }
 
-
     /**
      * The function getAllDrugs retrieves all drug records from the database and
      * returns them as a list of
@@ -72,7 +71,27 @@ public class DrugController {
         return drugList;
     }
 
-
+    /**
+     * The function `getDrugByName` searches for a drug by name or ID in a list of
+     * drugs and returns a
+     * report on the search operation.
+     * 
+     * @param nameOrID The `getDrugByName` method takes a parameter `nameOrID`,
+     *                 which is used to search
+     *                 for a drug in the drug list based on either the drug's name
+     *                 or ID. The method iterates through
+     *                 the list of drugs to find a match with the provided
+     *                 `nameOrID`.
+     * @return The `getDrugByName` method returns a List<Object> containing the drug
+     *         that matches the
+     *         provided name or ID, along with a report detailing the operation
+     *         performed to find the drug. If
+     *         the drug is found, the method returns a list with the found drug and
+     *         the report. If the drug is
+     *         not found, the method returns an empty list with a message indicating
+     *         that the drug couldn't be
+     *         found.
+     */
     public static List<Object> getDrugByName(String nameOrID) {
         drugList.clear();
         drugList = DrugController.getAllDrugs();
@@ -80,15 +99,17 @@ public class DrugController {
         List<Object> result = new ArrayList<>();
 
         double start = System.currentTimeMillis();
-        for (Drug drug : drugList){
-            if(nameOrID.equals(drug.getId()) || nameOrID.equals(drug.getName())){
+        for (Drug drug : drugList) {
+            if (nameOrID.equals(drug.getId()) || nameOrID.equals(drug.getName())) {
                 drugList.clear();
                 double end = System.currentTimeMillis();
                 drugList.add(drug);
                 System.out.println("Found Drug: " + drug.toString());
                 result.add(drugList);
-                result.add(Functions.generateReport("Found the drug\nThis operation was performed, by traversing the dugs collection" +
-                        "and comparing the passed drug name or ID to each drug object", start, end, "Ω(1)" ,"O(n)",size, "Custom Loop"));
+                result.add(Functions.generateReport(
+                        "Found the drug\nThis operation was performed, by traversing the dugs collection" +
+                                "and comparing the passed drug name or ID to each drug object",
+                        start, end, "Ω(1)", "O(n)", size, "Custom Loop"));
                 return result;
             }
         }
@@ -116,8 +137,8 @@ public class DrugController {
         // Remove drug from drugs collection
         drugList = DrugController.getAllDrugs();
 
-        for (Drug drug : drugList){
-            if (id.equals(drug.getId())){
+        for (Drug drug : drugList) {
+            if (id.equals(drug.getId())) {
                 drugList.remove(drug);
                 System.out.println("Removed drug from Drugs collection");
             } else {
@@ -129,7 +150,7 @@ public class DrugController {
         String query = "DELETE FROM drugs WHERE drug_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, id);
             stmt.executeUpdate(); // Execute the DELETE statement
             System.out.println("Removed drug from the database");
@@ -143,19 +164,28 @@ public class DrugController {
         return drugList;
     }
 
-
+    /**
+     * The function `updateDrug` updates a drug record in the database with the
+     * provided Drug object.
+     * 
+     * @param drug The `updateDrug` method is used to update a drug entry in a
+     *             database table named
+     *             `drugs`. The method takes a `Drug` object as a parameter, which
+     *             contains information about the drug
+     *             to be updated.
+     */
     public void updateDrug(Drug drug) {
         String query = "UPDATE drugs SET  drug_id = ?, name = ?, description = ?, quantity = ?, price = ? , supplier_id = ? WHERE drug_id = ?";
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setString(1, drug.getId());
-                stmt.setString(2, drug.getName());
-                stmt.setString(3, drug.getDescription());
-                stmt.setInt(4, drug.getQuantity());
-                stmt.setDouble(5, drug.getPrice());
-                stmt.setString(6, drug.getSupplierId());
-                stmt.setString(7, drug.getId());
-                stmt.executeUpdate();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, drug.getId());
+            stmt.setString(2, drug.getName());
+            stmt.setString(3, drug.getDescription());
+            stmt.setInt(4, drug.getQuantity());
+            stmt.setDouble(5, drug.getPrice());
+            stmt.setString(6, drug.getSupplierId());
+            stmt.setString(7, drug.getId());
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
