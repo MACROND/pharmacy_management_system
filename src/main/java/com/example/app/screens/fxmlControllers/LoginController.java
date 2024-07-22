@@ -10,9 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class LoginController {
 
@@ -55,6 +57,17 @@ public class LoginController {
             Stage dashboardStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/app/views/MainDashboard.fxml"));
             Parent dashboardRoot = loader.load();
+
+            // Load the icon image
+            URL imageResource = getClass().getResource("/com/example/app/views/images/logo.png");
+            System.out.println("Image Resource: " + imageResource);
+            if (imageResource != null) {
+                Image icon = new Image(imageResource.toString());
+                dashboardStage.getIcons().add(icon);
+            } else {
+                System.out.println("Image resource not found.");
+            }
+
             Scene dashboardScene = new Scene(dashboardRoot, 1200, 700  );
             dashboardStage.setScene(dashboardScene);
             dashboardStage.setTitle("PharMacrond-Dashboard");
