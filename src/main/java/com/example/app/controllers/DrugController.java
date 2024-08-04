@@ -66,6 +66,7 @@ public class DrugController {
                         rs.getString("supplier_id"));
                 drugList.add(drug);
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,7 +110,7 @@ public class DrugController {
                 result.add(drugList);
                 result.add(Functions.generateReport(
                         "Found the drug\nThis operation was performed, by traversing the dugs collection" +
-                                "and comparing the passed drug name or ID to each drug object",
+                                "and comparing the passed drug name or ID to that of each drug object",
                         start, end, "Ω(1)", "O(n)", size, "Custom Loop"));
                 return result;
             }

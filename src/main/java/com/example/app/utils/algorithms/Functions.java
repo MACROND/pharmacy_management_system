@@ -90,7 +90,7 @@ public class Functions {
     public static void saveToSales(String drugId) {
         BufferedWriter writer = null;
         try {
-            // Ensure the directory exists
+            // Ensuring the directory exists
             File file = new File(SALES_FILE_PATH);
             File parentDir = file.getParentFile();
             if (parentDir != null && !parentDir.exists()) {
@@ -99,7 +99,7 @@ public class Functions {
                 }
             }
 
-            // Write the drug ID to the file
+            // Write drug ID to the file
             writer = new BufferedWriter(new FileWriter(SALES_FILE_PATH, true));
             System.out.println("Writing Sales ID in Sales file...");
             writer.write(drugId);
