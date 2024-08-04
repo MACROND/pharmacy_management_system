@@ -22,8 +22,6 @@ public class ManageStockController {
     @FXML
     private TextField searchField;
     @FXML
-    private TextField deleteField;
-    @FXML
     private CheckBox sortAmountDesc;
     public CheckBox sortAmountAsc;
 
@@ -31,20 +29,14 @@ public class ManageStockController {
     @FXML
     private void handleSearch(){
         String id = searchField.getText();
-        mainController.configureTableForStock(SaleController.searchSale(id));
+        mainController.configureTableForStock(StockController.getStockById(id));
         mainController.clearReportField();
-
-    }
-
-    @FXML
-    public void handleDelete(){
 
     }
 
     @FXML
     public void handleRefresh(){
         searchField.clear();
-        deleteField.clear();
         sortAmountAsc.setSelected(false);
         sortAmountDesc.setSelected(false);
         updateTableView();
