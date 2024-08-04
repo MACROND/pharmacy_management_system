@@ -16,7 +16,7 @@
    <children>
       <ImageView disable="true" fitHeight="302.0" fitWidth="406.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
+            <Image url="@images/logo.png" />
          </image>
       </ImageView>
       <GridPane alignment="CENTER" hgap="10" prefHeight="358.0" prefWidth="993.0" vgap="10">
@@ -34,7 +34,7 @@
           <Label text="Contact:" GridPane.rowIndex="2" />
           <TextField fx:id="contactField" prefHeight="38.0" prefWidth="278.0" promptText="Enter supplier contact" style="-fx-background-radius: 16;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       
-          <Button fx:id="addSupplierButton" onAction="#handleAddSupplier" prefHeight="36.0" prefWidth="309.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Add Supplier" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+          <Button fx:id="addSupplierButton" onAction="#handleAddSupplier" prefHeight="38.0" prefWidth="289.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Add Supplier" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
               <font>
                   <Font name="Berlin Sans FB" size="14.0" />
               </font>
@@ -46,7 +46,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
               </font>
           </Button>
-          <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSuppliers" prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #0492c2; -fx-background-radius: 16;" text="View All Suppliers" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="6">
+          <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSuppliers" prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #3cb043; -fx-background-radius: 16;" text="View All Suppliers" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="6">
               <font>
                   <Font name="Berlin Sans FB Demi Bold" size="14.0" />
               </font>

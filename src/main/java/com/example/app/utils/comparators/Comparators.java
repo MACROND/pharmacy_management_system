@@ -3,6 +3,7 @@ package com.example.app.utils.comparators;
 
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.entities.Stock;
 
 import java.util.Comparator;
 
@@ -32,6 +33,6 @@ public class Comparators {
 
     public static Comparator<Sale> byPurchaseQuantity() { return Comparator.comparing(Sale::getQuantity);}
 
-    public static Comparator<Sale> byPurchaseID(){ return  Comparator.comparing(Sale::getId);}
 
+    public static Comparator<Stock> byAmountLeftDesc(){return Comparator.comparingInt(Stock::getQuantityLeft);}
 }

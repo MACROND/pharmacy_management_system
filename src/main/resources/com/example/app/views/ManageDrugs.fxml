@@ -15,6 +15,11 @@
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageDrugsController">
    <children>
+      <ImageView disable="true" fitHeight="232.0" fitWidth="569.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
       <GridPane alignment="CENTER" hgap="10.0" prefHeight="345.0" prefWidth="901.0" vgap="10.0">
       
                 <padding>
@@ -32,10 +37,10 @@
           <TextArea fx:id="descriptionField" prefHeight="40.0" prefWidth="257.0" promptText="Enter drug description" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       
                 <Label text="Quantity:" GridPane.rowIndex="4" />
-          <TextField fx:id="quantityField" prefHeight="22.0" prefWidth="270.0" promptText="Enter drug quantity" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+          <TextField fx:id="quantityField" prefHeight="38.0" prefWidth="272.0" promptText="Enter drug quantity" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       
                 <Label text="Unit Price:" GridPane.rowIndex="6" />
-          <TextField fx:id="priceField" prefHeight="34.0" prefWidth="273.0" promptText="Enter unit price" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+          <TextField fx:id="priceField" prefHeight="35.0" prefWidth="272.0" promptText="Enter unit price" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       
                 <Label text="Supplier ID:" GridPane.rowIndex="8" />
           <TextField fx:id="supplierIdField" prefHeight="35.0" prefWidth="273.0" promptText="Enter supplier ID" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
@@ -55,7 +60,7 @@
               </font>
           </Button>
       
-                <Button mnemonicParsing="false" onAction="#handleViewAllDrugs" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #0492c2; -fx-background-radius: 18;" text="View All Drugs" textFill="#fff6f6" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                <Button mnemonicParsing="false" onAction="#handleViewAllDrugs" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #3cb043; -fx-background-radius: 18;" text="View All Drugs" textFill="#fff6f6" GridPane.columnIndex="4" GridPane.rowIndex="9">
               <font>
                   <Font name="Berlin Sans FB" size="16.0" />
               </font>
@@ -70,7 +75,7 @@
           </Button>
       
       
-          <Button mnemonicParsing="#handleUpdateDrug" onAction="#handleUpdateDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #0492c2; -fx-background-radius: 18;" text="Update Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+          <Button mnemonicParsing="#handleUpdateDrug" onAction="#handleUpdateDrug" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #0492c2; -fx-background-radius: 18;" text="Update Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
               <font>
                   <Font name="Berlin Sans FB" size="16.0" />
               </font>
@@ -82,13 +87,13 @@
               </font>
           </Button>
       
-         <TextField fx:id="updateField" promptText="Enter drug ID to update" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+         <TextField fx:id="updateField" prefHeight="38.0" prefWidth="233.0" promptText="Enter drug ID to update" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          <columnConstraints>
             <ColumnConstraints maxWidth="135.1999740600586" minWidth="12.79998779296875" prefWidth="73.00000610351563" />
             <ColumnConstraints maxWidth="-Infinity" minWidth="149.6000259399414" prefWidth="272.9999938964844" />
             <ColumnConstraints maxWidth="285.0" minWidth="46.399987792968716" prefWidth="46.399987792968716" />
-            <ColumnConstraints maxWidth="366.3999877929688" minWidth="185.0" prefWidth="238.39998779296877" />
-            <ColumnConstraints />
+            <ColumnConstraints maxWidth="366.3999877929688" minWidth="185.0" prefWidth="234.39999999999998" />
+            <ColumnConstraints maxWidth="197.60000000000002" minWidth="197.60000000000002" prefWidth="197.60000000000002" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
@@ -96,17 +101,12 @@
             <RowConstraints />
             <RowConstraints maxHeight="65.0" minHeight="39.0" prefHeight="46.0" />
             <RowConstraints maxHeight="40.0" minHeight="14.0" prefHeight="33.0" />
-            <RowConstraints />
-            <RowConstraints />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="26.400000000000006" minHeight="26.400000000000006" prefHeight="26.400000000000006" />
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
          </rowConstraints>
       </GridPane>
-      <ImageView disable="true" fitHeight="232.0" fitWidth="569.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/66-667158_capsule-pharmacy-pharmacy-capsule-logo-clipart.png" />
-         </image>
-      </ImageView>
    </children>
 </StackPane>

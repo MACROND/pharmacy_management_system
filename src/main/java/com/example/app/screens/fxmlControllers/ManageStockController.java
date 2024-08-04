@@ -5,6 +5,7 @@ import com.example.app.controllers.StockController;
 import com.example.app.entities.Stock;
 import com.example.app.utils.algorithms.Functions;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
 public class ManageStockController {
 
     public MainDashboardController mainController;
+
+
     public void setMainController(MainDashboardController mainController) {
         this.mainController = mainController;
     }
@@ -20,6 +23,9 @@ public class ManageStockController {
     private TextField searchField;
     @FXML
     private TextField deleteField;
+    @FXML
+    private CheckBox sortAmountDesc;
+    public CheckBox sortAmountAsc;
 
 
     @FXML
@@ -37,12 +43,52 @@ public class ManageStockController {
 
     @FXML
     public void handleRefresh(){
+        searchField.clear();
+        deleteField.clear();
+        sortAmountAsc.setSelected(false);
+        sortAmountDesc.setSelected(false);
         updateTableView();
+        mainController.clearReportField();
+    }
+
+    @FXML
+    public void handleSortStockAmountLeftDesc(){
+        List<Stock> stockList = (List<Stock>) Functions.sortStockByAmountLeftDesc().getFirst();
+        String report = (String) Functions.sortStockByAmountLeftDesc().get(1);
+
+        if (sortAmountDesc.isSelected()){
+            sortAmountAsc.setSelected(false);
+            mainController.configureTableForStock(stockList);
+            mainController.configureFieldForGeneratedReport(report);
+        } else{
+            sortAmountAsc.setSelected(false);
+            sortAmountDesc.setSelected(false);
+            updateTableView();
+
+        }
+    }
+
+    @FXML
+    public void handleSortStockAmountLeftAsc(){
+        List<Stock> stockList = (List<Stock>) Functions.sortStockByAmountLeftAsc().getFirst();
+        String report = (String) Functions.sortStockByAmountLeftAsc().get(1);
+
+        if (sortAmountAsc.isSelected()) {
+            sortAmountDesc.setSelected(false);
+            mainController.configureTableForStock(stockList);
+            mainController.configureFieldForGeneratedReport(report);
+        } else{
+            sortAmountDesc.setSelected(false);
+            sortAmountAsc.setSelected(false);
+            updateTableView();
+        }
     }
 
     private void updateTableView(){
         List<Stock> stockList = StockController.getAllStock();
-//        stocklist = Functions.
         mainController.configureTableForStock(stockList);
+        mainController.clearReportField();
     }
+
+
 }
