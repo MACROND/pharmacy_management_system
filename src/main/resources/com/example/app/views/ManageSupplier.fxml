@@ -12,82 +12,100 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageSupplierController">
-   <children>
-      <ImageView disable="true" fitHeight="302.0" fitWidth="406.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/logo.png" />
-         </image>
-      </ImageView>
-      <GridPane alignment="CENTER" hgap="10" prefHeight="358.0" prefWidth="993.0" vgap="10">
-          <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-      
-          <!-- Input Fields -->
-          <Label prefHeight="18.0" prefWidth="50.0" text="Name:" />
-          <TextField fx:id="nameField" prefHeight="38.0" prefWidth="299.0" promptText="Enter supplier name" style="-fx-background-radius: 15;" GridPane.columnIndex="1" />
-      
-          <Label text="Location:" GridPane.rowIndex="1" />
-          <TextField fx:id="locationField" prefHeight="38.0" prefWidth="299.0" promptText="Enter supplier location" style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      
-          <Label text="Contact:" GridPane.rowIndex="2" />
-          <TextField fx:id="contactField" prefHeight="38.0" prefWidth="278.0" promptText="Enter supplier contact" style="-fx-background-radius: 16;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      
-          <Button fx:id="addSupplierButton" onAction="#handleAddSupplier" prefHeight="38.0" prefWidth="289.0" style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Add Supplier" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-              <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-              </font>
-          </Button>
-      
-          <TextField fx:id="searchField" prefHeight="42.0" prefWidth="251.0" promptText="Enter supplier ID to search" style="-fx-background-radius: 15;" GridPane.columnIndex="3" />
-          <Button mnemonicParsing="false" onAction="#handleSearchSupplier" prefHeight="42.0" prefWidth="184.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="Search Suppliers" textFill="#fffafa" GridPane.columnIndex="4">
-              <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-              </font>
-          </Button>
-          <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSuppliers" prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #3cb043; -fx-background-radius: 16;" text="View All Suppliers" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
-              <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-              </font>
-          </Button>
-      
-          <TextField fx:id="updateField" layoutX="372.0" layoutY="20.0" prefHeight="40.0" prefWidth="251.0" promptText="Enter supplier ID to update" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-          <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleUpdateSupplier" prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="Update Supplier" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-              <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-              </font>
-          </Button>
-         <Button layoutX="745.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleSearchDrugsAndSupplier" prefHeight="42.0" prefWidth="184.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="Search Supplier of Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.app.screens.fxmlControllers.ManageSupplierController">
+    <ImageView disable="true" fitHeight="302.0" fitWidth="406.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+        <Image url="@images/logo.png"/>
+    </ImageView>
+    <GridPane alignment="CENTER" hgap="10" prefHeight="358.0" prefWidth="993.0" vgap="10">
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10"/>
+        </padding>
+
+        <!-- Input Fields -->
+        <Label prefHeight="18.0" prefWidth="50.0" text="Name:"/>
+        <TextField fx:id="nameField" prefHeight="38.0" prefWidth="299.0" promptText="Enter supplier name"
+                   style="-fx-background-radius: 15;" GridPane.columnIndex="1"/>
+
+        <Label text="Location:" GridPane.rowIndex="1"/>
+        <TextField fx:id="locationField" prefHeight="38.0" prefWidth="299.0" promptText="Enter supplier location"
+                   style="-fx-background-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Contact:" GridPane.rowIndex="2"/>
+        <TextField fx:id="contactField" prefHeight="38.0" prefWidth="278.0" promptText="Enter supplier contact"
+                   style="-fx-background-radius: 16;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Button fx:id="addSupplierButton" onAction="#handleAddSupplier" prefHeight="38.0" prefWidth="289.0"
+                style="-fx-background-color: #3cb043; -fx-background-radius: 15;" text="Add Supplier" textFill="WHITE"
+                GridPane.columnIndex="1" GridPane.rowIndex="4">
             <font>
-               <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                <Font name="Berlin Sans FB" size="14.0"/>
             </font>
-         </Button>
-         <TextField fx:id="drugsAndSuppliersField" layoutX="503.0" layoutY="158.0" prefHeight="42.0" prefWidth="251.0" promptText="Enter e.g. drug info, supplier Info" style="-fx-background-radius: 15;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         <Button fx:id="confirmUpdateButton" layoutX="116.0" layoutY="223.0" onAction="#handleConfirmUpdate" prefHeight="38.0" prefWidth="289.0" style="-fx-background-color: pink; -fx-background-radius: 15;" text="Confirm Update" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" visible="false">
+        </Button>
+
+        <TextField fx:id="searchField" prefHeight="42.0" prefWidth="251.0" promptText="Enter supplier ID to search"
+                   style="-fx-background-radius: 15;" GridPane.columnIndex="3"/>
+        <Button mnemonicParsing="false" onAction="#handleSearchSupplier" prefHeight="42.0" prefWidth="184.0"
+                style="-fx-background-color: #0492c2; -fx-background-radius: 15;" text="Search Suppliers"
+                textFill="#fffafa" GridPane.columnIndex="4">
             <font>
-               <Font name="Berlin Sans FB" size="14.0" />
+                <Font name="Berlin Sans FB" size="14.0"/>
             </font>
-         </Button>
-      
-          <columnConstraints>
-              <ColumnConstraints maxWidth="107.0" minWidth="44.79998779296876" prefWidth="80.80001220703124" />
-              <ColumnConstraints maxWidth="321.6000122070312" minWidth="253.59998779296873" prefWidth="253.59998779296873" />
-            <ColumnConstraints maxWidth="321.6000122070312" minWidth="16.0" prefWidth="43.20001220703125" />
-              <ColumnConstraints maxWidth="309.3999877929688" minWidth="40.0" prefWidth="262.60004882812495" />
-              <ColumnConstraints maxWidth="226.60000000000002" minWidth="40.0" prefWidth="184.99990234375002" />
-            <ColumnConstraints maxWidth="195.0" minWidth="40.0" prefWidth="84.20009765625002" />
-          </columnConstraints>
-          <rowConstraints>
-              <RowConstraints />
-              <RowConstraints />
-              <RowConstraints />
-              <RowConstraints />
-              <RowConstraints />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-              <RowConstraints />
-            <RowConstraints />
-          </rowConstraints>
-      </GridPane>
-   </children>
+        </Button>
+        <Button layoutX="406.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleViewAllSuppliers"
+                prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #3cb043; -fx-background-radius: 16;"
+                text="View All Suppliers" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="14.0"/>
+            </font>
+        </Button>
+
+        <TextField fx:id="updateField" layoutX="372.0" layoutY="20.0" prefHeight="40.0" prefWidth="251.0"
+                   promptText="Enter supplier ID to update" style="-fx-background-radius: 15;" GridPane.columnIndex="3"
+                   GridPane.rowIndex="2"/>
+        <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleUpdateSupplier"
+                prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;"
+                text="Update Supplier" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="14.0"/>
+            </font>
+        </Button>
+        <Button layoutX="745.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleSearchDrugsAndSupplier"
+                prefHeight="42.0" prefWidth="184.0" style="-fx-background-color: #0492c2; -fx-background-radius: 15;"
+                text="Search Supplier of Drug" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+          <font>
+              <Font name="Berlin Sans FB Demi Bold" size="14.0"/>
+          </font>
+        </Button>
+        <TextField fx:id="drugsAndSuppliersField" layoutX="503.0" layoutY="158.0" prefHeight="42.0" prefWidth="251.0"
+                   promptText="Enter e.g. drug info, supplier Info" style="-fx-background-radius: 15;"
+                   GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+        <Button fx:id="confirmUpdateButton" layoutX="116.0" layoutY="223.0" onAction="#handleConfirmUpdate"
+                prefHeight="38.0" prefWidth="289.0" style="-fx-background-color: pink; -fx-background-radius: 15;"
+                text="Confirm Update" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" visible="false">
+          <font>
+              <Font name="Berlin Sans FB" size="14.0"/>
+          </font>
+        </Button>
+
+        <columnConstraints>
+            <ColumnConstraints maxWidth="107.0" minWidth="44.79998779296876" prefWidth="80.80001220703124"/>
+            <ColumnConstraints maxWidth="321.6000122070312" minWidth="253.59998779296873"
+                               prefWidth="253.59998779296873"/>
+          <ColumnConstraints maxWidth="321.6000122070312" minWidth="16.0" prefWidth="43.20001220703125"/>
+            <ColumnConstraints maxWidth="309.3999877929688" minWidth="40.0" prefWidth="262.60004882812495"/>
+            <ColumnConstraints maxWidth="226.60000000000002" minWidth="40.0" prefWidth="184.99990234375002"/>
+          <ColumnConstraints maxWidth="195.0" minWidth="40.0" prefWidth="84.20009765625002"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints/>1 1 1 11
+            <RowConstraints/>
+            <RowConstraints/>
+            <RowConstraints/>
+          <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+            <RowConstraints/>
+          <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
 </StackPane>

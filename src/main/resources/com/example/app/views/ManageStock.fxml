@@ -12,46 +12,61 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.screens.fxmlControllers.ManageStockController">
-   <children>
-      <ImageView disable="true" fitHeight="214.0" fitWidth="427.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/logo.png" />
-         </image>
-      </ImageView>
-      <GridPane alignment="CENTER" hgap="10.0" prefHeight="311.0" prefWidth="549.0" vgap="10.0">
-      
-          <padding>
-              <Insets bottom="20" left="20" right="20" top="20" />
-          </padding>
-      
-          <TextField fx:id="searchField" prefHeight="44.0" prefWidth="236.0" promptText="Enter drug name or ID to search stock data" style="-fx-background-radius: 16;" GridPane.rowIndex="1" />
-      
-          <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #0492c2; -fx-background-radius: 16;" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <font>
-                  <Font name="System Bold" size="15.0" />
-              </font>
-          </Button>
-      
-          <Button mnemonicParsing="false" onAction="#handleRefresh" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #3cb043; -fx-background-radius: 16;" text="Refresh" textFill="#fff6f6" GridPane.columnIndex="1" GridPane.rowIndex="3">
-              <font>
-                  <Font name="Berlin Sans FB" size="16.0" />
-              </font>
-          </Button>
-         <CheckBox fx:id="sortAmountAsc" mnemonicParsing="false" onAction="#handleSortStockAmountLeftAsc" prefHeight="18.0" prefWidth="191.0" text="Sort by Amt Left (Ascending)" GridPane.rowIndex="4" />
-         <CheckBox fx:id="sortAmountDesc" layoutX="60.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleSortStockAmountLeftDesc" prefHeight="18.0" prefWidth="226.0" text="Sort by Amt Left (Descending)" GridPane.rowIndex="3" />
-      
-          <columnConstraints>
-              <ColumnConstraints maxWidth="366.3999877929688" minWidth="185.0" prefWidth="267.0" />
-              <ColumnConstraints maxWidth="200.0" minWidth="161.0" prefWidth="172.0" />
-          </columnConstraints>
-          <rowConstraints>
-              <RowConstraints />
-              <RowConstraints maxHeight="39.0" minHeight="26.0" prefHeight="33.0" />
-              <RowConstraints maxHeight="42.0" minHeight="26.0" prefHeight="35.0" />
-              <RowConstraints maxHeight="40.0" minHeight="8.0" prefHeight="35.0" />
-              <RowConstraints maxHeight="34.0" minHeight="22.0" prefHeight="28.0" />
-          </rowConstraints>
-      </GridPane>
-   </children>
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.app.screens.fxmlControllers.ManageStockController">
+    <ImageView disable="true" fitHeight="214.0" fitWidth="427.0" opacity="0.09" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@images/logo.png"/>
+    </ImageView>
+    <GridPane alignment="CENTER" hgap="10.0" prefHeight="311.0" prefWidth="549.0" vgap="10.0">
+
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="20"/>
+        </padding>
+
+        <TextField fx:id="searchField" prefHeight="44.0" prefWidth="236.0"
+                   promptText="Enter drug name or ID to search stock data" style="-fx-background-radius: 16;"
+                   GridPane.rowIndex="1"/>
+
+        <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="44.0" prefWidth="200.0"
+                style="-fx-background-color: #0492c2; -fx-background-radius: 16;" text="Search" textFill="WHITE"
+                GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Button>
+
+        <Button mnemonicParsing="false" onAction="#handleRefresh" prefHeight="39.0" prefWidth="200.0"
+                style="-fx-background-color: #3cb043; -fx-background-radius: 16;" text="Refresh" textFill="#fff6f6"
+                GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <font>
+                <Font name="Berlin Sans FB" size="16.0"/>
+            </font>
+        </Button>
+        <CheckBox fx:id="sortAmountAsc" mnemonicParsing="false" onAction="#handleSortStockAmountLeftAsc"
+                  prefHeight="18.0" prefWidth="191.0" text="Sort by Amt Left (Ascending)" GridPane.rowIndex="4">
+          <font>
+              <Font name="System Bold Italic" size="12.0"/>
+          </font>
+        </CheckBox>
+        <CheckBox fx:id="sortAmountDesc" layoutX="60.0" layoutY="229.0" mnemonicParsing="false"
+                  onAction="#handleSortStockAmountLeftDesc" prefHeight="18.0" prefWidth="226.0"
+                  text="Sort by Amt Left (Descending)" GridPane.rowIndex="3">
+          <font>
+              <Font name="System Bold Italic" size="12.0"/>
+          </font>
+        </CheckBox>
+
+        <columnConstraints>
+            <ColumnConstraints maxWidth="366.3999877929688" minWidth="185.0" prefWidth="267.0"/>
+            <ColumnConstraints maxWidth="200.0" minWidth="161.0" prefWidth="172.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints maxHeight="39.0" minHeight="26.0" prefHeight="33.0"/>
+            <RowConstraints maxHeight="42.0" minHeight="26.0" prefHeight="35.0"/>
+            <RowConstraints maxHeight="40.0" minHeight="8.0" prefHeight="35.0"/>
+            <RowConstraints maxHeight="34.0" minHeight="22.0" prefHeight="28.0"/>
+        </rowConstraints>
+    </GridPane>
 </StackPane>
