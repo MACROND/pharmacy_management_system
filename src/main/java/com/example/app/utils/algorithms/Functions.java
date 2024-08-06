@@ -2,9 +2,11 @@ package com.example.app.utils.algorithms;
 
 import com.example.app.controllers.DrugController;
 import com.example.app.controllers.SaleController;
+import com.example.app.controllers.StockController;
 import com.example.app.controllers.SupplierController;
 import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
+import com.example.app.entities.Stock;
 import com.example.app.entities.Supplier;
 import com.example.app.utils.comparators.Comparators;
 
@@ -13,6 +15,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +28,6 @@ public class Functions {
 
     public static final String SALES_FILE_PATH = Paths.get("Sales.txt").toString();
     public static List<Drug> drugsCollection = DrugController.getAllDrugs();
-    public static List<Sale> purchaseHistory = SaleController.getAllSales();
     public static HashMap<Drug, List<Supplier>> drugsAndSuppliers = SupplierController.getSupplierAndDrugs();
 
     // Sorting Functions
@@ -65,24 +67,116 @@ public class Functions {
         return Sorting.sort(drugsCollection, Comparators.byDrugPrice());
     }
 
-/**
- * The `sortSalesByID` function sorts the purchase history by ID using Insertion Sort and generates a
- * report on the sorting process.
- * 
- * @return The method `sortSalesByID()` returns a report string indicating that the sorting process is
- * complete, the algorithm used (Insertion Sort), the time complexity (Ω(n) and O(n^2)), and the size
- * of the data being sorted.
- */
-    public static String sortSalesByID() {
+    public static List<Object> sortSalesByTimeAsc() {
+        List<Sale> purchaseHistory = SaleController.getAllSales();
+        List<Object> result = new ArrayList<>();
+
         int size = purchaseHistory.size();
         long start = System.currentTimeMillis();
-        Sorting.sort(purchaseHistory, Comparators.byPurchaseID());
+        Sorting.sort(purchaseHistory, Comparators.byPurchaseTime());
         long end = System.currentTimeMillis();
 
-        return Functions.generateReport("Sorting Complete.\n" +
-                "The sorting algorithm used is Insertion Sort. Used to sort the sales records in ascending order by time.",
+        String report = Functions.generateReport("Sorting Complete.\n" +
+                "The sorting algorithm used is Insertion Sort. Used to sort the sales records in oldest order of time.",
                 start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
+
+        result.add(purchaseHistory);
+        result.add(report);
+        return result;
     }
+
+    public static List<Object> sortSalesByTimeDesc() {
+        List<Sale> purchaseHistory = SaleController.getAllSales();
+        List<Object> result = new ArrayList<>();
+
+        int size = purchaseHistory.size();
+        long start = System.currentTimeMillis();
+        Sorting.sortDescending(purchaseHistory, Comparators.byPurchaseTime());
+        long end = System.currentTimeMillis();
+
+        String report =  Functions.generateReport("Sorting Complete.\n" +
+                        "The sorting algorithm used is Insertion Sort. Used to sort the sales records in most recent order.",
+                start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
+
+        result.add(purchaseHistory);
+        result.add(report);
+        return result;
+    }
+
+    public static List<Object> sortSaleByPurchaseAmountAsc(){
+        List<Sale> saleList = SaleController.getAllSales();
+        List<Object> result = new ArrayList<>();
+
+        int size = saleList.size();
+        long start = System.currentTimeMillis();
+        List<Sale> sortedStocklist = Sorting.sort(saleList, Comparators.byPurchaseQuantity());
+        long end = System.currentTimeMillis();
+
+        String report = Functions.generateReport("Sorting Complete.\n" +
+                        "The sorting algorithm used is Insertion Sort. Used to sort the sale records in ascending order of purchase amount.",
+                start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
+
+        result.add(saleList);
+        result.add(report);
+        return result;
+    }
+
+    public static List<Object> sortSaleByPurchaseAmountDesc(){
+        List<Sale> saleList = SaleController.getAllSales();
+        List<Object> result = new ArrayList<>();
+
+        int size = saleList.size();
+        long start = System.currentTimeMillis();
+        List<Sale> sortedStocklist = Sorting.sortDescending(saleList, Comparators.byPurchaseQuantity());
+        long end = System.currentTimeMillis();
+
+        String report = Functions.generateReport("Sorting Complete.\n" +
+                        "The sorting algorithm used is Insertion Sort. Used to sort the sale records in descending order of purchase amount.",
+                start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
+
+        result.add(sortedStocklist);
+        result.add(report);
+        return result;
+    }
+
+
+    public static List<Object> sortStockByAmountLeftDesc(){
+        List<Stock> stockList = StockController.getAllStock();
+        List<Object> result = new ArrayList<>();
+
+        int size = stockList.size();
+        long start = System.currentTimeMillis();
+        List<Stock> sortedStocklist = Sorting.sortDescending(stockList, Comparators.byAmountLeftDesc());
+        long end = System.currentTimeMillis();
+
+        String report = Functions.generateReport("Sorting Complete.\n" +
+                        "The sorting algorithm used is Insertion Sort. Used to sort the stock records in descending order of amount left.",
+                start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
+
+        result.add(sortedStocklist);
+        result.add(report);
+        return result;
+    }
+
+    public static List<Object> sortStockByAmountLeftAsc(){
+        List<Stock> stockList = StockController.getAllStock();
+        List<Object> result = new ArrayList<>();
+
+        int size = stockList.size();
+        long start = System.currentTimeMillis();
+        List<Stock> sortedStocklist = Sorting.sort(stockList, Comparators.byAmountLeftDesc());
+        long end = System.currentTimeMillis();
+
+        String report = Functions.generateReport("Sorting Complete.\n" +
+                        "The sorting algorithm used is Insertion Sort. Used to sort the stock records in ascending order of amount left.",
+                start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
+
+        result.add(sortedStocklist);
+        result.add(report);
+        return result;
+    }
+
+
 
     /**
      * The `saveToSales` function saves a drug ID to a file located at a specified

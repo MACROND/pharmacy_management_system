@@ -11,8 +11,8 @@ import static java.lang.Integer.parseInt;
 
 public class SupplierController {
 
-    private static final List<Supplier> supplierList = new ArrayList<>();
-    public static final HashMap<Drug, List<Supplier>> supplierAndDrugs = new HashMap<>();
+    private static List<Supplier> supplierList = new ArrayList<>();
+    public static HashMap<Drug, List<Supplier>> supplierAndDrugs = new HashMap<>();
 
     /**
      * The `addSupplier` function inserts a new supplier into a database table using
@@ -146,7 +146,7 @@ public class SupplierController {
      */
     public static void deleteSupplier(int supplierID) {
         supplierList.clear();
-
+        supplierList = SupplierController.getAllSuppliers();
     }
 
     /**
@@ -200,39 +200,46 @@ public class SupplierController {
      *         matching suppliers were found.
      */
     public static List<Supplier> searchSupplierByDrugAndSupplierData(String drugNameOrID, String supplierInfo) {
+        supplierAndDrugs = SupplierController.getSupplierAndDrugs();
         List<Supplier> matchingSuppliers = new ArrayList<>();
+        System.out.println("Searching for drug: " + drugNameOrID + ", supplier info: " + supplierInfo);
 
         // Iterate over the map entries using an iterator
-        Iterator<Map.Entry<Drug, List<Supplier>>> iterator = supplierAndDrugs.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<Drug, List<Supplier>> entry = iterator.next();
+        for (Map.Entry<Drug, List<Supplier>> entry : supplierAndDrugs.entrySet()) {
             Drug drug = entry.getKey();
             List<Supplier> suppliers = entry.getValue();
+            System.out.println("Drug: " + drug.getName() + " (" + drug.getId() + ")");
+            for (Supplier supplier : suppliers) {
+                System.out.println(" - Supplier: " + supplier.getName() + ", Location: " + supplier.getLocation() + ", Contact: " + supplier.getContact());
+            }
 
-            // Check if the drug name matches
+
+        // Check if the drug name or ID matches
             if (drugNameOrID.equalsIgnoreCase(drug.getName()) || drugNameOrID.equals(drug.getId())) {
+                System.out.println("Found matching drug: " + drug.getName());
+
                 // Iterate over the suppliers using an iterator
-                Iterator<Supplier> supplierIterator = suppliers.iterator();
-                while (supplierIterator.hasNext()) {
-                    Supplier supplier = supplierIterator.next();
-                    // Check if the supplier's location matches
+                for (Supplier supplier : suppliers) {
+                    // Check if the supplier's info matches
                     if (supplierInfo.equalsIgnoreCase(supplier.getLocation()) ||
                             supplierInfo.equalsIgnoreCase(supplier.getName()) ||
                             supplierInfo.equalsIgnoreCase(supplier.getContact()) ||
                             supplierInfo.equals(Integer.toString(supplier.getId()))) {
                         matchingSuppliers.add(supplier);
+                        System.out.println("Found matching supplier: " + supplier.getName());
                     }
                 }
             }
         }
 
         if (matchingSuppliers.isEmpty()) {
-            System.out.println("No matching suppliers found for the specified drug and location.");
+            System.out.println("No matching suppliers found for the specified drug and supplier info.");
         } else {
-            System.out.println("Matching suppliers found.");
+            System.out.println("Matching suppliers found: " + matchingSuppliers.size());
         }
 
         return matchingSuppliers;
     }
+
 
 }

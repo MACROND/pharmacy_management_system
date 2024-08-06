@@ -9,6 +9,7 @@ import com.example.app.entities.Stock;
 import com.example.app.utils.algorithms.Functions;
 import eu.hansolo.tilesfx.addons.Switch;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -43,6 +44,12 @@ public class ManageSaleController {
     private TextField searchField;
     @FXML
     private TextField deleteField;
+
+    @FXML
+    public CheckBox sortByTimeAsc;
+    public CheckBox sortByTimeDesc;
+    public CheckBox sortByAmtAsc;
+    public CheckBox sortByAmtDesc;
 
 
     @FXML
@@ -87,7 +94,10 @@ public class ManageSaleController {
 
     @FXML
     private void handleViewAllSales(){
-        sortSalesByTime();
+        sortByTimeAsc.setSelected(false);
+        sortByTimeDesc.setSelected(false);
+        sortByAmtAsc.setSelected(false);
+        sortByAmtDesc.setSelected(false);
         mainController.configureTableForSalesHistory(SaleController.getAllSales());
         mainController.clearReportField();
     }
@@ -115,9 +125,88 @@ public class ManageSaleController {
 
     }
 
-    private void sortSalesByTime(){
-        String report = Functions.sortSalesByID();
-        mainController.configureFieldForGeneratedReport(report);
+    @FXML
+    private void sortSalesByTimeAsc(){
+        List<Sale> saleList = (List<Sale>) Functions.sortSalesByTimeAsc().getFirst();
+        String report = (String) Functions.sortSalesByTimeAsc().get(1);
+
+        if(sortByTimeAsc.isSelected()){
+            sortByTimeDesc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            mainController.configureTableForSalesHistory(saleList);
+            mainController.configureFieldForGeneratedReport(report);
+        }else{
+            sortByTimeAsc.setSelected(false);
+            sortByTimeDesc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            handleViewAllSales();
+            mainController.clearReportField();
+        }
+    }
+
+    @FXML
+    private void sortSalesByTimeDesc(){
+        List<Sale> saleList = (List<Sale>) Functions.sortSalesByTimeDesc().getFirst();
+        String report = (String) Functions.sortSalesByTimeDesc().get(1);
+
+        if(sortByTimeDesc.isSelected()){
+            sortByTimeAsc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            mainController.configureTableForSalesHistory(saleList);
+            mainController.configureFieldForGeneratedReport(report);
+        }else{
+            sortByTimeAsc.setSelected(false);
+            sortByTimeDesc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            handleViewAllSales();
+            mainController.clearReportField();
+        }
+    }
+
+    @FXML
+    public void handleSortPurchaseAmountAsc(){
+        List<Sale> saleList = (List<Sale>) Functions.sortSaleByPurchaseAmountAsc().getFirst();
+        String report = (String) Functions.sortSaleByPurchaseAmountAsc().get(1);
+
+        if (sortByAmtAsc.isSelected()) {
+            sortByTimeAsc.setSelected(false);
+            sortByTimeDesc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            mainController.configureTableForSalesHistory(saleList);
+            mainController.configureFieldForGeneratedReport(report);
+        } else{
+            sortByTimeAsc.setSelected(false);
+            sortByTimeDesc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            handleViewAllSales();
+            mainController.clearReportField();
+        }
+    }
+
+    @FXML
+    public void handleSortPurchaseAmountDesc(){
+        List<Sale> saleList = (List<Sale>) Functions.sortSaleByPurchaseAmountDesc().getFirst();
+        String report = (String) Functions.sortSaleByPurchaseAmountDesc().get(1);
+
+        if (sortByAmtDesc.isSelected()) {
+            sortByTimeAsc.setSelected(false);
+            sortByTimeDesc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            mainController.configureTableForSalesHistory(saleList);
+            mainController.configureFieldForGeneratedReport(report);
+        } else{
+            sortByTimeAsc.setSelected(false);
+            sortByTimeDesc.setSelected(false);
+            sortByAmtAsc.setSelected(false);
+            sortByAmtDesc.setSelected(false);
+            handleViewAllSales();
+            mainController.clearReportField();
+        }
     }
 
 
