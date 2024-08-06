@@ -67,10 +67,22 @@ public class Functions {
         return Sorting.sort(drugsCollection, Comparators.byDrugPrice());
     }
 
+<<<<<<< HEAD
     public static List<Object> sortSalesByTimeAsc() {
         List<Sale> purchaseHistory = SaleController.getAllSales();
         List<Object> result = new ArrayList<>();
 
+=======
+/**
+ * The `sortSalesByID` function sorts the purchase history by ID using Insertion Sort and generates a
+ * report on the sorting process.
+ * 
+ * @return The method `sortSalesByID()` returns a report string indicating that the sorting process is
+ * complete, the algorithm used (Insertion Sort), the time complexity (Ω(n) and O(n^2)), and the size
+ * of the data being sorted.
+ */
+    public static String sortSalesByID() {
+>>>>>>> 05098dd413ce01381a2a20a39f7b6f1adc3f5ba9
         int size = purchaseHistory.size();
         long start = System.currentTimeMillis();
         Sorting.sort(purchaseHistory, Comparators.byPurchaseTime());
@@ -220,6 +232,38 @@ public class Functions {
         }
     }
 
+/**
+ * The function generates a report with information about the runtime, number of objects in a
+ * collection, and time complexity of an algorithm used.
+ * 
+ * @param preText The `preText` parameter is a String that represents any additional information or
+ * introductory text that you want to include at the beginning of the report. It could be a title, a
+ * description, or any other relevant information you want to display before the report details.
+ * @param start The `start` parameter in the `generateReport` method represents the starting time when
+ * a process or algorithm began execution. It is typically a timestamp or value representing the time
+ * at which the process started.
+ * @param end The `end` parameter in the `generateReport` method represents the end time of the
+ * algorithm execution. It is a `long` type variable that holds the timestamp when the algorithm
+ * execution ends.
+ * @param bestCase The `bestCase` parameter in the `generateReport` method represents the time
+ * complexity of the algorithm in the best-case scenario, typically denoted using Omega notation. It
+ * describes the lower bound on the running time of the algorithm when it performs optimally or most
+ * efficiently.
+ * @param wortCase It looks like there is a typo in the parameter name "wortCase". It should be
+ * "worstCase" instead. The parameter "worstCase" typically refers to the worst-case time complexity of
+ * the algorithm being used.
+ * @param collectionSize The `collectionSize` parameter in the `generateReport` method represents the
+ * number of objects in the collection for which the report is being generated. This parameter is used
+ * to display the size of the collection in the report along with other information such as runtime,
+ * time complexity, and the algorithm used.
+ * @param algorithmUsed The `algorithmUsed` parameter in the `generateReport` method is a String that
+ * represents the algorithm used for the operation being reported on. This could be the name or
+ * description of the algorithm that was utilized in the process for which the report is being
+ * generated.
+ * @return The `generateReport` method returns a formatted report containing the provided preText,
+ * collection size, runtime, time complexity information (best case and worst case), and the algorithm
+ * used.
+ */
     public static String generateReport(
             String preText,
             long start,
