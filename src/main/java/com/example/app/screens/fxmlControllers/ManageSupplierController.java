@@ -91,6 +91,13 @@ public class ManageSupplierController {
         mainController.clearReportField();
     }
 
+    /**
+     * The `handleSearchDrugsAndSupplier` function takes user input, validates it,
+     * splits it into drug
+     * and supplier information, searches for matching suppliers based on the input,
+     * and configures a
+     * table to display the results.
+     */
     @FXML
     private void handleSearchDrugsAndSupplier() {
         String input = drugsAndSuppliersField.getText();
@@ -108,11 +115,10 @@ public class ManageSupplierController {
         String drugInfo = data[0].strip();
         String supplierInfo = data[1].strip();
 
-
-        List<Supplier> matchingSuppliers = SupplierController.searchSupplierByDrugAndSupplierData(drugInfo, supplierInfo);
+        List<Supplier> matchingSuppliers = SupplierController.searchSupplierByDrugAndSupplierData(drugInfo,
+                supplierInfo);
         mainController.configureTableForSuppliers(matchingSuppliers);
     }
-
 
     /**
      * The function `handleUpdateSupplier` retrieves a supplier by ID, populates

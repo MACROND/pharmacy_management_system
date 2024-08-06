@@ -23,6 +23,11 @@ public class ManageStockController {
     private CheckBox sortAmountDesc;
     public CheckBox sortAmountAsc;
 
+    /**
+     * The handleSearch function retrieves a stock ID from a search field, uses it
+     * to configure a table in
+     * the main controller, and clears a report field.
+     */
     @FXML
     private void handleSearch() {
         String id = searchField.getText();
@@ -31,8 +36,13 @@ public class ManageStockController {
 
     }
 
+    /**
+     * The `handleRefresh` function clears search field, deselects sorting options,
+     * updates table view,
+     * and clears report field in a JavaFX application.
+     */
     @FXML
-    public void handleRefresh(){
+    public void handleRefresh() {
         searchField.clear();
         sortAmountAsc.setSelected(false);
         sortAmountDesc.setSelected(false);
@@ -40,16 +50,21 @@ public class ManageStockController {
         mainController.clearReportField();
     }
 
+    /**
+     * The function `handleSortStockAmountLeftDesc` sorts a list of Stock objects by
+     * amount left in
+     * descending order and updates the UI accordingly.
+     */
     @FXML
-    public void handleSortStockAmountLeftDesc(){
+    public void handleSortStockAmountLeftDesc() {
         List<Stock> stockList = (List<Stock>) Functions.sortStockByAmountLeftDesc().getFirst();
         String report = (String) Functions.sortStockByAmountLeftDesc().get(1);
 
-        if (sortAmountDesc.isSelected()){
+        if (sortAmountDesc.isSelected()) {
             sortAmountAsc.setSelected(false);
             mainController.configureTableForStock(stockList);
             mainController.configureFieldForGeneratedReport(report);
-        } else{
+        } else {
             sortAmountAsc.setSelected(false);
             sortAmountDesc.setSelected(false);
             updateTableView();
@@ -57,8 +72,13 @@ public class ManageStockController {
         }
     }
 
+    /**
+     * The handleSortStockAmountLeftAsc function sorts a list of Stock objects by
+     * the amount left in
+     * ascending order and updates the UI accordingly.
+     */
     @FXML
-    public void handleSortStockAmountLeftAsc(){
+    public void handleSortStockAmountLeftAsc() {
         List<Stock> stockList = (List<Stock>) Functions.sortStockByAmountLeftAsc().getFirst();
         String report = (String) Functions.sortStockByAmountLeftAsc().get(1);
 
@@ -66,18 +86,22 @@ public class ManageStockController {
             sortAmountDesc.setSelected(false);
             mainController.configureTableForStock(stockList);
             mainController.configureFieldForGeneratedReport(report);
-        } else{
+        } else {
             sortAmountDesc.setSelected(false);
             sortAmountAsc.setSelected(false);
             updateTableView();
         }
     }
 
+    /**
+     * The `updateTableView` method retrieves a list of stock items, configures a
+     * table with the stock
+     * data, and clears a report field in the main controller.
+     */
     private void updateTableView() {
         List<Stock> stockList = StockController.getAllStock();
         mainController.configureTableForStock(stockList);
         mainController.clearReportField();
     }
-
 
 }
