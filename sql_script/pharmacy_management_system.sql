@@ -119,5 +119,4 @@ INSERT INTO stock (drug_id, name, initial_quantity, amount_sold, quantity_left) 
 
 -- Insert data into the users table for testing
 INSERT INTO users (firstName, lastName, password, role) VALUES
-('John', 'Doe', 'password123', 'admin'),
-('Jane', 'Smith', 'password456', 'pharmacist');
+('Jane', 'Smith', '1', 'pharmacist');

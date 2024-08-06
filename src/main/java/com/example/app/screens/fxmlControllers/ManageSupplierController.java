@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseUnsignedInt;
 
 public class ManageSupplierController {
     private final SupplierController supplierController = new SupplierController();
@@ -27,8 +28,6 @@ public class ManageSupplierController {
 
     @FXML
     private TextField searchField;
-    @FXML
-    private TextField deleteField;
     @FXML
     private TextField nameField;
     @FXML
@@ -82,38 +81,43 @@ public class ManageSupplierController {
     @FXML
     private void handleSearchSupplier() {
         String id = searchField.getText();
-        Supplier supplier = SupplierController.getSupplierByID(parseInt(id));
+        Supplier supplier = SupplierController.getSupplierByID(parseUnsignedInt(id));
         List<Supplier> supplierList = SupplierController.getAllSuppliers();
         supplierList.clear();
         supplierList.add(supplier);
 
         searchField.clear();
+        mainController.configureTableForSuppliers(supplierList);
         mainController.clearReportField();
-    }
-
-    @FXML
-    private void handleSearchDrugsAndSupplier(){
-        String[] data = drugsAndSuppliersField.getText().split(",");
-        String drugInfo = data[0];
-        String supplierInfo = data[1];
-        List<Supplier> matchingSuppliers = SupplierController.searchSupplierByDrugAndSupplierData(drugInfo, supplierInfo);
-
-        mainController.configureTableForSuppliers(matchingSuppliers);
     }
 
     /**
-     * The handleDeleteSupplier function deletes a supplier based on the ID entered
-     * in a text field and
-     * updates the table view.
+     * The `handleSearchDrugsAndSupplier` function takes user input, validates it,
+     * splits it into drug
+     * and supplier information, searches for matching suppliers based on the input,
+     * and configures a
+     * table to display the results.
      */
     @FXML
-    private void handleDeleteSupplier() {
-        String id = deleteField.getText();
-        SupplierController.deleteSupplier(parseInt(id));
-        updateTableView();
+    private void handleSearchDrugsAndSupplier() {
+        String input = drugsAndSuppliersField.getText();
+        if (input == null || input.trim().isEmpty()) {
+            mainController.configureFieldForGeneratedReport("Input field is empty");
+            return;
+        }
 
-        deleteField.clear();
-        mainController.clearReportField();
+        String[] data = input.split(",");
+        if (data.length < 2) {
+            mainController.configureFieldForGeneratedReport("Invalid input format. Expected format: 'drug, supplier'");
+            return;
+        }
+
+        String drugInfo = data[0].strip();
+        String supplierInfo = data[1].strip();
+
+        List<Supplier> matchingSuppliers = SupplierController.searchSupplierByDrugAndSupplierData(drugInfo,
+                supplierInfo);
+        mainController.configureTableForSuppliers(matchingSuppliers);
     }
 
     /**

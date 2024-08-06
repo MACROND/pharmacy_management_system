@@ -35,7 +35,6 @@ public class ManageDrugsController {
     @FXML
     private Button confirmUpdateButton;
 
-
     private DrugController drugController = new DrugController();
     public MainDashboardController mainController;
 
@@ -43,6 +42,13 @@ public class ManageDrugsController {
         this.mainController = mainController;
     }
 
+    /**
+     * The `handleAddDrug` function in Java handles the addition of a new drug by
+     * retrieving input
+     * values, creating a `Drug` object, updating the stock, refreshing the view,
+     * and clearing input
+     * fields.
+     */
     @FXML
     private void handleAddDrug() {
         String id = idField.getText();
@@ -56,7 +62,7 @@ public class ManageDrugsController {
         Stock stock = new Stock(id, name, quantity, 0, 0);
 
         drugController.addDrug(drug);
-        StockController.addStock(stock);
+        StockController.addStock(stock); // Add new drug details to stock table
         updateTableView();
 
         // Clear the fields after adding
@@ -74,6 +80,11 @@ public class ManageDrugsController {
         mainController.configureTableForDrugs(drugList);
     }
 
+    /**
+     * The handleDeleteDrug function deletes a drug based on the provided ID,
+     * updates the table display,
+     * clears the report field, and then clears the input field.
+     */
     @FXML
     private void handleDeleteDrug() {
         String id = deleteField.getText();
@@ -84,6 +95,11 @@ public class ManageDrugsController {
         deleteField.clear();
     }
 
+    /**
+     * The handleSearchDrug function retrieves drug information based on a search
+     * query and updates the
+     * user interface accordingly.
+     */
 
     @FXML
     private void handleSearchDrug() {
@@ -103,8 +119,13 @@ public class ManageDrugsController {
         updateTableView();
     }
 
+    /**
+     * The handleUpdateDrug function retrieves drug information based on an ID,
+     * populates fields with
+     * the data, and configures the UI for updating the drug entry.
+     */
     @FXML
-    private void handleUpdateDrug(){
+    private void handleUpdateDrug() {
         String id = updateField.getText();
         List<Drug> drugs = (List<Drug>) DrugController.getDrugByName(id).getFirst();
         Drug drug = drugs.getFirst();
@@ -124,8 +145,19 @@ public class ManageDrugsController {
 
     }
 
+    // The `handleConfirmUpdate()` method is responsible for updating a drug's
+    // information based on the
+    // input fields provided by the user. It retrieves the values from the input
+    // fields (idField,
+    // nameField, descriptionField, quantityField, priceField, supplierIdField),
+    // creates a new Drug
+    // object with these values, and then updates the drug using the
+    // `drugController.updateDrug(drug)`
+    // method. It also updates the stock information for the specified drug by
+    // creating a new Stock
+    // object and updating it using `StockController.updateStock(stock)`.
     @FXML
-    private void handleConfirmUpdate(){
+    private void handleConfirmUpdate() {
         String id = idField.getText();
         String name = nameField.getText();
         String description = descriptionField.getText();
@@ -136,7 +168,7 @@ public class ManageDrugsController {
         Drug drug = new Drug(id, name, description, quantity, price, supplierId);
         Stock stock = new Stock(id, name, quantity);
         drugController.updateDrug(drug);
-        StockController.updateStock(stock);     // Immediately update stock data for the specified drug
+        StockController.updateStock(stock); // Immediately update stock data for the specified drug
 
         updateTableView();
 
@@ -154,7 +186,7 @@ public class ManageDrugsController {
         mainController.clearReportField();
     }
 
-    private void SortDrugsByID(){
+    private void SortDrugsByID() {
         String report = Functions.sortDrugsByID();
         mainController.configureFieldForGeneratedReport(report);
     }
