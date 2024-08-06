@@ -40,7 +40,6 @@ public class DrugController {
         }
     }
 
-
     /**
      * The function getAllDrugs retrieves all drug records from the database and
      * returns them as a list of
@@ -67,29 +66,52 @@ public class DrugController {
                         rs.getString("supplier_id"));
                 drugList.add(drug);
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return drugList;
     }
 
-
+    /**
+     * The function `getDrugByName` searches for a drug by name or ID in a list of
+     * drugs and returns a
+     * report on the search operation.
+     * 
+     * @param nameOrID The `getDrugByName` method takes a parameter `nameOrID`,
+     *                 which is used to search
+     *                 for a drug in the drug list based on either the drug's name
+     *                 or ID. The method iterates through
+     *                 the list of drugs to find a match with the provided
+     *                 `nameOrID`.
+     * @return The `getDrugByName` method returns a List<Object> containing the drug
+     *         that matches the
+     *         provided name or ID, along with a report detailing the operation
+     *         performed to find the drug. If
+     *         the drug is found, the method returns a list with the found drug and
+     *         the report. If the drug is
+     *         not found, the method returns an empty list with a message indicating
+     *         that the drug couldn't be
+     *         found.
+     */
     public static List<Object> getDrugByName(String nameOrID) {
         drugList.clear();
         drugList = DrugController.getAllDrugs();
         int size = drugList.size();
         List<Object> result = new ArrayList<>();
 
-        double start = System.currentTimeMillis();
-        for (Drug drug : drugList){
-            if(nameOrID.equals(drug.getId()) || nameOrID.equals(drug.getName())){
+        long start = System.currentTimeMillis();
+        for (Drug drug : drugList) {
+            if (nameOrID.equals(drug.getId()) || nameOrID.equals(drug.getName())) {
                 drugList.clear();
-                double end = System.currentTimeMillis();
+                long end = System.currentTimeMillis();
                 drugList.add(drug);
                 System.out.println("Found Drug: " + drug.toString());
                 result.add(drugList);
-                result.add(Functions.generateReport("Found the drug\nThis operation was performed, by traversing the dugs collection" +
-                        "and comparing the passed drug name or ID to each drug object", start, end, "Ω(1)" ,"O(n)",size, "Custom Loop"));
+                result.add(Functions.generateReport(
+                        "Found the drug\nThis operation was performed, by traversing the dugs collection" +
+                                "and comparing the passed drug name or ID to that of each drug object",
+                        start, end, "Ω(1)", "O(n)", size, "Custom Loop"));
                 return result;
             }
         }
@@ -127,7 +149,7 @@ public class DrugController {
         String query = "DELETE FROM drugs WHERE drug_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             conn.setAutoCommit(false); // Disable auto-commit to manage transaction manually
 
             stmt.setString(1, id);
@@ -150,20 +172,18 @@ public class DrugController {
         return drugList;
     }
 
-
-
     public void updateDrug(Drug drug) {
         String query = "UPDATE drugs SET  drug_id = ?, name = ?, description = ?, quantity = ?, price = ? , supplier_id = ? WHERE drug_id = ?";
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setString(1, drug.getId());
-                stmt.setString(2, drug.getName());
-                stmt.setString(3, drug.getDescription());
-                stmt.setInt(4, drug.getQuantity());
-                stmt.setDouble(5, drug.getPrice());
-                stmt.setString(6, drug.getSupplierId());
-                stmt.setString(7, drug.getId());
-                stmt.executeUpdate();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, drug.getId());
+            stmt.setString(2, drug.getName());
+            stmt.setString(3, drug.getDescription());
+            stmt.setInt(4, drug.getQuantity());
+            stmt.setDouble(5, drug.getPrice());
+            stmt.setString(6, drug.getSupplierId());
+            stmt.setString(7, drug.getId());
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

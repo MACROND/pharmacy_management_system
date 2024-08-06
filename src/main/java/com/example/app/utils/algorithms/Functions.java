@@ -17,7 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * The `Functions` class contains methods for sorting and sorting entities and saving drug IDs
+ * The `Functions` class contains methods for sorting and sorting entities and
+ * saving drug IDs
  * to a sales file.
  */
 public class Functions {
@@ -35,12 +36,13 @@ public class Functions {
      */
     public static String sortDrugsByID() {
         int size = drugsCollection.size();
-        double start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         Sorting.sort(drugsCollection, Comparators.byDrugID());
-        double end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
 
         return Functions.generateReport("Sorting Complete.\n" +
-                "The sorting algorithm used is known as Insertion Sort",start,end,"Ω(n)" ,"O(n^2)", size, "Insertion Sort");
+                "The sorting algorithm used is known as Insertion Sort", start, end, "Ω(n)", "O(n^2)", size,
+                "Insertion Sort");
     }
 
     /**
@@ -52,7 +54,6 @@ public class Functions {
     public static List<Drug> sortDrugsByQuantity() {
         return Sorting.sort(drugsCollection, Comparators.byDrugQuantity());
     }
-
 
     /**
      * The function `sortDrugsByPrice` sorts a collection of drugs by price using a
@@ -66,12 +67,13 @@ public class Functions {
 
     public static String sortSalesByID() {
         int size = purchaseHistory.size();
-        double start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         Sorting.sort(purchaseHistory, Comparators.byPurchaseID());
-        double end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
 
         return Functions.generateReport("Sorting Complete.\n" +
-                "The sorting algorithm used is Insertion Sort. Used to sort the sales records in ascending order by time.", start,end,"Ω(n)" ,"O(n^2)", size, "Insertion Sort");
+                "The sorting algorithm used is Insertion Sort. Used to sort the sales records in ascending order by time.",
+                start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
     }
 
     /**
@@ -88,7 +90,7 @@ public class Functions {
     public static void saveToSales(String drugId) {
         BufferedWriter writer = null;
         try {
-            // Ensure the directory exists
+            // Ensuring the directory exists
             File file = new File(SALES_FILE_PATH);
             File parentDir = file.getParentFile();
             if (parentDir != null && !parentDir.exists()) {
@@ -97,7 +99,7 @@ public class Functions {
                 }
             }
 
-            // Write the drug ID to the file
+            // Write drug ID to the file
             writer = new BufferedWriter(new FileWriter(SALES_FILE_PATH, true));
             System.out.println("Writing Sales ID in Sales file...");
             writer.write(drugId);
@@ -118,13 +120,12 @@ public class Functions {
 
     public static String generateReport(
             String preText,
-            double start,
-            double end,
+            long start,
+            long end,
             String bestCase,
             String wortCase,
             int collectionSize,
-            String algorithmUsed)
-    {
+            String algorithmUsed) {
         return preText + "\nNumber of objects in the collection: " + collectionSize + "\n" +
                 "Runtime: " + (end - start) + " ms.\n\n" +
                 "-----Time complexity------- \n" +

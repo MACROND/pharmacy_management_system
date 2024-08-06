@@ -81,12 +81,15 @@ public class ManageSaleController {
         customerNameField.clear();
         customerContactField.clear();
         quantityField.clear();
+
+        mainController.clearReportField();
     }
 
     @FXML
     private void handleViewAllSales(){
         sortSalesByTime();
         mainController.configureTableForSalesHistory(SaleController.getAllSales());
+        mainController.clearReportField();
     }
 
 
@@ -96,6 +99,7 @@ public class ManageSaleController {
         mainController.configureTableForSalesHistory(SaleController.deleteSale(parseInt(id)));
 
         deleteField.clear();
+        mainController.clearReportField();
     }
 
     @FXML

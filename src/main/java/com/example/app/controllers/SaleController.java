@@ -98,11 +98,11 @@ public class SaleController {
             }
         }
 
-        //Delete sales from databases
+        // Delete sales from databases
         String query = "DELETE FROM sales WHERE sale_id = ?";
 
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, saleID);
             stmt.executeUpdate();
             System.out.println("Sales record deleted from database.");
@@ -114,7 +114,28 @@ public class SaleController {
         return saleList;
     }
 
-
+    /**
+     * The `searchSale` function searches for a sale record based on a purchase ID,
+     * customer name, or
+     * customer contact in a list of sales and returns a report on the search
+     * process.
+     * 
+     * @param purchaseId The `searchSale` method you provided is used to search for
+     *                   sales records based
+     *                   on a given `purchaseId`. The `purchaseId` parameter is used
+     *                   to search for a sale record that
+     *                   matches either the sale ID, customer name, or customer
+     *                   contact number.
+     * @return The `searchSale` method returns a `List<Object>` containing the
+     *         following elements:
+     *         1. If a matching sale record is found based on the provided
+     *         `purchaseId`, it adds a list of
+     *         found sales records (`foundSales`) and a generated report as elements
+     *         to the result list. The
+     *         report includes information about the search operation performed,
+     *         such as the time taken,
+     *         complexity analysis, and details of the
+     */
     public static List<Object> searchSale(String purchaseId) {
         saleList = getAllSales();
         System.out.println("Searching sales collection");
@@ -123,17 +144,15 @@ public class SaleController {
         int size = saleList.size();
 
         Iterator<Sale> iterator = saleList.iterator();
-        double start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         List<Sale> foundSales = new ArrayList<>();
 
         while (iterator.hasNext()) {
             Sale sale = iterator.next();
-            if (
-                    purchaseId.equals(Integer.toString(sale.getId())) ||
-                            purchaseId.equalsIgnoreCase(sale.getCustomerName()) ||
-                            purchaseId.equals(sale.getCustomerContact())
-            ) {
-                double end = System.currentTimeMillis();
+            if (purchaseId.equals(Integer.toString(sale.getId())) ||
+                    purchaseId.equalsIgnoreCase(sale.getCustomerName()) ||
+                    purchaseId.equals(sale.getCustomerContact())) {
+                long end = System.currentTimeMillis();
 
                 foundSales.add(sale);
 
@@ -142,7 +161,8 @@ public class SaleController {
                 result.add(foundSales); // Add the list of matched sales
                 result.add(Functions.generateReport(
                         "Sale record found.\nThe sales collection was traversed from " +
-                                "the front to the rear of the collection while comparing the sale ID passed to that of the " +
+                                "the front to the rear of the collection while comparing the sale ID passed to that of the "
+                                +
                                 "sales objects in the collection using the Iterator class.",
                         start, end, "Ω(1)", "O(n)", size, "Iterator search"));
 
@@ -151,7 +171,7 @@ public class SaleController {
         }
 
         // If no match is found, add appropriate results
-        double end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
         System.out.println("No sales record found.");
 
         result.add(foundSales); // Add the empty list to the result

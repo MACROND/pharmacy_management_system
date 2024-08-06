@@ -78,6 +78,7 @@ public class ManageDrugsController {
     private void handleDeleteDrug() {
         String id = deleteField.getText();
         mainController.configureTableForDrugs(drugController.deleteDrug(id));
+        mainController.clearReportField();
 
         // Clear the fields after deleting
         deleteField.clear();
@@ -150,6 +151,7 @@ public class ManageDrugsController {
         updateField.clear();
         addDrugButton.setVisible(true);
         confirmUpdateButton.setVisible(false);
+        mainController.clearReportField();
     }
 
     private void SortDrugsByID(){

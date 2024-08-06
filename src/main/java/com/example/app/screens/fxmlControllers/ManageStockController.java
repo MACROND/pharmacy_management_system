@@ -26,6 +26,7 @@ public class ManageStockController {
     private void handleSearch(){
         String id = searchField.getText();
         mainController.configureTableForStock(SaleController.searchSale(id));
+        mainController.clearReportField();
 
     }
 
