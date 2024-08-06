@@ -1,6 +1,5 @@
 package com.example.app.controllers;
 
-import com.example.app.entities.Drug;
 import com.example.app.entities.Sale;
 import com.example.app.utils.DatabaseUtil;
 import com.example.app.utils.algorithms.Functions;
@@ -9,9 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
-
-import static java.lang.Integer.parseInt;
 
 public class SaleController {
 
@@ -171,7 +167,6 @@ public class SaleController {
         }
 
         // If no match is found, add appropriate results
-        long end = System.currentTimeMillis();
         System.out.println("No sales record found.");
 
         result.add(foundSales); // Add the empty list to the result

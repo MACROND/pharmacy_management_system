@@ -1,6 +1,5 @@
 package com.example.app.controllers;
 
-import com.example.app.entities.Drug;
 import com.example.app.entities.Stock;
 import com.example.app.utils.DatabaseUtil;
 
@@ -8,7 +7,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SequencedCollection;
 
 public class StockController {
     public static List<Stock> stockList = new ArrayList<>();

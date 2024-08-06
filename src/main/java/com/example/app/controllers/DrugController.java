@@ -8,7 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 public class DrugController {
 
@@ -172,6 +171,14 @@ public class DrugController {
         return drugList;
     }
 
+/**
+ * The function `updateDrug` updates a drug record in the database with the provided Drug object's
+ * information.
+ * 
+ * @param drug The `updateDrug` method is used to update a drug entry in a database table named
+ * `drugs`. The method takes a `Drug` object as a parameter, which contains information about the drug
+ * to be updated.
+ */
     public void updateDrug(Drug drug) {
         String query = "UPDATE drugs SET  drug_id = ?, name = ?, description = ?, quantity = ?, price = ? , supplier_id = ? WHERE drug_id = ?";
         try (Connection conn = DatabaseUtil.getConnection();
