@@ -67,22 +67,10 @@ public class Functions {
         return Sorting.sort(drugsCollection, Comparators.byDrugPrice());
     }
 
-<<<<<<< HEAD
     public static List<Object> sortSalesByTimeAsc() {
         List<Sale> purchaseHistory = SaleController.getAllSales();
         List<Object> result = new ArrayList<>();
 
-=======
-/**
- * The `sortSalesByID` function sorts the purchase history by ID using Insertion Sort and generates a
- * report on the sorting process.
- * 
- * @return The method `sortSalesByID()` returns a report string indicating that the sorting process is
- * complete, the algorithm used (Insertion Sort), the time complexity (Ω(n) and O(n^2)), and the size
- * of the data being sorted.
- */
-    public static String sortSalesByID() {
->>>>>>> 05098dd413ce01381a2a20a39f7b6f1adc3f5ba9
         int size = purchaseHistory.size();
         long start = System.currentTimeMillis();
         Sorting.sort(purchaseHistory, Comparators.byPurchaseTime());
@@ -146,7 +134,7 @@ public class Functions {
                         "The sorting algorithm used is Insertion Sort. Used to sort the sale records in descending order of purchase amount.",
                 start, end, "Ω(n)", "O(n^2)", size, "Insertion Sort");
 
-        result.add(saleList);
+        result.add(sortedStocklist);
         result.add(report);
         return result;
     }

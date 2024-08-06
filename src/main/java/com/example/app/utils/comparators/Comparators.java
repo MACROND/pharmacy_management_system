@@ -36,14 +36,6 @@ public class Comparators {
         return Comparator.comparing(Sale::getQuantity);
     }
 
-<<<<<<< HEAD
-    public static Comparator<Sale> byPurchaseQuantity() { return Comparator.comparing(Sale::getQuantity);}
-
-=======
-    public static Comparator<Sale> byPurchaseID() {
-        return Comparator.comparing(Sale::getId);
-    }
->>>>>>> 05098dd413ce01381a2a20a39f7b6f1adc3f5ba9
 
     public static Comparator<Stock> byAmountLeftDesc(){return Comparator.comparingInt(Stock::getQuantityLeft);}
 }

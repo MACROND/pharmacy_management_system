@@ -1,6 +1,6 @@
 package com.example.app.screens.fxmlControllers;
 
-import com.example.app.controllers.SaleController;
+import com.example.app.utils.algorithms.Functions;
 import com.example.app.controllers.StockController;
 import com.example.app.entities.Stock;
 import javafx.fxml.FXML;
@@ -13,10 +13,6 @@ public class ManageStockController {
 
     public MainDashboardController mainController;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 05098dd413ce01381a2a20a39f7b6f1adc3f5ba9
     public void setMainController(MainDashboardController mainController) {
         this.mainController = mainController;
     }
@@ -36,7 +32,6 @@ public class ManageStockController {
     }
 
     @FXML
-<<<<<<< HEAD
     public void handleRefresh(){
         searchField.clear();
         sortAmountAsc.setSelected(false);
@@ -76,23 +71,10 @@ public class ManageStockController {
             sortAmountAsc.setSelected(false);
             updateTableView();
         }
-=======
-    public void handleDelete() {
-
-    }
-
-    @FXML
-    public void handleRefresh() {
-        updateTableView();
->>>>>>> 05098dd413ce01381a2a20a39f7b6f1adc3f5ba9
     }
 
     private void updateTableView() {
         List<Stock> stockList = StockController.getAllStock();
-<<<<<<< HEAD
-=======
-        // stocklist = Functions.
->>>>>>> 05098dd413ce01381a2a20a39f7b6f1adc3f5ba9
         mainController.configureTableForStock(stockList);
         mainController.clearReportField();
     }
